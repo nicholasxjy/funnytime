@@ -29,6 +29,9 @@ var config = {
             pass: 'hilarious4862'
         }
     },
+    siteStaticDir: 'http://127.0.0.1:3000',
+    uploadDir: path.join(__dirname, 'public', 'uploads'),
+    profileImgDir: path.join(__dirname, 'public', 'gravatars'),
 
     allow_signup: true
 };

@@ -16,4 +16,9 @@ exports.getUsersByQuery = function(query, opts, callback) {
 exports.getUserByName = function(name, callback) {
     var query = User.where({name: name});
     query.findOne(callback);
-}
+};
+
+exports.getUserById = function(id, callback) {
+    var query = User.where({_id: id});
+    query.findOne(callback);
+};

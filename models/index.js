@@ -7,5 +7,8 @@ mongoose.connect(config.dburl, function(err) {
         process.exit(1);
     }
 });
+
 require('./User');
+require('./Joke');
 exports.User = mongoose.model('User');
+exports.Joke = mongoose.model('Joke');
