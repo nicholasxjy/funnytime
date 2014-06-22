@@ -17,6 +17,22 @@ exports.sendActiveMail = function(useremail, token, name) {
         subject: subject,
         html: content
     }, function(err, res) {
-        if (err) console.log('Send Email error:' + err.message);
+        if (err) console.log('Send Email error: ' + err.message);
+    });
+};
+
+exports.sendResetPassMail = function(useremail, key, name) {
+    var from = util.format('%s <%s>', config.sitename, config.mail_config.auth.user);
+    var to = useremail;
+    var subject = config.sitename + ' 重置密码。';
+    var content = "<p>您好，</p>" + "<p>请在24小时内点击下面的链接，来重置您的密码。</p>" +
+        "<a href='" + config.host +"/reset-pass?key="+ key +"&name="+ name +"'>重置密码链接</a>";
+    smtpTransport.sendMail({
+        from: from,
+        to: to,
+        subject: subject,
+        html: content
+    }, function(err, res) {
+        if (err) console.log('Send Reset Pass Email error: ' + err.message);
     });
 }

@@ -14,6 +14,10 @@ router.get('/signup', auth.showSignup);
 router.post('/signup', auth.postSignup);
 router.get('/signin', auth.showSignin);
 router.post('/signin', auth.postSignin);
+router.get('/forget-pass', auth.showForgetPass);
+router.post('/forget-pass', auth.postForgetPass);
 
+router.get('/reset-pass', auth.showResetPass);
+router.post('/reset-pass', auth.postResetPass);
 
 module.exports = router;

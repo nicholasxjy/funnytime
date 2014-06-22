@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var multer = require('multer');
 var routes = require('./routes/index');
 var config = require('./config');
 
@@ -19,6 +20,7 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(multer({dest: config.uploadDir}));
 app.use(cookieParser());
 
 app.use(session({

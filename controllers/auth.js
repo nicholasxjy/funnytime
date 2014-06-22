@@ -4,7 +4,7 @@ var validator = require('validator');
 var cryptofun = require('../utility/cryptofun');
 var authproxy = require('../proxy/auth');
 var mail = require('../services/mail');
-var User = require('../models').User;
+
 
 exports.showSignup = function(req, res) {
     if (req.session && req.session.user) {
@@ -37,7 +37,7 @@ exports.postSignup = function(req, res, next) {
     if (pass !== repass) {
         return res.render('auth/signup', {error: '两次密码不一致'});
     }
-    User.getUsersByQuery({'$or': [{'name': name}, {'email': email}]}, {}, function(err, users) {
+    authproxy.getUsersByQuery({'$or': [{'name': name}, {'email': email}]}, {}, function(err, users) {
         if (err) return next(err);
         if (users && users.length > 0) {
             return res.render('auth/signup', {error: '用户名或邮箱已被使用'});
@@ -116,5 +116,72 @@ exports.activeAccount = function(req, res, next) {
                 return res.render('notify/notify', {success: '此帐号成功被激活.'});
             });
         }
+    });
+};
+
+exports.showForgetPass = function(req, res, next) {
+    return res.render('auth/forgetpass');
+};
+
+exports.postForgetPass = function(req, res, next) {
+    var email = req.body.email;
+    email = validator.trim(email);
+    if (email === '') {
+        return res.render('auth/forgetpass', {error: '请填写注册邮箱地址'});
+    }
+    if (!validator.isEmail(email)) {
+        return res.render('auth/forgetpass', {error: '不正确的邮箱地址'});
+    }
+    authproxy.getUserByEmail(email, function(err, user) {
+        if (err) return next(err);
+        if (user) {
+            var forgetkey = cryptofun.randomString(15);
+            user.forgetkey = forgetkey;
+            user.save(function(err) {
+                if (err) return next(err);
+            });
+            //发送重置密码的邮件
+            mail.sendResetPassMail(email, forgetkey, user.name);
+            return res.render('notify/notify', {success: '我们给你的邮箱发送一封重置密码的邮件，请点击里面的连接以重置密码。'});
+        }
+    });
+};
+
+exports.showResetPass = function(req, res, next) {
+    var key = req.query.key;
+    var name = req.query.name;
+    authproxy.getUserByName(name, function(err, user) {
+        if (err) return next(err);
+        if (!user) {
+            return res.render('notify/notify', {error: '信息错误，无法重置密码'});
+        }
+        return res.render('auth/resetpass', {name: name, key: key});
+    });
+};
+
+exports.postResetPass = function(req, res, next) {
+    var key = req.body.key;
+    var name = req.body.name;
+    var pass = req.body.pass;
+    var repass = req.body.repass;
+    if (pass !== repass) {
+        return res.render('auth/resetpass', {error: '两次密码输入不一致'});
+    }
+    authproxy.getUserByName(name, function(err, user) {
+        if (err) return next(err);
+        if (!user) {
+            return res.render('auth/resetpass', {error: '信息错误，无法重置密码'});
+        }
+        if (user.forgetkey !== key) {
+            return res.render('auth/resetpass', {error: '信息错误，无法重置密码'});
+        }
+        user.password = cryptofun.md5Crypto(pass);
+        user.forgetkey = null;
+        //既然邮箱确认，再次将active直接置为true
+        user.active = true;
+        user.save(function(err) {
+            if (err) return next(err);
+        });
+        return res.render('notify/notify', {success: '重置密码成功，请重新登录'});
     });
 }

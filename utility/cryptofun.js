@@ -21,3 +21,15 @@ exports.decryt = function(str, secret) {
     destr += cipher.final('utf8');
     return destr;
 };
+
+exports.randomString = function(size) {
+    size = size || 6;
+    var allString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var maxLen = allString.length + 1;
+    var random = '';
+    while(size > 0) {
+        random += allString.charAt(Math.floor(Math.random() * maxLen));
+        size--;
+    }
+    return random;
+}

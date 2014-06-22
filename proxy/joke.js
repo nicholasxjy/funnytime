@@ -12,4 +12,4 @@ exports.createNewJoke = function(authorid, content, link, photos, callback) {
     joke.link = link;
     joke.photos = photos;
     joke.save(callback);
-}
+};

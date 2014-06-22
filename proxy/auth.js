@@ -22,3 +22,8 @@ exports.getUserById = function(id, callback) {
     var query = User.where({_id: id});
     query.findOne(callback);
 };
+
+exports.getUserByEmail = function(email, callback) {
+    var query = User.where({email: email});
+    query.findOne(callback);
+}

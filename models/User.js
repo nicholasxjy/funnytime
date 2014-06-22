@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     location: {type: Number, default: 0},
     profile: {type: String, default: config.none_profile},
     createtime: {type: Date, default: Date.now},
+    forgetkey: {type: String},
     active: {type: Boolean, default: false}
 });
 
