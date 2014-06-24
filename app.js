@@ -9,7 +9,7 @@ var MongoStore = require('connect-mongo')(session);
 var multer = require('multer');
 var routes = require('./routes/index');
 var config = require('./config');
-
+var auth = require('./controllers/auth');
 var app = express();
 
 // view engine setup
@@ -29,6 +29,8 @@ app.use(session({
         db: config.dbname
     })
 }));
+// cookie auth middleware
+app.use(auth.authUser);
 app.use(express.static(path.join(__dirname, 'public')));
 
 

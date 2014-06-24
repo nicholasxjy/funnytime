@@ -184,4 +184,36 @@ exports.postResetPass = function(req, res, next) {
         });
         return res.render('notify/notify', {success: '重置密码成功，请重新登录'});
     });
+};
+
+exports.authUser = function(req, res, next) {
+    if (req.session && req.session.user) {
+        authproxy.getUserById(req.session.user._id, function(err, user) {
+            if (err) return next(err);
+            if (user) {
+                req.session.user = user;
+                res.locals({c_user: user});
+                return next();
+            } else {
+                return next();
+            }
+        });
+    } else {
+        var authcookie = req.cookies[config.cookieName];
+        if (!cookieToken) {
+            return next();
+        }
+        var cookieToken = cryptofun.decryt(authcookie, config.session_secret);
+        var userid = cookieToken.spilt('||')[0];
+        authproxy.getUserById(userid, function(err, user) {
+            if (err) return next(err);
+            if (user) {
+                res.session.user = user;
+                res.locals({c_user: user});
+                return next();
+            } else {
+                return next();
+            }
+        });
+    }
 }
