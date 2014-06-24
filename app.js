@@ -33,15 +33,11 @@ app.use(session({
 app.use(auth.authUser);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('view cache', false);
 
+routes(app);
 
-
-app.use('/', routes);
-
-
-
-
-
+/// error handlers
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -49,7 +45,8 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/// error handlers
+
+
 
 // development error handler
 // will print stacktrace

@@ -1,23 +1,20 @@
-var express = require('express');
-var router = express.Router();
 var auth = require('../controllers/auth');
 var site = require('../controllers/site');
 var joke = require('../controllers/joke');
-/* GET home page. */
-router.get('/', site.index);
 
 
-router.get('/joke/:jokeid', joke.index);
-router.post('/joke/create', joke.create);
+module.exports = function(app) {
+    /* GET home page. */
+    app.get('/', site.index);
+    app.get('/forget-pass', auth.showForgetPass);
+    app.post('/forget-pass', auth.postForgetPass);
 
-router.get('/signup', auth.showSignup);
-router.post('/signup', auth.postSignup);
-router.get('/signin', auth.showSignin);
-router.post('/signin', auth.postSignin);
-router.get('/forget-pass', auth.showForgetPass);
-router.post('/forget-pass', auth.postForgetPass);
+    app.get('/reset-pass', auth.showResetPass);
+    app.post('/reset-pass', auth.postResetPass);
 
-router.get('/reset-pass', auth.showResetPass);
-router.post('/reset-pass', auth.postResetPass);
 
-module.exports = router;
+    app.post('/signin', auth.postSignin);
+    app.post('/signup', auth.postSignup);
+
+
+}

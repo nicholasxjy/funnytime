@@ -81,7 +81,7 @@
     text-shadow: none;
     color: #ccc;
 }
-.signin-wrap {
+#signin-wrap {
     margin-bottom: 30px;
 }
 .signin-title {
