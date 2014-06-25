@@ -1,6 +1,25 @@
 <header class="nav-wrap">
     <div class="nav-inner">
-        <div class="nav-top">
+        <div class="nav-top container">
+            <div class="nav-list-wrap">
+                <ul class="nav-list list-inline">
+                    <li class="nav-active">
+                        <a class="nav-tooltip" href="#" data-toggle="tooltip" data-placement="bottom" title="首页">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li class="nav-default">
+                        <a class="nav-tooltip" href="#" data-toggle="tooltip" data-placement="bottom" title="通知">
+                            <i class="fa fa-bell"></i>
+                        </a>
+                    </li>
+                    <li class="nav-default">
+                        <a class="nav-tooltip" href="#" data-toggle="tooltip" data-placement="bottom" title="我">
+                            <i class="fa fa-user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div class="site-brand">
                 Smile it
             </div>
@@ -11,40 +30,22 @@
                     <i class="fa fa-search"></i>
                 </form>
             </div>
-        </div>
-        <div class="nav-list-wrap">
-            <ul class="nav-list list-inline">
-                <li class="nav-active">
-                    <a href="#">
-                        <i class="fa fa-home"></i><br/>
-                        <span class="nav-home">首页</span>
-                    </a>
-                </li>
-                <li class="nav-default">
-                    <a href="#">
-                        <i class="fa fa-user"></i><br/>
-                        <span class="nav-user">我</span>
-                    </a>
-                </li>
-                <li class="nav-default">
-                    <a href="#">
-                        <i class="fa fa-photo"></i><br/>
-                        <span class="nav-post">发表</span>
-                    </a>
-                </li>
-                <li class="nav-default">
-                    <a href="#">
-                        <i class="fa fa-bell"></i><br/>
-                        <span class="nav-notification">通知</span>
-                    </a>
-                </li>
-                <li class="nav-default">
-                    <a href="#">
-                        <i class="fa fa-gear"></i><br/>
-                        <span class="nav-setting">设置</span>
-                    </a>
-                </li>
-            </ul>
+            <div class="setting-wrap dropdown">
+                <a href="#" class="dropdown-toggle nav-setting" data-toggle="dropdown"><i class="fa fa-gear"></i></a>
+
+                <ul class="dropdown-menu" id="setting-dropdown">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/signout">退出</a></li>
+                </ul>
+            </div>
+            <div class="post-wrap">
+                <button class="btn btn-success nav-tooltip" data-toggle="tooltip" data-placement="bottom" title="发表">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+            </div>
         </div>
     </div>
 </header>

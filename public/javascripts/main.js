@@ -2,6 +2,8 @@
  * Created by nicholas_xue on 14-6-24.
  */
 $(document).ready(function() {
+    //tooltip init
+    $('.nav-tooltip').tooltip();
     $('#btn-signin').click(function(event) {
         var $form = $('#signin-wrap');
         var name = $form.find('input[name="name"]').val();

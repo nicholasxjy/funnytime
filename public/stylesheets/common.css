@@ -8,47 +8,46 @@ html, body {
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-  color: #00B7FF;
-}
 img {
     border: 0;
 }
 
 /* header nav */
 .nav-wrap {
-    height: 120px;
+    height: 60px;
     width: 100%;
     background-color: #fff;
     position: relative;
 }
 .nav-inner {
-    height: 120px;
+    height: 60px;
     width: 100%;
+    background-color: #f5f5f5;
 }
 .search-wrap {
-    height: 40px;
+    height: 60px;
     position: absolute;
     top: 0;
-    right: 50px;
+    right: 150px;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 15px;
 }
 .site-brand {
     width: 200px;
-    height: 40px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -100px;
     font-size: 26px;
     font-family: "Lucida";
-    line-height: 40px;
-    margin: 0 auto;
+    line-height: 60px;
     text-align: center;
     color: #66757f;
     font-style: italic;
 }
 .nav-top {
-    height: 40px;
-    background-color: #f5f5f5;
+    height: 60px;
 }
 .search-input {
     height: 30px;
@@ -67,34 +66,65 @@ img {
     color: #fff;
 }
 .nav-list-wrap {
-    height: 80px;
-    width: 100%;
-    background-color: #333;
+    height: 60px;
+    width: 400px;
+}
+.nav-list {
+    margin: 0;
+    height: 60px;
+    width: 300px;
 }
 .nav-list li {
-    height: 80px;
-    width: 19.7%;
-    padding: 0;
-    text-align: center;
-}
-.nav-list li.nav-active {
-    background-color: #000;
+    height: 60px;
+    width: 60px;
+    float: left;
 }
 .nav-list li a {
     display: block;
-    height: 80px;
-    width: 100%;
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    color: #333;
+}
+.nav-list li a:hover {
     color: #fff;
-    text-decoration: none;
-    padding-top: 15px;
+    background-color: #0066ff;
 }
-.nav-default:hover {
-    background-color: #1e90ff;
+.setting-wrap {
+   position: absolute;
+   top: 0px;
+   right: 70px;
+   height: 60px;
+   width: 60px;
 }
-.nav-list li a i {
-    font-size: 22px;
-    padding-bottom: 10px;
+.nav-setting {
+    display: block;
+    font-size: 26px;
+    color: #66757f;
+    line-height: 60px;
+    height: 30px;
+    width: 30px;
 }
-.nav-list li a span {
-    font-size: 12px;
+#setting-dropdown {
+    left: -78px;
+}
+.setting-tangle {
+    position: absolute;
+    top: 0;
+    height: 0;
+    width: 0;
+    display: block;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+}
+.post-wrap {
+    position: absolute;
+    top: 13px;
+    right: 30px;
 }
