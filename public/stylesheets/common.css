@@ -15,3 +15,86 @@ a {
 img {
     border: 0;
 }
+
+/* header nav */
+.nav-wrap {
+    height: 120px;
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+}
+.nav-inner {
+    height: 120px;
+    width: 100%;
+}
+.search-wrap {
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    text-align: center;
+    padding-top: 5px;
+}
+.site-brand {
+    width: 200px;
+    height: 40px;
+    font-size: 26px;
+    font-family: "Lucida";
+    line-height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    color: #66757f;
+    font-style: italic;
+}
+.nav-top {
+    height: 40px;
+    background-color: #f5f5f5;
+}
+.search-input {
+    height: 30px;
+    width: 200px;
+    outline: none;
+    border-radius: 21px;
+    border: none;
+    background: #66757f;
+    color: #ccd6dd;
+    padding: 5px 15px;
+}
+.search-wrap i {
+    position: relative;
+    top: 0;
+    right: 30px;
+    color: #fff;
+}
+.nav-list-wrap {
+    height: 80px;
+    width: 100%;
+    background-color: #333;
+}
+.nav-list li {
+    height: 80px;
+    width: 19.7%;
+    padding: 0;
+    text-align: center;
+}
+.nav-list li.nav-active {
+    background-color: #000;
+}
+.nav-list li a {
+    display: block;
+    height: 80px;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    padding-top: 15px;
+}
+.nav-default:hover {
+    background-color: #1e90ff;
+}
+.nav-list li a i {
+    font-size: 22px;
+    padding-bottom: 10px;
+}
+.nav-list li a span {
+    font-size: 12px;
+}

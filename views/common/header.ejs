@@ -1,5 +1,50 @@
-<% if (locals.c_user) { %>
-
-<% } else { %>
-
-<% } %>
+<header class="nav-wrap">
+    <div class="nav-inner">
+        <div class="nav-top">
+            <div class="site-brand">
+                Smile it
+            </div>
+            <div class="search-wrap">
+                <form action="/search" method="post" role="form">
+                    <input type="text" name="query" class="search-input" size="20"
+                    placeholder="Search it...">
+                    <i class="fa fa-search"></i>
+                </form>
+            </div>
+        </div>
+        <div class="nav-list-wrap">
+            <ul class="nav-list list-inline">
+                <li class="nav-active">
+                    <a href="#">
+                        <i class="fa fa-home"></i><br/>
+                        <span class="nav-home">首页</span>
+                    </a>
+                </li>
+                <li class="nav-default">
+                    <a href="#">
+                        <i class="fa fa-user"></i><br/>
+                        <span class="nav-user">我</span>
+                    </a>
+                </li>
+                <li class="nav-default">
+                    <a href="#">
+                        <i class="fa fa-photo"></i><br/>
+                        <span class="nav-post">发表</span>
+                    </a>
+                </li>
+                <li class="nav-default">
+                    <a href="#">
+                        <i class="fa fa-bell"></i><br/>
+                        <span class="nav-notification">通知</span>
+                    </a>
+                </li>
+                <li class="nav-default">
+                    <a href="#">
+                        <i class="fa fa-gear"></i><br/>
+                        <span class="nav-setting">设置</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

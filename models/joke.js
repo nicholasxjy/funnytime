@@ -10,6 +10,7 @@ var JokeSchema = new Schema({
     link: {type: String},
     reply_count: {type: Number, default: 0},
     like_count: {type: Number, default: 0},
+    attachtype: {type: Number, default: 0}, // 0 default  1 photo 2 link
     createtime: {type: Date, default: Date.now}
 });
 

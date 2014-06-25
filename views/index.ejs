@@ -11,7 +11,7 @@
     <% if (!locals.c_user) { %>
       <% include indexnoneuser.ejs %>
     <% } else { %>
-      <h1><%= locals.c_user.name %></h1>
+      <% include ./common/header.ejs %>
     <% } %>
 
 
