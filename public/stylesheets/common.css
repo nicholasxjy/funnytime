@@ -91,6 +91,11 @@ img {
     text-align: center;
     color: #333;
 }
+.notifition-count {
+    position: relative;
+    top: -45px;
+    left: 30px;
+}
 .nav-list li a:hover {
     color: #fff;
     background-color: #0066ff;
