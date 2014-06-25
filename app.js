@@ -25,6 +25,7 @@ app.use(cookieParser());
 
 app.use(session({
     secret: config.session_secret,
+    key: 'sid',
     store: new MongoStore({
         db: config.dbname
     })

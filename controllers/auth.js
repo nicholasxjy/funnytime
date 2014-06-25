@@ -42,7 +42,7 @@ exports.postSignup = function(req, res, next) {
         //发送激活邮件通知
         mail.sendActiveMail(email, token, name);
 
-        return res.render('notify/notify', {success: '欢迎来到 ' + config.sitename +
+        return res.json({status: 'success', success: '欢迎来到 ' + config.sitename +
             '我们给你的注册邮箱发送了一份激活邮件，请点击其中连接以激活您的帐号。'});
     });
 };
@@ -73,11 +73,16 @@ exports.postSignin = function(req, res, next) {
         var cookieToken = cryptofun.encryt(user._id + '||' + user.name + '||'
             + user.email + '||' + user.password, config.session_secret);
         res.cookie(config.cookieName, cookieToken, {path: '/', maxAge: config.cookieAge});
-        res.session.user = user;
         return res.json({status: 'success'});
     });
-
 };
+
+exports.signOut = function(req, res, next) {
+    req.session.destroy();
+    res.clearCookie(config.cookieName, {path: '/'});
+    return res.redirect('/');
+};
+
 
 exports.activeAccount = function(req, res, next) {
     var key = req.query.key;
@@ -172,12 +177,13 @@ exports.postResetPass = function(req, res, next) {
 };
 
 exports.authUser = function(req, res, next) {
-    if (req.session && req.session.user) {
+    var sess = req.session;
+    if (sess && sess.user) {
         authproxy.getUserById(req.session.user._id, function(err, user) {
             if (err) return next(err);
             if (user) {
-                req.session.user = user;
-                res.locals({c_user: user});
+                sess.user = user;
+                res.locals.c_user = user;
                 return next();
             } else {
                 return next();
@@ -185,16 +191,16 @@ exports.authUser = function(req, res, next) {
         });
     } else {
         var authcookie = req.cookies[config.cookieName];
-        if (!cookieToken) {
+        if (!authcookie) {
             return next();
         }
         var cookieToken = cryptofun.decryt(authcookie, config.session_secret);
-        var userid = cookieToken.spilt('||')[0];
+        var userid = cookieToken.split('||')[0];
         authproxy.getUserById(userid, function(err, user) {
             if (err) return next(err);
             if (user) {
-                res.session.user = user;
-                res.locals({c_user: user});
+                sess.user = user;
+                res.locals.c_user = user;
                 return next();
             } else {
                 return next();

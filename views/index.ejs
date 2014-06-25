@@ -8,7 +8,11 @@
     <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
-    <% include indexnoneuser.ejs %>
+    <% if (!locals.c_user) { %>
+      <% include indexnoneuser.ejs %>
+    <% } else { %>
+      <h1><%= locals.c_user.name %></h1>
+    <% } %>
 
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

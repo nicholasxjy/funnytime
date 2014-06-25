@@ -25,7 +25,7 @@ var config = {
         host: 'smtp.126.com',
         port: 25,
         auth: {
-            user: 'jokeofday@126.com',
+            user: 'lolme_club@126.com',
             pass: 'hilarious4862'
         }
     },

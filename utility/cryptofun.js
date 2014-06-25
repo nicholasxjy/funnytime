@@ -16,9 +16,9 @@ exports.encryt = function(str, secret) {
 };
 
 exports.decryt = function(str, secret) {
-    var cipher = crypto.createDecipher('aes192', secret);
-    var destr = cipher.update(str, 'hex', 'utf8');
-    destr += cipher.final('utf8');
+    var decipher = crypto.createDecipher('aes192', secret);
+    var destr = decipher.update(str, 'hex', 'utf8');
+    destr += decipher.final('utf8');
     return destr;
 };
 
