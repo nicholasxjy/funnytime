@@ -106,9 +106,9 @@ img {
     display: block;
     font-size: 26px;
     color: #66757f;
-    line-height: 60px;
-    height: 30px;
-    width: 30px;
+    line-height: 30px;
+    margin-top: 15px;
+    width: 26px;
 }
 #setting-dropdown {
     left: -78px;
