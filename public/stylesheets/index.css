@@ -111,12 +111,14 @@
     float: left;
     margin-top: 30px;
 }
-.user-card {
-    position: relative;
+.left-block-wrap {
     background: #fff;
     border: none;
     border-radius: 6px;
     padding: 10px 15px;
+}
+.user-card {
+    position: relative;
 }
 .user-avatar {
     height: 150px;
@@ -146,7 +148,7 @@
 }
 .user-info p {
     font-size: 10px;
-    color: #fff;
+    color: #ccc;
 }
 .user-info-list {
     text-align: center;
@@ -154,4 +156,86 @@
 }
 .user-profile {
     margin-left: 30px;
+}
+
+
+/* hot share */
+.hot-share {
+    margin-top: 30px;
+}
+.hot-share-title h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #66757f;
+    line-height: 22px;
+    font-weight: 300;
+}
+.hot-list-wrap {
+    margin-top: 10px;
+}
+.hot-list li {
+    margin-bottom: 5px;
+}
+.hot-list a {
+    font-size: 12px;
+    line-height: 20px;
+    color: #0099B9;
+    font-weight: 300;
+    font-style: italic;
+}
+
+
+/* middle content */
+.share-items-content {
+    width: 590px;
+    float: left;
+    margin: 30px 15px 0 15px;
+}
+.item-inner {
+    position: relative;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+}
+.item-inner-left {
+    width: 48px;
+    position: relative;
+    top: 15px;
+    left: 10px;
+}
+.item-inner-right {
+    position: relative;
+    top: -33px;
+    left: 69px;
+    max-width: 520px;
+    overflow: hidden;
+}
+.content-media-inner img {
+    max-height: 253px;
+}
+.author-information {
+    margin-bottom: 10px;
+}
+.fullname {
+    color: #292f33;
+}
+.fullname:hover {
+    color: #0099B9;
+}
+.create-time {
+    margin-left: 20px;
+}
+.create-time a {
+    color: #8899a6;
+}
+.content-bottom {
+    margin-top: 15px;
+}
+.content-bottom a {
+    font-size: 12px;
+    color: #8899a6;
+}
+.fun-list {
+    float:right;
+    margin-right: 10px;
 }
