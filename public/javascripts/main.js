@@ -59,4 +59,18 @@ $(document).ready(function() {
             }
         });
     });
+
+    //comment show
+    $('.comment-show').on('click', function() {
+      var itemid = $(this).data('itemid');
+      var $comment = $('#'+ itemid);
+      var display = $comment.css('display');
+      if (display === 'none') {
+        $comment.show();
+        $(this).find('b').text('收起评论');
+      } else {
+        $comment.hide();
+        $(this).find('b').text('展开评论');
+      }
+    });
 });

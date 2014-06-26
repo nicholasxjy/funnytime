@@ -17,7 +17,8 @@ img {
     height: 60px;
     width: 100%;
     background-color: #fff;
-    position: relative;
+    position: fixed;
+    z-index: 2000;
 }
 .nav-inner {
     height: 60px;
@@ -40,11 +41,12 @@ img {
     left: 50%;
     margin-left: -100px;
     font-size: 26px;
-    font-family: "Lucida";
     line-height: 60px;
     text-align: center;
     color: #66757f;
     font-style: italic;
+    font-weight: 700;
+    text-shadow: 5px 5px 5px #8c9ca9;
 }
 .nav-top {
     height: 60px;
@@ -84,12 +86,12 @@ img {
     height: 40px;
     width: 40px;
     margin-top: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #66757f;
     border-radius: 50%;
     font-size: 16px;
     line-height: 40px;
     text-align: center;
-    color: #333;
+    color: #66757f;
 }
 .notifition-count {
     position: relative;
@@ -98,7 +100,7 @@ img {
 }
 .nav-list li a:hover {
     color: #fff;
-    background-color: #0066ff;
+    background-color: #66757f;
 }
 .setting-wrap {
    position: absolute;
@@ -132,4 +134,10 @@ img {
     position: absolute;
     top: 13px;
     right: 30px;
+}
+#btn-post {
+    background-color: #0099B9;
+    border-color: #0099B9;
+    font-size: 24px;
+    padding: 0 12px;
 }
