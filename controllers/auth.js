@@ -2,6 +2,7 @@ var config = require('../config');
 var async = require('async');
 var validator = require('validator');
 var cryptofun = require('../utility/cryptofun');
+var formatfun = require('../utility/formatfun');
 var authproxy = require('../proxy/auth');
 var mail = require('../services/mail');
 
@@ -182,6 +183,7 @@ exports.authUser = function(req, res, next) {
         authproxy.getUserById(req.session.user._id, function(err, user) {
             if (err) return next(err);
             if (user) {
+                user.format_create_time = formatfun.formatDate(user.createtime, true);
                 sess.user = user;
                 res.locals.c_user = user;
                 return next();
@@ -199,6 +201,7 @@ exports.authUser = function(req, res, next) {
         authproxy.getUserById(userid, function(err, user) {
             if (err) return next(err);
             if (user) {
+                user.format_create_time = formatfun.formatDate(user.createtime, true);
                 sess.user = user;
                 res.locals.c_user = user;
                 return next();

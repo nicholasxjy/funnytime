@@ -1,3 +1,6 @@
+.index-body {
+    background: url(../images/low_bg.png) repeat 0 0;
+}
 .wrapper {
     height: 100%;
     position: relative;
@@ -99,4 +102,56 @@
 .forget-or-signup button {
     margin-top: -30px;
     margin-right: 15px;
+}
+
+
+/* index left wrap */
+.left-wrap {
+    width: 290px;
+    float: left;
+    margin-top: 30px;
+}
+.user-card {
+    position: relative;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+.user-avatar {
+    height: 150px;
+    background: #66757f;
+    text-align: center;
+    border-radius: 5px;
+}
+.user-avatar img {
+    position: relative;
+    top: 10px;
+    left: 50%;
+    margin-left: -40px;
+}
+.user-info {
+    position: absolute;
+    top: 94px;
+    left: 77px;
+}
+.user-info h1 {
+    margin: 0;
+    padding: 0;
+
+}
+.user-info h1 a {
+    font-size: 20px;
+    color: #fff;
+}
+.user-info p {
+    font-size: 10px;
+    color: #fff;
+}
+.user-info-list {
+    text-align: center;
+    margin-top: 10px;
+}
+.user-profile {
+    margin-left: 30px;
 }

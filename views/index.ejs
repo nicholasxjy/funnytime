@@ -7,11 +7,20 @@
     <link rel='stylesheet' href='/stylesheets/common.css' />
     <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
-  <body>
+  <body class="index-body">
     <% if (!locals.c_user) { %>
       <% include indexnoneuser.ejs %>
     <% } else { %>
-      <% include ./common/header.ejs %>
+      <div class="wrap">
+        <% include ./common/header.ejs %>
+        <div class="main">
+          <div class="container">
+            <% include ./common/userboard.ejs %>
+          </div>
+        </div>
+      </div>
+
+
     <% } %>
 
 
