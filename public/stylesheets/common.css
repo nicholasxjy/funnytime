@@ -12,13 +12,61 @@ img {
     border: 0;
 }
 
+/* post modal */
+#post-modal {
+    top: 10%;
+}
+#post-modal .modal-dialog {
+    max-width: 500px;
+}
+#modal-post-btn {
+    background-color: #0099B9;
+    border-color: #0099B9;
+    font-size: 24px;
+    padding: 0 17px;
+}
+.share-words {
+    width: 450px;
+    height: 80px;
+    border: 1px solid rgba(0,153,185,0.25);
+    border-radius: 4px;
+    padding: 10px;
+    outline: none;
+}
+.attach-bar-list {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.attach-bar-list li {
+    width: 120px;
+    height: 35px;
+}
+.attach-bar-list li a {
+    display: block;
+    font-size: 20px;
+    color: #0099B9;
+    text-decoration: none;
+    line-height: 35px;
+}
+.attach-bar-list li a b {
+    font-size: 14px;
+    font-weight: 300;
+}
+.selectpicker {
+    width: 220px;
+    height: 30px;
+    margin-left: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
 /* header nav */
 .nav-wrap {
     height: 60px;
     width: 100%;
     background-color: #fff;
     position: fixed;
-    z-index: 2000;
+    z-index: 1000;
 }
 .nav-inner {
     height: 60px;

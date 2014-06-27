@@ -251,6 +251,7 @@
 }
 .content-media-inner img {
     max-height: 253px;
+    max-width: 506px;
 }
 .author-information {
     margin-bottom: 10px;

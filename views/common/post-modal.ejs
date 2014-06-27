@@ -1,0 +1,52 @@
+<div class="modal fade" id="post-modal" tabindex="-1" role="dialog" aria-labelledby="myPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+           <h4 class="modal-title" id="myModalLabel">发表新item</h4>
+         </div>
+         <div class="modal-body">
+            <div class="post-content-wrap">
+              <div class="words-content">
+                <textarea class="share-words" row="3"></textarea>
+              </div>
+              <div class="attach-bar">
+                <ul class="list-inline attach-bar-list">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-camera"></i>
+                      <b>照片</b>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-link"></i>
+                      <b>链接</b>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-info"></i>
+                      <b>注意!</b>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="secret-options">
+                <select name="" id="" class="selectpicker">
+                  <option value="0">public</option>
+                  <option value="1">secret</option>
+                  <option value="2">12 days open</option>
+                </select>
+              </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           <button id="modal-post-btn" type="button" class="btn btn-primary">
+            <i class="fa fa-pencil-square-o"></i>
+          </button>
+         </div>
+       </div>
+     </div>
+</div>
