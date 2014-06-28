@@ -249,6 +249,9 @@
     max-width: 520px;
     overflow: hidden;
 }
+.content-media-inner {
+    margin-right: 15px;
+}
 .content-media-inner img {
     max-height: 253px;
     max-width: 506px;

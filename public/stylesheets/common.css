@@ -13,9 +13,7 @@ img {
 }
 
 /* post modal */
-#post-modal {
-    top: 10%;
-}
+
 #post-modal .modal-dialog {
     max-width: 500px;
 }
@@ -38,7 +36,7 @@ img {
     margin-top: 5px;
 }
 .attach-bar-list li {
-    width: 120px;
+    width: 110px;
     height: 39px;
 }
 .attach-bar-list li a {
@@ -93,6 +91,11 @@ img {
     height: 30px;
     display: none;
 }
+#video-wrap {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    display: none;
+}
 .attach-link-input {
     height: 30px;
     width: 350px;
@@ -103,7 +106,7 @@ img {
     outline: none;
     font-size: 12px;
 }
-.attach-link-cancel {
+.puzzle-input-cancel, .attach-link-cancel, .puzzle-answer-cancel, .video-input-cancel, .video-share-tip {
     position: relative;
     top: 4px;
     height: 24px;
@@ -113,11 +116,24 @@ img {
     margin-left: 8px;
     cursor: pointer;
 }
+.puzzle-input-cancel, .video-input-cancel, .video-share-tip {
+    top: -20px;
+}
+.question-wrap {
+    margin-top: 10px;
+    padding-left: 10px;
+    display: none;
+}
+#puzzle-input, #video-input {
+    height: 60px;
+    padding-top: 8px;
+}
+.question-answer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 /* comment post modal */
 
-#comment-post-modal {
-    top: 10%;
-}
 #comment-post-modal .modal-dialog {
     max-width: 500px;
 }
