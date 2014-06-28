@@ -8,41 +8,51 @@
          <div class="modal-body">
             <div class="post-content-wrap">
               <div class="words-content">
-                <textarea class="share-words" row="3"></textarea>
+                <textarea class="share-words" row="3" placeholder="Share what's new..."></textarea>
               </div>
               <div class="attach-bar">
                 <ul class="list-inline attach-bar-list">
                   <li>
-                    <a href="#">
+                    <a class="attach-link attach-photo-link">
                       <i class="fa fa-camera"></i>
                       <b>照片</b>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a class="attach-link attach-link-link">
                       <i class="fa fa-link"></i>
                       <b>链接</b>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a class="attach-link info-popover" data-toggle="popover" title="权限说明" data-content="默认为public即任何人都能看到;secret你可以设置问题和答案，用户答对即可查看内容，否则无法看到你分享的内容;12 days open你设置问题和答案，但在12天之后会自动解封，转换成public状态。" data-placement="top">
                       <i class="fa fa-info"></i>
                       <b>注意!</b>
                     </a>
                   </li>
                 </ul>
               </div>
+              <div id="dropzone-wrap">
+                <div class="dropzone"></div>
+              </div>
+              <div id="link-wrap">
+                <input type="text" class="attach-link-input" size="100" placeholder="例如: https://... or http://...">
+                <span class="attach-link-cancel fa fa-times-circle"></span>
+              </div>
+
               <div class="secret-options">
+                <span class="secret-title">权限设置:</span>
                 <select name="" id="" class="selectpicker">
                   <option value="0">public</option>
                   <option value="1">secret</option>
                   <option value="2">12 days open</option>
                 </select>
+                <span class="secret-tip">(点击上方注意查看说明)</span>
               </div>
             </div>
          </div>
          <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
            <button id="modal-post-btn" type="button" class="btn btn-primary">
             <i class="fa fa-pencil-square-o"></i>
           </button>

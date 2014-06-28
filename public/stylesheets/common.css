@@ -39,7 +39,7 @@ img {
 }
 .attach-bar-list li {
     width: 120px;
-    height: 35px;
+    height: 39px;
 }
 .attach-bar-list li a {
     display: block;
@@ -49,8 +49,18 @@ img {
     line-height: 35px;
 }
 .attach-bar-list li a b {
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 12px;
+}
+.attach-link {
+    cursor: pointer;
+    text-align: center;
+}
+.secret-title {
+    height: 30px;
+    width: 100px;
+    margin-left: 10px;
+    font-weight: 500;
+    color: #66757f;
 }
 .selectpicker {
     width: 220px;
@@ -59,8 +69,50 @@ img {
     outline: none;
     border: 1px solid #ccc;
     background-color: #fff;
+    color: #66757f;
 }
-
+.secret-tip {
+    font-size: 12px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ccc;
+}
+#dropzone-wrap {
+    display: none;
+}
+#dropzone-wrap .dropzone .dz-preview, .dropzone-previews .dz-preview {
+    margin: 12px;
+}
+#dropzone-wrap .dropzone {
+    min-height: 250px;
+    margin-bottom: 10px;
+}
+#link-wrap {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    height: 30px;
+    display: none;
+}
+.attach-link-input {
+    height: 30px;
+    width: 350px;
+    border:1px solid #0099B9;
+    border-radius: 6px;
+    color: #66757f;
+    padding-left: 8px;
+    outline: none;
+    font-size: 12px;
+}
+.attach-link-cancel {
+    position: relative;
+    top: 4px;
+    height: 24px;
+    width: 20px;
+    line-height: 24px;
+    font-size: 24px;
+    margin-left: 8px;
+    cursor: pointer;
+}
 /* comment post modal */
 
 #comment-post-modal {
@@ -68,6 +120,24 @@ img {
 }
 #comment-post-modal .modal-dialog {
     max-width: 500px;
+}
+.modal-comment-item {
+    height: 60px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.modal-comment-inner-left {
+    width: 48px;
+    height: 48px;
+    position: relative;
+
+}
+.modal-comment-inner-right {
+    width: 380px;
+    position: relative;
+    left: 56px;
+    top: -48px;
 }
 /* header nav */
 .nav-wrap {
