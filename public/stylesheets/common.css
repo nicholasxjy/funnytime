@@ -60,6 +60,15 @@ img {
     border: 1px solid #ccc;
     background-color: #fff;
 }
+
+/* comment post modal */
+
+#comment-post-modal {
+    top: 10%;
+}
+#comment-post-modal .modal-dialog {
+    max-width: 500px;
+}
 /* header nav */
 .nav-wrap {
     height: 60px;
