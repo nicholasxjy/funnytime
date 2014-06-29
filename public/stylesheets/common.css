@@ -12,10 +12,6 @@ img {
     border: 0;
 }
 
-.modal-body, .modal-footer {
-    background-color: rgba(0, 153, 185, .1);
-}
-
 /* post modal */
 
 #post-modal .modal-dialog {

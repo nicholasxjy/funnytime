@@ -166,8 +166,14 @@ $(document).ready(function() {
           $('#modal-post-btn').attr('disabled', 'disabled');
         }
       });
-      this.on('successmultiple', function(file, req) {
-          location.href = 'http://127.0.0.1:1337';
+      this.on('successmultiple', function(file, res) {
+          if (res.status === 'fail') {
+            $('#post-warning').html('');
+            $('#post-warning').html('<div class="alert alert-warning fade in" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Oops!</strong> ' + res.error + '</div>');
+            $('.alert').alert();
+          } else {
+            window.location.href = 'http://127.0.0.1:1337';
+          }
       });
     }
   };
@@ -228,6 +234,4 @@ $(document).ready(function() {
       $('#modal-post-btn').attr('disabled', 'disabled');
     }
   });
-
-
 });
