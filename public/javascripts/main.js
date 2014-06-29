@@ -23,13 +23,16 @@ $(document).ready(function() {
       success: function(res) {
         if (res.status === 'fail') {
           $form.find('.error').html('');
-          $form.find('.error').append('<div class="form-group"><div class="alert alert-warning"><strong>' + res.error + '</strong></div></div>');
+          $form.find('.error').html('<div class="alert alert-warning fade in" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Oops!</strong> ' + res.error + '</div>');
+          $('.alert').alert();
         } else {
           window.location.href = "http://127.0.0.1:1337";
         }
       },
       error: function() {
-        alert('Something wrong here!');
+        $form.find('.error').html('');
+        $form.find('.error').html('<div class="alert alert-warning fade in" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Holy Shit!</strong> Something goes wrong here!</div>');
+        $('.alert').alert();
       }
     });
   });
@@ -53,14 +56,18 @@ $(document).ready(function() {
       success: function(res) {
         if (res.status === 'fail') {
           $form.find('.error').html('');
-          $form.find('.error').append('<div class="form-group"><div class="alert alert-warning"><strong>' + res.error + '</strong></div></div>');
+          $form.find('.error').html('<div class="alert alert-warning fade in" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Oops!</strong> ' + res.error + '</div>');
+          $('.alert').alert();
         } else {
           $form.find('.success').html('');
-          $form.find('.success').append('<div class="form-group"><div class="alert alert-success"><strong>' + res.success + '</strong></div></div>');
+          $form.find('.success').html('<div class="alert alert-success fade in" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>All right!</strong> ' + res.success + '</div>');
+          $('.alert').alert();
         }
       },
       error: function() {
-        alert('Something wrong here!');
+        $form.find('.error').html('');
+        $form.find('.error').html('<div class="alert alert-warning fade in" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Holy Shit!</strong> Something goes wrong here!</div>');
+        $('.alert').alert();
       }
     });
   });
@@ -106,6 +113,8 @@ $(document).ready(function() {
     uploadMultiple: true,
     init: function() {
       var btnpost = document.getElementById('modal-post-btn');
+      var btnlink = document.getElementById('attachment-link');
+      var btnvideo = document.getElementById('attachment-video');
       var myDropzone = this;
       btnpost.addEventListener('click', function(e) {
           var content = $('#share-what-new').val();
@@ -127,9 +136,34 @@ $(document).ready(function() {
               $('#my-dropzone').submit();
           }
       });
+      btnlink.addEventListener('click', function() {
+        var sharecontent = $('#share-what-new').val();
+        myDropzone.removeAllFiles();
+        if (sharecontent !== '') {
+          $('#modal-post-btn').removeAttr('disabled');
+        } else {
+          $('#modal-post-btn').attr('disabled', 'disabled');
+        }
+
+      });
+      btnvideo.addEventListener('click', function() {
+        var sharecontent = $('#share-what-new').val();
+        myDropzone.removeAllFiles();
+        if (sharecontent !== '') {
+          $('#modal-post-btn').removeAttr('disabled');
+        } else {
+          $('#modal-post-btn').attr('disabled', 'disabled');
+        }
+      });
       this.on('addedfile', function(file) {
         if (file) {
           $('#modal-post-btn').removeAttr('disabled');
+        }
+      });
+      this.on('removedfile', function() {
+        var sharecontent = $('#share-what-new').val();
+        if (myDropzone.files.length === 0 && sharecontent === '') {
+          $('#modal-post-btn').attr('disabled', 'disabled');
         }
       });
       this.on('successmultiple', function(file, req) {
@@ -176,7 +210,6 @@ $(document).ready(function() {
     $('#puzzle-answer').val('');
   });
 
-
   // select change
   $('#authorize-select').on('change', function() {
     var value = $(this).val();
@@ -186,4 +219,15 @@ $(document).ready(function() {
       $('.question-wrap').hide();
     }
   });
+  //bind keyup event to remove disabled of button post
+  $('#share-what-new, #share-link, #video-input').on('keyup', function() {
+    var value = $(this).val();
+    if (value && value !== '') {
+      $('#modal-post-btn').removeAttr('disabled');
+    } else {
+      $('#modal-post-btn').attr('disabled', 'disabled');
+    }
+  });
+
+
 });
