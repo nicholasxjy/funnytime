@@ -18,4 +18,5 @@ module.exports = function(app) {
 
     app.get('/signout', auth.signOut);
 
+    app.post('/create/new', joke.create);
 }

@@ -93,9 +93,10 @@ $(document).ready(function() {
     $('.wrap').append(modal);
     $('#comment-post-modal').modal();
   });
-  //init dropzone
-  $('div.dropzone').dropzone({
-    url: '/create',
+  //init drozpne
+  Dropzone.options.myDropzone = {
+    url: '/create/new',
+    method: 'post',
     paramName: 'file',
     maxFilesize: 10,
     parallelUploads: 10,
@@ -104,24 +105,57 @@ $(document).ready(function() {
     autoProcessQueue: false,
     uploadMultiple: true,
     init: function() {
-
+      var btnpost = document.getElementById('modal-post-btn');
+      var myDropzone = this;
+      btnpost.addEventListener('click', function(e) {
+          var content = $('#share-what-new').val();
+          var link = $('#share-link').val();
+          var video = $('#video-input').val();
+          var selectval = $('#authorize-select').val();
+          var question = $('#puzzle-input').val();
+          var answer = $('#puzzle-answer').val();
+          $('#hiddencontent').val(content);
+          $('#hiddenlink').val(link);
+          $('#hiddenvideo').val(video);
+          $('#hiddenselect').val(selectval);
+          $('#hiddenquestion').val(question);
+          $('#hiddenanswer').val(answer);
+          e.stopPropagation();
+          if (myDropzone.files && myDropzone.files.length !== 0 && link === '' && video === '') {
+              myDropzone.processQueue();
+          } else {
+              $('#my-dropzone').submit();
+          }
+      });
+      this.on('addedfile', function(file) {
+        if (file) {
+          $('#modal-post-btn').removeAttr('disabled');
+        }
+      });
+      this.on('successmultiple', function(file, req) {
+          location.href = 'http://127.0.0.1:1337';
+      });
     }
-  });
+  };
   //attach-photo-link click
   $('.attach-photo-link').on('click', function() {
     $('#link-wrap').hide();
     $('#video-wrap').hide();
+    $('#share-link').val('');
+    $('#video-input').val('');
     $('#dropzone-wrap').show();
   });
   $('.attach-link-link').on('click', function() {
     $('#dropzone-wrap').hide();
     $('#video-wrap').hide();
+    $('#video-input').val('');
     $('#link-wrap').show();
   });
 
   $('.attach-video-link').on('click', function() {
     $('#dropzone-wrap').hide();
     $('#link-wrap').hide();
+    $('#share-link').val('');
     $('#video-wrap').show();
   });
 

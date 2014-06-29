@@ -8,7 +8,7 @@
          <div class="modal-body">
             <div class="post-content-wrap">
               <div class="words-content">
-                <textarea class="share-words" row="3" placeholder="Share what's new..."></textarea>
+                <textarea id="share-what-new" class="share-words" row="3" placeholder="Share what's new..."></textarea>
               </div>
               <div class="attach-bar">
                 <ul class="list-inline attach-bar-list">
@@ -40,11 +40,18 @@
               </div>
 
               <div id="dropzone-wrap">
-                <div class="dropzone"></div>
+                <form id="my-dropzone" class="dropzone" action="/create/new" method="post" enctype="multipart/form-data">
+                  <input id="hiddencontent" type="hidden" name="content">
+                  <input id="hiddenlink" type="hidden" name="link">
+                  <input id="hiddenvideo" type="hidden" name="video">
+                  <input id="hiddenselect" type="hidden" name="select">
+                  <input id="hiddenquestion" type="hidden" name="question">
+                  <input id="hiddenanswer" type="hidden" name="answer">
+                </form>
               </div>
 
               <div id="link-wrap">
-                <input type="text" class="attach-link-input" size="100" placeholder="例如: https://... or http://...">
+                <input id="share-link" type="text" class="attach-link-input" size="100" placeholder="例如: https://... or http://...">
                 <span class="attach-link-cancel fa fa-times-circle"></span>
               </div>
 
@@ -81,7 +88,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-           <button id="modal-post-btn" type="button" class="btn btn-primary">
+           <button id="modal-post-btn" type="button" class="btn btn-primary" disabled="disabled">
             <i class="fa fa-pencil-square-o"></i>
           </button>
          </div>

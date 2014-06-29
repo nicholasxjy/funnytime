@@ -22,7 +22,12 @@ exports.create = function(req, res, next) {
     //否则禁用button
     var content = req.body.content;
     var link = req.body.link;
-    var photos = req.files.file;
+    var photos = req.files;
+    var video = req.body.video;
+    var question = req.body.question;
+    var answer = req.body.answer;
+    var select = req.body.select;
+
     if (content === '' && !photos) {
         return res.render('index', {error: '分享内容不能为空'});
     }

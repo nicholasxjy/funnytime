@@ -8,6 +8,7 @@ var JokeSchema = new Schema({
     content: {type: String, index: true},
     photos: {type: Array},
     link: {type: String},
+    video: {type: String},// sort of video tag of html
     question: {type: String},
     answer: {type: String},
     ispublic: {type: Boolean, default: true},//是否公开
