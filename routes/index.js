@@ -1,7 +1,7 @@
 var auth = require('../controllers/auth');
 var site = require('../controllers/site');
 var joke = require('../controllers/joke');
-
+var comment = require('../controllers/comment');
 
 module.exports = function(app) {
     /* GET home page. */
@@ -19,4 +19,5 @@ module.exports = function(app) {
     app.get('/signout', auth.signOut);
 
     app.post('/create/new', joke.create);
+    app.post('/comment/new', comment.create);
 }

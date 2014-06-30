@@ -19,7 +19,7 @@ exports.index = function(req, res, next) {
 
 exports.create = function(req, res, next) {
     if (!req.session.user) {
-        return res.redirect('/signin');
+        return res.redirect('/');
     }
     //前端设置 只有添加图片 或者 填写content之后 才可以点击button提交
     //否则禁用button

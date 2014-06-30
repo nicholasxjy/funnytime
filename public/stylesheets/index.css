@@ -270,7 +270,6 @@
     font-size: 12px;
     color: #8899a6;
 }
-
 .content-bottom {
     margin-top: 8px;
 }
@@ -278,6 +277,16 @@
     font-size: 12px;
     color: #8899a6;
     cursor: pointer;
+}
+.none-comment {
+    font-size: 10px;
+    font-style: italic;
+    color: #8899a6;
+}
+.add-comment-direct {
+    margin-left: 3px;
+    font-size: 14px;
+    color: #8899a6;
 }
 .fun-list {
     float:right;
