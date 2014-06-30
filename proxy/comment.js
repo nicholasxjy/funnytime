@@ -12,8 +12,15 @@ exports.getCommentsByJokeId = function(jokeid, callback) {
         var count = docs.length;
         async.times(count, function(n, cb) {
             setTimeout(function() {
-               authproxy.getUserById(docs[n].authorid, function(err, author) {
+               authproxy.getUserById(docs[n].authorid, function(err, user) {
                 if (err) return cb(err);
+                var author = {
+                    _id: user._id,
+                    name: user.name,
+                    profile: user.profile,
+                    gravatar: user.gravatar
+
+                };
                 docs[n].author = author;
                 cb(null, docs[n]);
                });

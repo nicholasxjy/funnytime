@@ -2,6 +2,7 @@ var async = require('async');
 var Joke = require('../models').Joke;
 var authproxy = require('./auth');
 var commentproxy = require('./comment');
+var formatfun = require('../utility/formatfun');
 
 exports.getJokeById = function(jokeid, callback) {
     var query = Joke.where({_id: jokeid});
@@ -21,8 +22,17 @@ exports.getJokesByQuery = function(query, option, callback) {
                 function(cb) {
                     async.times(count, function(n, next) {
                         authproxy.getUserById(docs[n].authorid, function(err, user) {
-                             docs[n]._doc.author = user;
-                             next(err, docs[n]);
+                            user.friendly_createtime = formatfun.formatDate(user.createtime, true);
+                            var author = {
+                                _id: user._id,
+                                name: user.name,
+                                friendly_createtime: user.friendly_createtime,
+                                profile: user.profile,
+                                gravatar: user.gravatar
+
+                            };
+                            docs[n].author = author;
+                            next(err, docs[n]);
                         });
                     }, function(err, authors) {
                         cb(err, authors);
@@ -31,6 +41,9 @@ exports.getJokesByQuery = function(query, option, callback) {
                 function(cb) {
                    async.times(count, function(n, next) {
                     commentproxy.getCommentsByJokeId(docs[n]._id, function(err, comments) {
+                        for(var i = 0; i < comments.length; i++) {
+                            comments[i].friendly_createtime = formatfun.formatDate(comments[i].createtime, true);
+                        }
                         docs[n]._doc.comments = comments;
                         next(err, docs[n]);
                     });
@@ -41,7 +54,11 @@ exports.getJokesByQuery = function(query, option, callback) {
 
             ], function(err, result) {
                 if (err) return callback(err);
-                return callback(null, result[1]);
+                var jokes = result[1];
+                for(var i = 0; i < jokes.length; i++) {
+                    jokes[i].friendly_createtime = formatfun.formatDate(jokes[i].createtime, true);
+                }
+                return callback(null, jokes);
             }
         );
     });

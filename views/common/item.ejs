@@ -3,25 +3,35 @@
 <div class="item-inner">
     <div class="item-inner-left">
         <img class="img-rounded img-responsive nav-tooltip"
-        src="/images/default.png" data-toggle="tooltip" title="nicholas" width="48" height="48">
+        src="/images/default.png" data-toggle="tooltip" title="<%= joke.author.name %>" width="48" height="48">
     </div>
     <div class="item-inner-right">
         <div class="author-information">
             <a href="/u/nicholas">
-                <strong class="fullname">Nicholas</strong>
+                <strong class="fullname"><%=: joke.author.name | capitalize %></strong>
             </a>
-            <a class="nav-tooltip create-time" href="#" data-toggle="tooltip" title="下午11:50 - 2014年6月23日">6月23日</a>
+            <a class="nav-tooltip create-time" href="#"><%= joke.friendly_createtime %></a>
         </div>
-
-        <p>You asked, Font Awesome delivers with 71 shiny new icons in version 4.1.</p>
-
+        <% if (joke.content) { %>
+            <p><%= joke.content %></p>
+        <% } %>
         <div class="content-media-wrap">
             <div class="content-media-inner">
-                <embed src="http://player.youku.com/player.php/sid/XNzE4ODY4NzUy/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                <%if (joke.link) { %>
+                    <a href="<%= joke.link %>"><%= joke.link %></a>
+                <% } %>
+                <% if (joke.video) { %>
+                    <%- joke.video %>
+                <% } %>
+                <% if (joke.photos && joke.photos.length > 0) { %>
+                    <% joke.photos.forEach(function(photo) { %>
+                        <img src="<%= photo.url %>" class="img-responsive img-rounded nav-tooltip" title="<%= photo.originalname %>">
+                    <% }); %>
+                <% } %>
             </div>
         </div>
 
-        <div class="content-bottom" data-userid="" data-username="nicholas" data-useravatar="/images/default.png" data-posttime="6月23日">
+        <div class="content-bottom" data-userid="<%= joke.author._id %>" data-username="<%= joke.author.name %>" data-useravatar="/images/default.png" data-posttime="<%= joke.friendly_createtime %>">
             <a class="comment-show" data-itemid="123">
                 <i class="fa fa-comments"></i>
                 <b>展开评论</b></a>

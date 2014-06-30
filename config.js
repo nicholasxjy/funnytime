@@ -7,7 +7,7 @@ var config = {
     description: 'We just want every day is full of smile.',
     vesion: pkg.version,
 
-    host: 'http://127.0.0.1:3000',
+    host: 'http://127.0.0.1:1337',
     port: 1337,
 
     dbname: 'lolme',
@@ -29,7 +29,7 @@ var config = {
             pass: 'hilarious4862'
         }
     },
-    siteStaticDir: 'http://127.0.0.1:3000',
+    siteStaticDir: 'http://127.0.0.1:1337',
     uploadDir: path.join(__dirname, 'public', 'uploads'),
     profileImgDir: path.join(__dirname, 'public', 'gravatars'),
 
