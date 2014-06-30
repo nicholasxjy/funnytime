@@ -92,25 +92,23 @@ exports.create = function(req, res, next) {
             ndir.mkdir(phoDir, function(err) {
                 if (err) return next(err);
                 async.times(count, function(n,cb) {
-                    setTimeout(function() {
-                        var key = Object.keys(photos)[n];
-                        var photo = photos[key];
-                        var filename = Date.now() + n + '_' + photo.originalname;
-                        var savepath = path.resolve(path.join(phoDir, filename));
-                        var photoUrl = config.siteStaticDir
-                        + '/uploads/'
-                        + dateStamp
-                        + '/' + user.name
-                        + '/' + filename;
-                        photo.url = photoUrl;
-                        photo.author = user;
-                        //photoArray.push(photo);
+                    var key = Object.keys(photos)[n];
+                    var photo = photos[key];
+                    var filename = Date.now() + n + '_' + photo.originalname;
+                    var savepath = path.resolve(path.join(phoDir, filename));
+                    var photoUrl = config.siteStaticDir
+                    + '/uploads/'
+                    + dateStamp
+                    + '/' + user.name
+                    + '/' + filename;
+                    photo.url = photoUrl;
+                    photo.author = user;
+                    //photoArray.push(photo);
 
-                        fs.rename(photo.path, savepath, function(err) {
-                            if (err) return next(err);
-                            cb(null, photo);
-                        });
-                    }, (n+1)*100);
+                    fs.rename(photo.path, savepath, function(err) {
+                        if (err) return next(err);
+                        cb(null, photo);
+                    });
                 }, function(err, photoArray){
                     callback(null, photoArray)
                 });
