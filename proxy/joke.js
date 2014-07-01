@@ -40,11 +40,13 @@ exports.getJokesByQuery = function(query, option, callback) {
                 },
                 function(cb) {
                    async.times(count, function(n, next) {
-                    commentproxy.getCommentsByJokeId(docs[n]._id, function(err, comments) {
+                    var query = {jokeid: docs[n]._id};
+                    var option = {limit: 5, sort: {createtime: 'desc'}};
+                    commentproxy.getCommentsByQuery(query, option, function(err, comments) {
                         for(var i = 0; i < comments.length; i++) {
                             comments[i].friendly_createtime = formatfun.formatDate(comments[i].createtime, true);
                         }
-                        docs[n]._doc.comments = comments;
+                        docs[n].comments = comments;
                         next(err, docs[n]);
                     });
                    }, function(err, comments) {

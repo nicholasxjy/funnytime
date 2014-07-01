@@ -75,7 +75,7 @@ $(document).ready(function() {
   //comment show
   $('.comment-show').on('click', function() {
     var itemid = $(this).data('itemid');
-    var $comment = $('#' + itemid);
+    var $comment = $('#joke' + itemid +'-comments');
     var display = $comment.css('display');
     if (display === 'none') {
       $comment.show();
@@ -134,7 +134,8 @@ $(document).ready(function() {
           if (data.status === 'success') {
             $('#comment-post-modal').modal('hide');
             var commenthtml = '<div class="comment-item"><div class="comment-item-inner-left"><img class="img-rounded img-responsive nav-tooltip" src="' + data.info.gravatar +'" data-toggle="tooltip" title="' + data.info.name +'" width="32" height="32"></div><div class="comment-item-inner-right"><div class="author-information"><a href="/u/' + data.info.name + '"><strong class="fullname">' + data.info.name + '</strong></a><small class="create-time"><a class="nav-tooltip" href="/u/'+ data.info.name +'">' + '刚刚' + '</a></small></div><p>'+ content +'</p><div class="content-bottom" data-index="' + index + '" data-jokeid="' + jokeid + '" data-userid="' + data.info.userid + '" data-username="' + data.info.name + '" data-useravatar="' + data.info.gravatar + '" data-posttime="刚刚" data-postcontent="' + content + '"><ul class="list-inline fun-list"><li><a class="comment-reply"><i class="fa fa-reply"></i><b>回复</b></a></li><li><a href="#"><i class="fa fa-heart"></i><b>点赞</b></a></li><li><a href="#"><i class="fa fa-hand-o-down"></i><b>差评</b></a></li><li><a href="#"><i class="fa fa-star"></i><b>收藏</b></a></li></ul></div></div></div>';
-            $('joke'+index+'-comments').prepend(commenthtml);
+            $('#joke'+index+'-comments').prepend(commenthtml);
+            $('#joke'+index+'-comments').show();
           }
         },
         error: function() {

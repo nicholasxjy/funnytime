@@ -2,9 +2,9 @@ var async = require('async');
 var Comment = require('../models').Comment;
 var authproxy = require('./auth');
 
-exports.getCommentsByJokeId = function(jokeid, callback) {
-    var option = {sort: {createtime: 'desc'}};
-    Comment.find({jokeid: jokeid}, {}, option, function(err, docs) {
+exports.getCommentsByQuery = function(query, option, callback) {
+    //var option = {sort: {createtime: 'desc'}};
+    Comment.find(query, {}, option, function(err, docs) {
         if (err) return callback(err);
         if (!docs || docs.length === 0) {
             return callback(null, []);
@@ -38,7 +38,5 @@ exports.commentCreateNew = function(jokeid, replyto, authorid, content, callback
     comment.replyto = replyto;
     comment.authorid = authorid;
     comment.content = content;
-    comment.save(function(err) {
-        if (err) return callback(err);
-    });
+    comment.save(callback);
 };

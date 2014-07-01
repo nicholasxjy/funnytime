@@ -18,7 +18,7 @@ var config = {
     cookieAge: 1000*60*60*24*30,
     page_with_item: 10,
 
-    default_gravatar_url: '',
+    default_gravatar_url: '/images/default.png',
     none_profile: '你还没有向大家介绍你自己呢！',
 
     mail_config: {

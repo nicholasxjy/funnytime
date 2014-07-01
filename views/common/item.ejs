@@ -33,7 +33,7 @@
 
         <div class="content-bottom" data-index="<% index+1 %>" data-jokeid="<%= joke._id %>" data-userid="<%= joke.author._id %>" data-username="<%= joke.author.name %>" data-useravatar="/images/default.png" data-posttime="<%= joke.friendly_createtime %>" data-postcontent="<%= joke.content %>">
             <% if (joke.comments && joke.comments.length > 0) { %>
-                <a class="comment-show" data-itemid="123">
+                <a class="comment-show" data-itemid="<%= index+1 %>">
                     <i class="fa fa-comments"></i>
                     <b>展开评论</b></a>
             <% } else { %>
