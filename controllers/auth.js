@@ -84,7 +84,6 @@ exports.signOut = function(req, res, next) {
     return res.redirect('/');
 };
 
-
 exports.activeAccount = function(req, res, next) {
     var key = req.query.key;
     var name = req.query.name;
@@ -177,6 +176,37 @@ exports.postResetPass = function(req, res, next) {
     });
 };
 
+exports.showProfile = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    return res.render('auth/setprofile', {config: config});
+};
+
+exports.postProfile = function(req, res, next) {
+
+};
+
+exports.showGravatar = function(req, res, next) {
+
+};
+
+exports.postGravatar = function(req, res, next) {
+
+};
+
+exports.showSettingResetPass = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    return res.render('auth/setresetpass');
+};
+
+exports.postSettingResetPass = function(req, res, next) {
+
+};
+
+
 exports.authUser = function(req, res, next) {
     var sess = req.session;
     if (sess && sess.user) {
@@ -210,4 +240,4 @@ exports.authUser = function(req, res, next) {
             }
         });
     }
-}
+};

@@ -1,62 +1,41 @@
 <% if (locals.c_user) { %>
-    <div class="left-wrap">
-        <div class="user-card left-block-wrap">
-            <div class="user-avatar">
-              <div class="avatar-wrap">
-                <img class="img-rounded img-responsive"
-                src="/images/default.png" alt="avatar"
-                width="80" height="80">
-              </div>
+<div class="user-card left-block-wrap">
+    <div class="user-avatar">
+      <div class="avatar-wrap">
+        <img class="img-rounded img-responsive"
+        src="/images/default.png" alt="avatar"
+        width="80" height="80">
+      </div>
 
-               <div class="user-info">
-                   <div class="user-info-fullname">
-                       <a href="/u/<%= locals.c_user.name %>/"><%= locals.c_user.name %></a>
-                   </div>
-                   <p class="user-join-time">创建于 <%= locals.c_user.format_create_time %></p>
-               </div>
-            </div>
-            <ul class="list-inline user-info-list">
-                <li>
-                    <a href="#">
-                        <span class="post-items top-label">发表</span>
-                        <span class="post-item-count bottom-label">9</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="following-users top-label">关注中</span>
-                        <span class="following-users-count bottom-label">32</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="followed-users top-label">已关注</span>
-                        <span class="followed-users-count bottom-label">2</span>
-                    </a>
-                </li>
-            </ul>
-            <p class="user-profile">
-                <%= locals.c_user.profile %>
-            </p>
-        </div>
-
-        <div class="hot-share left-block-wrap">
-          <div class="hot-share-title">
-            <h3>热门</h3>
-          </div>
-          <div class="hot-list-wrap">
-            <ul class="list-unstyled hot-list">
-              <li>
-                <a href="#">MakeARapperSoft - nicholas</a>
-              </li>
-              <li><a href="#">GoogleIO2014 - frank</a></li>
-              <li><a href="#">GoogleIO2014 - james</a></li>
-              <li><a href="#">GoogleIO2014 - emily</a></li>
-              <li><a href="#">GoogleIO2014 - sophia</a></li>
-              <li><a href="#">GoogleIO2014 - obama</a></li>
-              <li><a href="#">GoogleIO2014 - jack</a></li>
-            </ul>
-          </div>
-        </div>
+       <div class="user-info">
+           <div class="user-info-fullname">
+               <a href="/u/<%= locals.c_user.name %>/"><%= locals.c_user.name %></a>
+           </div>
+           <p class="user-join-time">创建于 <%= locals.c_user.format_create_time %></p>
+       </div>
     </div>
+    <ul class="list-inline user-info-list">
+        <li>
+            <a href="#">
+                <span class="post-items top-label">发表</span>
+                <span class="post-item-count bottom-label">9</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="following-users top-label">关注中</span>
+                <span class="following-users-count bottom-label">32</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="followed-users top-label">已关注</span>
+                <span class="followed-users-count bottom-label">2</span>
+            </a>
+        </li>
+    </ul>
+    <p class="user-profile">
+        <%= locals.c_user.profile %>
+    </p>
+</div>
 <% } %>

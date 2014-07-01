@@ -18,7 +18,10 @@
         <% include ./common/post-modal.ejs %>
         <div class="main">
           <div class="container">
-            <% include ./common/userboard.ejs %>
+            <div class="left-wrap">
+              <% include ./common/userboard.ejs %>
+              <% include ./common/hotshare.ejs %>
+            </div>
             <% include ./common/content.ejs %>
           </div>
         </div>
@@ -30,7 +33,26 @@
     <script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/javascripts/lib/bootstrap.min.js"></script>
+    <script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
     <script src="/javascripts/lib/dropzone.js"></script>
+    <script>
+      $(document).ready(function() {
+        //infinitescroll
+        $('.share-items-content').infinitescroll({
+            navSelector  : '#page-nav',    // selector for the paged navigation
+            nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+            itemSelector : '.item-inner',     // selector for all items you'll retrieve
+            loading: {
+                finishedMsg: '<em>No more pages to load.<em>',
+                img: '/images/loading.gif',
+                msgText: "<em>Loading the next set of posts...</em>"
+            },
+            speed: 'slow',
+            animate: true
+        });
+      });
+    </script>
     <script src="/javascripts/main.js"></script>
+    <script src="/javascripts/auth.js"></script>
   </body>
 </html>

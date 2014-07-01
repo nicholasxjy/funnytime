@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LOL Me / 设置</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/dropzone.css">
+    <link rel='stylesheet' href='/stylesheets/common.css'>
+      <link rel="stylesheet" href="/stylesheets/settings.css">
+    </head>
+    <body class="index-body">
+      <div class="wrap">
+        <% include ../common/header.ejs %>
+        <% include ../common/post-modal.ejs %>
+        <div class="main">
+          <div class="container">
+            <div class="left-wrap">
+              <% include ../common/userboard.ejs %>
+              <div class="left-block-wrap left-setting-wrap">
+                <div class="setting-title">
+                  <h3>设置</h3>
+                </div>
+                <div class="setting-list-wrap">
+                  <ul class="list-unstyled setting-list">
+                    <li><a class="setting-active" href="/settings/profile">个人资料<i class="fa fa-mail-forward"></i></a></li>
+                    <li><a href="/settings/gravatar">修改头像<i class="fa fa-mail-forward"></i></a></li>
+                    <li><a href="/settings/reset-pass">重置密码<i class="fa fa-mail-forward"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="middle-content setting-content-wrap">
+              <div class="setting-content-header">
+                <div class="setting-header-inner">
+                  <h2>重置密码</h2>
+                </div>
+              </div>
+              <div class="setting-form-wrap">
+                <form class="form-horizontal setting-resetpass-form" action="/settings/reset-pass" method="post">
+                  <div class="form-group">
+                    <label for="oldpass" class="col-sm-3 control-label">旧密码</label>
+                    <div class="col-sm-9">
+                      <input type="password" class="form-control setting-input-group" name="oldpass" placeholder="请输入之前的密码">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="newpass" class="col-sm-3 control-label">新密码</label>
+                    <div class="col-sm-9">
+                      <input type="password" class="form-control setting-input-group" name="newpass" placeholder="请输入新密码">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="renewpass" class="col-sm-3 control-label">确认新密码</label>
+                    <div class="col-sm-9">
+                      <input type="password" class="form-control setting-input-group" name="renewpass" placeholder="确认新密码">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-success">保存更改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+      <script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
+      <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+      <script src="/javascripts/lib/bootstrap.min.js"></script>
+      <script src="/javascripts/lib/dropzone.js"></script>
+      <script src="/javascripts/main.js"></script>
+    </body>
+  </html>

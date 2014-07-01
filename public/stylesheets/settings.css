@@ -1,0 +1,87 @@
+.left-setting-wrap {
+    margin-top: 30px;
+    padding: 0;
+}
+.setting-title {
+    padding: 10px 15px;
+}
+.setting-list li {
+    border-top: 1px solid #e1e8ed;
+}
+.setting-list li:last-child a:hover {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.setting-list a {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    color: #66757f;
+    text-decoration: none;
+}
+.setting-list a i {
+    float: right;
+}
+.setting-active, .setting-list a:hover {
+    background: #f5f5f5;
+    color: #0099B9;
+}
+.setting-content-wrap {
+    border-radius: 6px;
+    background-color: #fff;
+}
+.setting-content-header {
+    border-bottom: 1px solid #e1e8ed;
+    margin-bottom: 10px;
+}
+.setting-header-inner {
+    padding: 12px;
+}
+.setting-header-inner h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #66757f;
+    line-height: 22px;
+    font-weight: 300;
+}
+.setting-header-inner p {
+    margin-top: 3px;
+    margin-bottom: 0;
+    color: #8899a6;
+}
+.setting-form-wrap {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e1e8ed;
+}
+.setting-form-wrap form {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.setting-form-wrap form .form-group {
+    margin-bottom: 30px;
+}
+.setting-input-group {
+    width: 250px;
+    color: #66757f;
+}
+.setting-profile-group {
+    width: 350px;
+    color: #66757f;
+}
+.gender-input {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #66757f;
+}
+.setting-form-wrap form .form-group p {
+    font-size: 12px;
+    color: #8899a6;
+    margin-top: 5px;
+}
+.form-actions button {
+    margin-left: 120px;
+    margin-bottom: 15px;
+}
+

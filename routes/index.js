@@ -9,8 +9,8 @@ module.exports = function(app) {
     app.get('/forget-pass', auth.showForgetPass);
     app.post('/forget-pass', auth.postForgetPass);
 
-    app.get('/reset-pass', auth.showResetPass);
-    app.post('/reset-pass', auth.postResetPass);
+    //app.get('/reset-pass', auth.showResetPass);
+    //app.post('/reset-pass', auth.postResetPass);
 
 
     app.post('/signin', auth.postSignin);
@@ -20,4 +20,13 @@ module.exports = function(app) {
 
     app.post('/create/new', joke.create);
     app.post('/comment/new', comment.create);
+
+    app.get('/settings/profile', auth.showProfile);
+    app.post('/settings/profile', auth.postProfile);
+
+    app.get('/settings/gravatar', auth.showGravatar);
+    app.post('/settings/gravatar', auth.postGravatar);
+
+    app.get('/settings/reset-pass', auth.showSettingResetPass);
+    app.post('/settings/reset-pass', auth.postSettingResetPass);
 }

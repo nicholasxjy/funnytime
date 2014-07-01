@@ -1,6 +1,6 @@
 <% if (locals.jokes && locals.jokes.length > 0) { %>
 <% locals.jokes.forEach(function(joke, index) { %>
-<div class="item-inner" data-index="<%= index+1 %>">
+<div class="item-inner" data-index="<%= locals.cpage %>-<%= index+1 %>">
     <div class="item-inner-left">
         <img class="img-rounded img-responsive nav-tooltip"
         src="/images/default.png" data-toggle="tooltip" title="<%= joke.author.name %>" width="48" height="48">
@@ -31,9 +31,9 @@
             </div>
         </div>
 
-        <div class="content-bottom" data-index="<% index+1 %>" data-jokeid="<%= joke._id %>" data-userid="<%= joke.author._id %>" data-username="<%= joke.author.name %>" data-useravatar="/images/default.png" data-posttime="<%= joke.friendly_createtime %>" data-postcontent="<%= joke.content %>">
+        <div class="content-bottom" data-index="<%= locals.cpage %>-<% index+1 %>" data-jokeid="<%= joke._id %>" data-userid="<%= joke.author._id %>" data-username="<%= joke.author.name %>" data-useravatar="/images/default.png" data-posttime="<%= joke.friendly_createtime %>" data-postcontent="<%= joke.content %>">
             <% if (joke.comments && joke.comments.length > 0) { %>
-                <a class="comment-show" data-itemid="<%= index+1 %>">
+                <a class="comment-show" data-itemid="<%= locals.cpage %>-<%= index+1 %>">
                     <i class="fa fa-comments"></i>
                     <b>展开评论</b></a>
             <% } else { %>
@@ -67,7 +67,7 @@
             </ul>
         </div>
     </div>
-    <div class="comment-list" id="joke<%= index+1 %>-comments">
+    <div class="comment-list" id="joke<%= locals.cpage %>-<%= index+1 %>-comments">
         <% if (joke.comments && joke.comments.length > 0) { %>
         <% joke.comments.forEach(function(comment, index) { %>
             <div class="comment-item">
@@ -87,7 +87,7 @@
 
                     <p><%= comment.content %></p>
 
-                    <div class="content-bottom" data-index="<%= index+1 %>" data-jokeid="<%= joke._id %>" data-userid="<%= comment.author._id %>" data-username="<%= comment.author.name %>" data-useravatar="/images/default.png" data-posttime="<%= comment.friendly_createtime %>" data-postcontent="<%= comment.content %>">
+                    <div class="content-bottom" data-index="<%= locals.cpage %>-<%= index+1 %>" data-jokeid="<%= joke._id %>" data-userid="<%= comment.author._id %>" data-username="<%= comment.author.name %>" data-useravatar="/images/default.png" data-posttime="<%= comment.friendly_createtime %>" data-postcontent="<%= comment.content %>">
                         <ul class="list-inline fun-list">
                             <li>
                                 <a class="comment-reply">

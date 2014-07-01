@@ -7,7 +7,6 @@ exports.index = function(req, res, next) {
     var option = {skip: (page -1)*limit, limit: limit, sort: {createtime: 'desc'}};
     jokeproxy.getJokesByQuery({}, option, function(err, jokes) {
         if (err) return next(err);
-        return res.render('index', {jokes: jokes});
+        return res.render('index', {jokes: jokes, cpage: page});
     });
-
-}
+};

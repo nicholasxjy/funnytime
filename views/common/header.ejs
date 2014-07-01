@@ -4,18 +4,18 @@
             <div class="nav-list-wrap">
                 <ul class="nav-list list-inline">
                     <li class="nav-active">
-                        <a class="nav-tooltip" href="#" data-toggle="tooltip" data-placement="bottom" title="首页">
+                        <a class="nav-tooltip" href="/" data-toggle="tooltip" data-placement="bottom" title="首页">
                             <i class="fa fa-home"></i>
                         </a>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="#" data-toggle="tooltip" data-placement="bottom" title="通知">
+                        <a class="nav-tooltip" href="/u/notifications" data-toggle="tooltip" data-placement="bottom" title="通知">
                             <i class="fa fa-bell"></i>
                         </a>
                         <span class="badge notifition-count">4</span>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="#" data-toggle="tooltip" data-placement="bottom" title="我">
+                        <a class="nav-tooltip" href="/u/<%= locals.c_user.name %>" data-toggle="tooltip" data-placement="bottom" title="我">
                             <i class="fa fa-user"></i>
                         </a>
                     </li>
@@ -38,9 +38,9 @@
             </a>
 
                 <ul class="dropdown-menu" id="setting-dropdown">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a href="/settings/profile">编辑个人资料</a></li>
+                  <li><a href="/about">关于</a></li>
+                  <li><a href="/contact/me">联系作者</a></li>
                   <li class="divider"></li>
                   <li><a href="/signout">退出</a></li>
                 </ul>
