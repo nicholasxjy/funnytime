@@ -188,7 +188,10 @@ exports.postProfile = function(req, res, next) {
 };
 
 exports.showGravatar = function(req, res, next) {
-
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    return res.render('auth/setgravatar');
 };
 
 exports.postGravatar = function(req, res, next) {

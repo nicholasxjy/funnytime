@@ -12,6 +12,10 @@
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 }
+.setting-list li:last-child a.setting-active {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
 .setting-list a {
     display: block;
     width: 100%;
@@ -84,4 +88,25 @@
     margin-left: 120px;
     margin-bottom: 15px;
 }
-
+#file {
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+#renderButton {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+.final-gravatar-show-wrap {
+    width: 106px;
+    height: 106px;
+    position: relative;
+    left: 380px;
+    background-color: #8899a6;
+    border-radius: 6px;
+}
+.final-gravatar-show {
+    padding: 3px;
+}
+.final-gravatar-show img {
+    border-radius: 6px;
+}
