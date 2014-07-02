@@ -18,8 +18,8 @@ app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.json({limit: '500kb'}));
+app.use(bodyParser.urlencoded({limit: '500kb'}));
 app.use(multer({dest: config.uploadDir}));
 app.use(cookieParser());
 

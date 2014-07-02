@@ -1,12 +1,13 @@
+var fs = require('fs');
 var path = require('path');
 var async = require('async');
+var ndir = require('ndir');
 var config = require('../config');
 var validator = require('validator');
 var cryptofun = require('../utility/cryptofun');
 var formatfun = require('../utility/formatfun');
 var authproxy = require('../proxy/auth');
 var mail = require('../services/mail');
-
 exports.postSignup = function(req, res, next) {
     var name = req.body.name;
     var email = req.body.email;
@@ -231,17 +232,20 @@ exports.postGravatar = function(req, res, next) {
         var base64Data = req.body.imgData;
         if (base64Data) {
             base64Data = base64Data.replace(/^data:image\/png;base64,/, '');
-            base64Data = base64Data.replace('+', '');
+            //base64Data = base64Data.replace('+', ' ');
             var binaryData = new Buffer(base64Data, 'base64').toString('binary');
             var gravatarDir = path.join(config.profileImgDir, user.name);
-            var filename = user.name + '_gravatar.png';
-            var savepath = path.resolve(path.join(gravatarDir, filename));
-            user.gravatar = config.siteStaticDir + '/gravatars/' + user.name + '/' + filename;
-            fs.writeFile(savepath, binaryData, 'binary', function(err) {
+            ndir.mkdir(gravatarDir, function(err) {
                 if (err) return next(err);
-                user.save(function(err) {
+                var filename = user.name + '_gravatar.png';
+                var savepath = path.resolve(path.join(gravatarDir, filename));
+                user.gravatar = config.siteStaticDir + '/gravatars/' + user.name + '/' + filename;
+                fs.writeFile(savepath, binaryData, 'binary', function(err) {
                     if (err) return next(err);
-                    return res.json({status: 'success', gravatar: user.gravatar});
+                    user.save(function(err) {
+                        if (err) return next(err);
+                        return res.json({status: 'success', success: '头像修改成功', gravatar: user.gravatar});
+                    });
                 });
             });
         } else {
