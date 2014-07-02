@@ -5,16 +5,14 @@
 .setting-title {
     padding: 10px 15px;
 }
+.setting-list-wrap {
+    padding-bottom: 20px;
+}
 .setting-list li {
     border-top: 1px solid #e1e8ed;
 }
-.setting-list li:last-child a:hover {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
-.setting-list li:last-child a.setting-active {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+.setting-list li:last-child {
+    border-bottom: 1px solid #e1e8ed;
 }
 .setting-list a {
     display: block;
@@ -26,7 +24,11 @@
 .setting-list a i {
     float: right;
 }
-.setting-active, .setting-list a:hover {
+.setting-list a:hover {
+    background: #f5f5f5;
+    color: #0099B9;
+}
+a.setting-active {
     background: #f5f5f5;
     color: #0099B9;
 }
