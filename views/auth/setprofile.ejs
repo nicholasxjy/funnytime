@@ -37,6 +37,12 @@
                   <p>填写自己的信息，让大家更好地认识你。</p>
                 </div>
               </div>
+              <% if (locals.success) { %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><%= locals.success %></strong>
+              </div>
+              <% } %>
               <div class="setting-form-wrap">
                 <form class="form-horizontal" action="/settings/profile" method="post">
                   <div class="form-group">
@@ -77,7 +83,7 @@
                   <div class="form-group">
                     <label for="location" class="col-sm-2 control-label">位置</label>
                     <div class="col-sm-10">
-                      <select id="province-select" hidefocus="true" class="form-control setting-input-group">
+                      <select id="province-select" hidefocus="true" class="form-control setting-input-group" name="location">
                         <% if (locals.config.location) { %>
                           <% locals.config.location.forEach(function(item) { %>
                             <% if (locals.c_user.location === item.key) { %>
@@ -94,14 +100,18 @@
                   <div class="form-group">
                     <label for="profile" class="col-sm-2 control-label">个人简介</label>
                     <div class="col-sm-10">
+                      <% if (locals.c_user.profile) { %>
+                      <textarea name="profile" rows="3" class="form-control setting-profile-group" size="200" value="<%= locals.c_user.profile %>"><%= locals.c_user.profile %></textarea>
+                      <% } else { %>
                       <textarea name="profile" rows="3" class="form-control setting-profile-group" size="200"></textarea>
+                      <% } %>
                       <p>简单描述下自己，长的多帅，生的多么漂亮，特点、优点、缺点?</p>
                     </div>
                   </div>
                 </form>
               </div>
               <div class="form-actions">
-                <button type="submit" class="btn btn-success">保存更改</button>
+                <button type="submit" class="btn btn-success setting-btn-submit">保存更改</button>
               </div>
             </div>
           </div>

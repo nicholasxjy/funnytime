@@ -36,6 +36,18 @@
                   <h2>重置密码</h2>
                 </div>
               </div>
+              <% if (locals.success) { %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><%= locals.success %></strong>
+              </div>
+              <% } %>
+              <% if (locals.error) { %>
+              <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><%= locals.error %></strong>
+              </div>
+              <% } %>
               <div class="setting-form-wrap">
                 <form class="form-horizontal setting-resetpass-form" action="/settings/reset-pass" method="post">
                   <div class="form-group">
@@ -59,7 +71,7 @@
                 </form>
               </div>
               <div class="form-actions">
-                <button type="submit" class="btn btn-success">保存更改</button>
+                <button type="submit" class="btn btn-success setting-btn-submit set-pass-btn">保存更改</button>
               </div>
             </div>
           </div>

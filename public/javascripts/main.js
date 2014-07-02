@@ -219,4 +219,9 @@ $(document).ready(function() {
       $('#modal-post-btn').attr('disabled', 'disabled');
     }
   });
+
+  // setting form submit
+  $('.setting-btn-submit').on('click', function() {
+    $('.setting-form-wrap').find('form').submit();
+  });
 });

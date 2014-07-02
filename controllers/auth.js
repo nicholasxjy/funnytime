@@ -1,5 +1,6 @@
-var config = require('../config');
+var path = require('path');
 var async = require('async');
+var config = require('../config');
 var validator = require('validator');
 var cryptofun = require('../utility/cryptofun');
 var formatfun = require('../utility/formatfun');
@@ -184,7 +185,34 @@ exports.showProfile = function(req, res, next) {
 };
 
 exports.postProfile = function(req, res, next) {
-
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var gender = req.body.gender;
+    var location = req.body.location;
+    var profile = req.body.profile;
+    gender = parseInt(gender, 10);
+    location = parseInt(location, 10);
+    profile = validator.trim(profile);
+    profile = validator.escape(profile);
+    authproxy.getUserById(req.session.user._id, function(err, user) {
+        if (err) return next(err);
+        user.gender = gender;
+        user.location = location;
+        if (profile !== '') {
+            user.profile = profile;
+        }
+        user.save(function(err) {
+            if (err) return next(err);
+            var cuser = res.locals.c_user;
+            cuser.gender = gender;
+            cuser.location = location;
+            if (profile !== '') {
+                cuser.profile = profile;
+            }
+            return res.render('auth/setprofile', {success: '信息修改成功!', config: config});
+        });
+    })
 };
 
 exports.showGravatar = function(req, res, next) {
@@ -195,6 +223,31 @@ exports.showGravatar = function(req, res, next) {
 };
 
 exports.postGravatar = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    authproxy.getUserById(req.session.user._id, function(err, user) {
+        if (err) return next(err);
+        var base64Data = req.body.imgData;
+        if (base64Data) {
+            base64Data = base64Data.replace(/^data:image\/png;base64,/, '');
+            base64Data = base64Data.replace('+', '');
+            var binaryData = new Buffer(base64Data, 'base64').toString('binary');
+            var gravatarDir = path.join(config.profileImgDir, user.name);
+            var filename = user.name + '_gravatar.png';
+            var savepath = path.resolve(path.join(gravatarDir, filename));
+            user.gravatar = config.siteStaticDir + '/gravatars/' + user.name + '/' + filename;
+            fs.writeFile(savepath, binaryData, 'binary', function(err) {
+                if (err) return next(err);
+                user.save(function(err) {
+                    if (err) return next(err);
+                    return res.json({status: 'success', gravatar: user.gravatar});
+                });
+            });
+        } else {
+            return res.json({status: 'fail'});
+        }
+    });
 
 };
 
@@ -206,7 +259,33 @@ exports.showSettingResetPass = function(req, res, next) {
 };
 
 exports.postSettingResetPass = function(req, res, next) {
-
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var oldpass = req.body.oldpass;
+    var newpass = req.body.newpass;
+    var renewpass = req.body.renewpass;
+    if (!oldpass || !newpass || !renewpass) {
+        return res.render('auth/setresetpass', {error: '信息不完整'});
+    }
+    if (!validator.isAlphanumeric(newpass) || !validator.isAlphanumeric(renewpass)) {
+        return res.render('auth/setresetpass', {error: '密码只允许字母和数字'});
+    }
+    if (newpass !== renewpass) {
+        return res.render('auth/setresetpass', {error: '两次密码输入不一致'});
+    }
+    authproxy.getUserById(req.session.user._id, function(err, user) {
+        if (err) return next(err);
+        oldpass = cryptofun.md5Crypto(oldpass);
+        if (oldpass !== user.password) {
+            return res.render('auth/setresetpass', {error: '信息有错误!'});
+        }
+        user.password = cryptofun.md5Crypto(newpass);
+        user.save(function(err) {
+            if (err) return next(err);
+            return res.render('auth/setresetpass', {success: '密码重置成功'});
+        });
+    });
 };
 
 

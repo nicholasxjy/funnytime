@@ -38,15 +38,16 @@
                 <p>你可以上传设置个性化头像，为了更好显示请将其裁剪为正方形</p>
               </div>
             </div>
+            <div class="resinfo"></div>
             <div class="setting-form-wrap">
-              <form class="form-horizontal setting-gravatar-form" action="/settings/gravatar" method="post">
+              <div class="setting-gravatar-form">
                 <input type="file" id="file">
                 <div id="container" style="width: 480px; height: 420px;margin-left: 25px;"></div>
                 <button id="renderButton" type="button" class="btn btn-info">查看效果图</button>
-              </form>
+              </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success">保存更改</button>
+              <button type="submit" class="btn btn-success set-gravatar-btn">保存更改</button>
             </div>
           </div>
         </div>
@@ -139,6 +140,39 @@
             }).appendTo($(".final-gravatar-show"));
           });
         });
+
+        $('.set-gravatar-btn').on('click', function() {
+          var canvas = document.getElementsByTagName('canvas')[0];
+          if (!canvas) {
+            $('.resinfo').html('');
+            var errorhtml = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>请先添加图片</strong></div>';
+            $('.resinfo').append(errorhtml);
+            return;
+          }
+          var imgdata = canvas.toDataURL();
+          $.ajax({
+            url: '/settings/gravatar',
+            type: 'POST',
+            dataType: 'json',
+            data: {'imgData': imgdata},
+            success: function(data) {
+              if (data.status === 'success') {
+                $('.resinfo').html('');
+                var successhtml = '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>'+ data.success +'</strong></div>';
+                $('.resinfo').append(successhtml);
+                $('.avatar-wrap').find('img').attr('src', data.gravatar);
+
+              } else {
+                $('.resinfo').html('');
+                var errorhtml = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>'+ data.error +'</strong></div>';
+                $('.resinfo').append(errorhtml);
+              }
+            },
+            error: function() {
+              alert('Something goes wrong here!');
+            }
+          });
+        })
       });
     </script>
   </body>

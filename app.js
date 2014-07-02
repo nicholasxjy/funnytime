@@ -34,7 +34,7 @@ app.use(session({
 app.use(auth.authUser);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('view cache', false);
+app.set('view cache', true);
 
 routes(app);
 

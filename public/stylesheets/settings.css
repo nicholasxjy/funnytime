@@ -61,10 +61,11 @@ a.setting-active {
     margin-bottom: 20px;
     border-bottom: 1px solid #e1e8ed;
 }
-.setting-form-wrap form {
+.setting-form-wrap form, .setting-gravatar-form {
     padding-left: 30px;
     padding-right: 30px;
 }
+
 .setting-form-wrap form .form-group {
     margin-bottom: 30px;
 }
@@ -86,8 +87,15 @@ a.setting-active {
     color: #8899a6;
     margin-top: 5px;
 }
-.form-actions button {
+.setting-btn-submit {
     margin-left: 120px;
+    margin-bottom: 15px;
+}
+.set-pass-btn {
+    margin-left: 170px;
+}
+.set-gravatar-btn {
+    margin-left: 56px;
     margin-bottom: 15px;
 }
 #file {
@@ -111,4 +119,6 @@ a.setting-active {
 }
 .final-gravatar-show img {
     border-radius: 6px;
+    height: 100px;
+    width: 100px;
 }
