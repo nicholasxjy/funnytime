@@ -3,4 +3,5 @@ node_modules
 DS_Store
 public/uploads
 public/images/assets
+public/images/fancybox
 public/gravatars

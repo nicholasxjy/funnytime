@@ -9,13 +9,15 @@
                         </a>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="/u/notifications" data-toggle="tooltip" data-placement="bottom" title="通知">
+                        <a class="nav-tooltip" href="/u/notifications" data-toggle="tooltip" data-placement="bottom"
+                           title="通知">
                             <i class="fa fa-bell"></i>
                         </a>
                         <span class="badge notifition-count">4</span>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="/u/<%= locals.c_user.name %>" data-toggle="tooltip" data-placement="bottom" title="我">
+                        <a class="nav-tooltip" href="/u/<%= locals.c_user.name %>" data-toggle="tooltip"
+                           data-placement="bottom" title="我">
                             <i class="fa fa-user"></i>
                         </a>
                     </li>
@@ -27,26 +29,27 @@
             <div class="search-wrap hidden-xs">
                 <form action="/search" method="post" role="form">
                     <input type="text" name="query" class="search-input" size="18"
-                    placeholder="Search it...">
+                           placeholder="Search it...">
                     <i class="fa fa-search"></i>
                 </form>
             </div>
             <div class="setting-wrap dropdown">
                 <a href="#" class="dropdown-toggle nav-setting nav-tooltip" data-toggle="dropdown"
-                data-placement="bottom" title="设置">
-                <i class="fa fa-gear"></i>
-            </a>
+                   data-placement="bottom" title="设置">
+                    <i class="fa fa-gear"></i>
+                </a>
 
                 <ul class="dropdown-menu" id="setting-dropdown">
-                  <li><a href="/settings/profile">编辑个人资料</a></li>
-                  <li><a href="/about">关于</a></li>
-                  <li><a href="/contact/me">联系作者</a></li>
-                  <li class="divider"></li>
-                  <li><a href="/signout">退出</a></li>
+                    <li><a href="/settings/profile">编辑个人资料</a></li>
+                    <li><a href="/about">关于</a></li>
+                    <li><a href="/contact/me">联系作者</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/signout">退出</a></li>
                 </ul>
             </div>
             <div class="post-wrap">
-                <button class="btn btn-success nav-tooltip" id="btn-post" data-toggle="modal" data-placement="bottom" data-target="#post-modal" title="发表">
+                <button class="btn btn-success nav-tooltip" id="btn-post" data-toggle="modal" data-placement="bottom"
+                        data-target="#post-modal" title="发表">
                     <i class="fa fa-pencil-square-o"></i>
                 </button>
             </div>

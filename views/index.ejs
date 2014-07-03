@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>LOL Me</title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <title>LOL Me / Home</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/dropzone.css">
-    <link rel='stylesheet' href='/stylesheets/common.css' />
-    <link rel='stylesheet' href='/stylesheets/index.css' />
-  </head>
-  <body class="index-body">
-    <% if (!locals.c_user) { %>
-      <% include indexnoneuser.ejs %>
-    <% } else { %>
-      <div class="wrap">
-        <% include ./common/header.ejs %>
-        <% include ./common/post-modal.ejs %>
-        <div class="main">
-          <div class="container">
+    <link rel="stylesheet" href="/stylesheets/jquery.fancybox.css">
+    <link rel='stylesheet' href='/stylesheets/common.css'/>
+    <link rel='stylesheet' href='/stylesheets/index.css'/>
+</head>
+<body class="index-body">
+<% if (!locals.c_user) { %>
+<% include indexnoneuser.ejs %>
+<% } else { %>
+<div class="wrap">
+    <% include ./common/header.ejs %>
+    <% include ./common/post-modal.ejs %>
+    <div class="main">
+        <div class="container">
             <div class="left-wrap">
-              <% include ./common/userboard.ejs %>
-              <% include ./common/hotshare.ejs %>
+                <% include ./common/userboard.ejs %>
+                <% include ./common/hotshare.ejs %>
             </div>
             <% include ./common/content.ejs %>
-          </div>
         </div>
-      </div>
-    <% } %>
+    </div>
+</div>
+<% } %>
 
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="/javascripts/lib/bootstrap.min.js"></script>
-    <script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
-    <script src="/javascripts/lib/dropzone.js"></script>
-    <script>
-      $(document).ready(function() {
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/javascripts/lib/bootstrap.min.js"></script>
+<script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
+<script src="/javascripts/lib/dropzone.js"></script>
+<script src="/javascripts/lib/jquery.fancybox.pack.js"></script>
+<script>
+    $(document).ready(function () {
         //infinitescroll
         $('.share-items-content').infinitescroll({
-            navSelector  : '#page-nav',    // selector for the paged navigation
-            nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
-            itemSelector : '.item-inner',     // selector for all items you'll retrieve
+            navSelector: '#page-nav',    // selector for the paged navigation
+            nextSelector: '#page-nav a',  // selector for the NEXT link (to page 2)
+            itemSelector: '.item-inner',     // selector for all items you'll retrieve
             loading: {
                 finishedMsg: '<em>No more pages to load.<em>',
                 img: '/images/loading.gif',
@@ -50,9 +51,11 @@
             speed: 'slow',
             animate: true
         });
-      });
-    </script>
-    <script src="/javascripts/main.js"></script>
-    <script src="/javascripts/auth.js"></script>
-  </body>
+        //fancybox
+        $('.fancybox').fancybox();
+    });
+</script>
+<script src="/javascripts/main.js"></script>
+<script src="/javascripts/auth.js"></script>
+</body>
 </html>

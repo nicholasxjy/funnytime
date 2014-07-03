@@ -1,97 +1,108 @@
-<div class="modal fade" id="post-modal" tabindex="-1" role="dialog" aria-labelledby="myPostModalLabel" aria-hidden="true">
+<div class="modal fade" id="post-modal" tabindex="-1" role="dialog" aria-labelledby="myPostModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-           <h4 class="modal-title" id="myModalLabel">发表新item</h4>
-         </div>
-         <div class="modal-body">
-            <div id="post-warning"></div>
-            <div class="post-content-wrap">
-              <div class="words-content">
-                <textarea id="share-what-new" class="share-words" row="3" placeholder="Share what's new..."></textarea>
-              </div>
-              <div class="attach-bar">
-                <ul class="list-inline attach-bar-list">
-                  <li>
-                    <a class="attach-link attach-photo-link">
-                      <i class="fa fa-camera"></i>
-                      <b>照片</b>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="attach-link attach-link-link" id="attachment-link">
-                      <i class="fa fa-link"></i>
-                      <b>链接</b>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="attach-link attach-video-link" id="attachment-video">
-                      <i class="fa fa-video-camera"></i>
-                      <b>视频</b>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="attach-link info-popover" data-toggle="popover" title="权限说明" data-content="默认为public即任何人都能看到;secret你可以设置问题和答案，用户答对即可查看内容，否则无法看到你分享的内容;12 days open你设置问题和答案，但在12天之后会自动解封，转换成public状态。" data-placement="left">
-                      <i class="fa fa-info-circle"></i>
-                      <b>注意!</b>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div id="dropzone-wrap">
-                <form id="my-dropzone" class="dropzone" action="/create/new" method="post" enctype="multipart/form-data">
-                  <input id="hiddencontent" type="hidden" name="content">
-                  <input id="hiddenlink" type="hidden" name="link">
-                  <input id="hiddenvideo" type="hidden" name="video">
-                  <input id="hiddenselect" type="hidden" name="select">
-                  <input id="hiddenquestion" type="hidden" name="question">
-                  <input id="hiddenanswer" type="hidden" name="answer">
-                </form>
-              </div>
-
-              <div id="link-wrap">
-                <input id="share-link" type="text" class="attach-link-input" size="100" placeholder="例如: https://... or http://...">
-                <span class="attach-link-cancel fa fa-times-circle"></span>
-              </div>
-
-              <div id="video-wrap">
-                <textarea class="attach-link-input" id="video-input" placeholder="Enter a video url here...(<embed src=... </embed>)"></textarea>
-                <span class="video-input-cancel fa fa-times-circle"></span>
-                <span class="video-share-tip info-popover fa fa-question-circle" data-toggle="popover" title="视频分享tip" data-content="请按照优酷等视频网站,点击分享给好友后，出现（把视频贴到Blog或BBS？）下方的任何一条中的内容复制到左边输入区域，so easy!" data-placement="left"></span>
-              </div>
-
-
-
-              <div class="secret-options">
-                <span class="secret-title">权限设置:</span>
-                <select id="authorize-select" class="selectpicker">
-                  <option value="0">public</option>
-                  <option value="1">secret</option>
-                  <option value="2">12 days open</option>
-                </select>
-                <span class="secret-tip">(点击上方注意查看说明)</span>
-              </div>
-
-              <div class="question-wrap">
-                <div class="question-input">
-                  <textarea class="attach-link-input" id="puzzle-input" placeholder="Your puzzle?"></textarea>
-                  <span class="puzzle-input-cancel fa fa-times-circle"></span>
-                </div>
-                <div class="question-answer">
-                  <input type="text" class="attach-link-input" id="puzzle-answer" size="100" placeholder="Give it an answer.">
-                  <span class="puzzle-answer-cancel fa fa-times-circle"></span>
-                </div>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">发表新item</h4>
             </div>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-           <button id="modal-post-btn" type="button" class="btn btn-primary" disabled="disabled">
-            <i class="fa fa-pencil-square-o"></i>
-          </button>
-         </div>
-       </div>
-     </div>
+            <div class="modal-body">
+                <div id="post-warning"></div>
+                <div class="post-content-wrap">
+                    <div class="words-content">
+                        <textarea id="share-what-new" class="share-words" row="3"
+                                  placeholder="Share what's new..."></textarea>
+                    </div>
+                    <div class="attach-bar">
+                        <ul class="list-inline attach-bar-list">
+                            <li>
+                                <a class="attach-link attach-photo-link">
+                                    <i class="fa fa-camera"></i>
+                                    <b>照片</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="attach-link attach-link-link" id="attachment-link">
+                                    <i class="fa fa-link"></i>
+                                    <b>链接</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="attach-link attach-video-link" id="attachment-video">
+                                    <i class="fa fa-video-camera"></i>
+                                    <b>视频</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="attach-link info-popover" data-toggle="popover" title="权限说明"
+                                   data-content="默认为public即任何人都能看到;secret你可以设置问题和答案，用户答对即可查看内容，否则无法看到你分享的内容;12 days open你设置问题和答案，但在12天之后会自动解封，转换成public状态。"
+                                   data-placement="left">
+                                    <i class="fa fa-info-circle"></i>
+                                    <b>注意!</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="dropzone-wrap">
+                        <form id="my-dropzone" class="dropzone" action="/create/new" method="post"
+                              enctype="multipart/form-data">
+                            <input id="hiddencontent" type="hidden" name="content">
+                            <input id="hiddenlink" type="hidden" name="link">
+                            <input id="hiddenvideo" type="hidden" name="video">
+                            <input id="hiddenselect" type="hidden" name="select">
+                            <input id="hiddenquestion" type="hidden" name="question">
+                            <input id="hiddenanswer" type="hidden" name="answer">
+                        </form>
+                    </div>
+
+                    <div id="link-wrap">
+                        <input id="share-link" type="text" class="attach-link-input" size="100"
+                               placeholder="例如: https://... or http://...">
+                        <span class="attach-link-cancel fa fa-times-circle"></span>
+                    </div>
+
+                    <div id="video-wrap">
+                        <textarea class="attach-link-input" id="video-input"
+                                  placeholder="Enter a video url here...(<embed src=... </embed>)"></textarea>
+                        <span class="video-input-cancel fa fa-times-circle"></span>
+                        <span class="video-share-tip info-popover fa fa-question-circle" data-toggle="popover"
+                              title="视频分享tip"
+                              data-content="请按照优酷等视频网站,点击分享给好友后，出现（把视频贴到Blog或BBS？）下方的任何一条中的内容复制到左边输入区域，so easy!"
+                              data-placement="left"></span>
+                    </div>
+
+
+                    <div class="secret-options">
+                        <span class="secret-title">权限设置:</span>
+                        <select id="authorize-select" class="selectpicker">
+                            <option value="0">public</option>
+                            <option value="1">secret</option>
+                            <option value="2">12 days open</option>
+                        </select>
+                        <span class="secret-tip">(点击上方注意查看说明)</span>
+                    </div>
+
+                    <div class="question-wrap">
+                        <div class="question-input">
+                            <textarea class="attach-link-input" id="puzzle-input" placeholder="Your puzzle?"></textarea>
+                            <span class="puzzle-input-cancel fa fa-times-circle"></span>
+                        </div>
+                        <div class="question-answer">
+                            <input type="text" class="attach-link-input" id="puzzle-answer" size="100"
+                                   placeholder="Give it an answer.">
+                            <span class="puzzle-answer-cancel fa fa-times-circle"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="modal-post-btn" type="button" class="btn btn-primary" disabled="disabled">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

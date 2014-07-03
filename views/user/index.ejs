@@ -3,112 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/dropzone.css">
-    <link rel='stylesheet' href='/stylesheets/common.css' />
+    <link rel='stylesheet' href='/stylesheets/common.css'/>
 
-    <link rel="stylesheet" href="/stylesheets/user-index.css"> <!-- Resource style -->
-    <script src="/javascripts/lib/modernizr.js"></script> <!-- Modernizr -->
+    <link rel="stylesheet" href="/stylesheets/user-index.css">
+    <!-- Resource style -->
+    <script src="/javascripts/lib/modernizr.js"></script>
+    <!-- Modernizr -->
 
     <title>Lol me / <%=: locals.user.name | capitalize %></title>
 </head>
 <body class="index-body">
-    <div class="wrap">
-      <% include ../common/header.ejs %>
-      <% include ../common/post-modal.ejs %>
-      <div class="main">
+<div class="wrap">
+    <% include ../common/header.ejs %>
+    <% include ../common/post-modal.ejs %>
+    <div class="main">
         <div class="container">
-          <div class="left-wrap">
-            <% include ../common/userboard.ejs %>
-            <% include ../common/hotshare.ejs %>
-          </div>
-          <div class="user-timeline-wrap">
-            <section id="cd-timeline" class="cd-container">
-              <% if (locals.jokes && locals.jokes.length > 0) { %>
-              <% locals.jokes.forEach(function(joke) { %>
-                <div class="cd-timeline-block">
-                  <% if (joke.attachtype === 'photo') { %>
-                    <div class="cd-timeline-img cd-picture">
-                      <img src="/images/cd-icon-picture.svg" alt="Picture">
-                    </div> <!-- cd-timeline-img -->
-                  <% } else if (joke.attachtype === 'video') { %>
-                    <div class="cd-timeline-img cd-movie">
-                      <img src="/images/cd-icon-movie.svg" alt="Movie">
+            <div class="left-wrap">
+                <% include ../common/userboard.ejs %>
+                <% include ../common/hotshare.ejs %>
+            </div>
+            <div class="user-timeline-wrap">
+                <section id="cd-timeline" class="cd-container">
+                    <% if (locals.jokes && locals.jokes.length > 0) { %>
+                    <% locals.jokes.forEach(function(joke) { %>
+                    <div class="cd-timeline-block">
+                        <% if (joke.attachtype === 'photo') { %>
+                        <div class="cd-timeline-img cd-picture">
+                            <img src="/images/cd-icon-picture.svg" alt="Picture">
+                        </div>
+                        <!-- cd-timeline-img -->
+                        <% } else if (joke.attachtype === 'video') { %>
+                        <div class="cd-timeline-img cd-movie">
+                            <img src="/images/cd-icon-movie.svg" alt="Movie">
+                        </div>
+                        <% } else { %>
+                        <div class="cd-timeline-img cd-location">
+                            <img src="/images/cd-icon-location.svg" alt="Location">
+                        </div>
+                        <% } %>
+                        <div class="cd-timeline-content">
+                            <% if (joke.content) { %>
+                            <p><%= joke.content %></p>
+                            <% } %>
+                            <% if (joke.photos && joke.photos.length > 0) { %>
+                            <img class="img-responsive img-rounded" src="<%= joke.photos[0].url %>"
+                                 alt="<%= joke.photos[0].originalname %>">
+                            <% } %>
+                            <% if (joke.link) { %>
+                            <a href="<%= joke.link %>"><%= joke.link %></a>
+                            <% } %>
+                            <% if (joke.video) { %>
+                            <% joke.video = joke.video.replace(/width="\d+"/, 'width="280"'); %>
+                            <%- joke.video %>
+                            <% } %>
+                            <a href="/joke/<%= joke._id %>" class="cd-read-more">Read more</a>
+                            <span class="cd-date"><%= joke.friendly_create_time %></span>
+                        </div>
+                        <!-- cd-timeline-content -->
                     </div>
-                  <% } else { %>
-                  <div class="cd-timeline-img cd-location">
-                    <img src="/images/cd-icon-location.svg" alt="Location">
-                  </div>
-                  <% } %>
-                    <div class="cd-timeline-content">
-                        <% if (joke.content) { %>
-                          <p><%= joke.content %></p>
-                        <% } %>
-                        <% if (joke.photos && joke.photos.length > 0) { %>
-                          <img class="img-responsive img-rounded" src="<%= joke.photos[0].url %>" alt="<%= joke.photos[0].originalname %>">
-                        <% } %>
-                        <% if (joke.link) { %>
-                          <a href="<%= joke.link %>"><%= joke.link %></a>
-                        <% } %>
-                        <% if (joke.video) { %>
-                          <% joke.video = joke.video.replace(/width="\d+"/, 'width="280"'); %>
-                          <%- joke.video %>
-                        <% } %>
-                        <a href="/joke/<%= joke._id %>" class="cd-read-more">Read more</a>
-                        <span class="cd-date"><%= joke.friendly_create_time %></span>
-                    </div> <!-- cd-timeline-content -->
-                </div> <!-- cd-timeline-block -->
-                <% }); %>
-              <% } %>
-            </section> <!-- cd-timeline -->
-          </div>
+                    <!-- cd-timeline-block -->
+                    <% }); %>
+                    <% } %>
+                </section>
+                <!-- cd-timeline -->
+            </div>
         </div>
-      </div>
     </div>
+</div>
 <script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/javascripts/lib/bootstrap.min.js"></script>
 <script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
 <script src="/javascripts/lib/dropzone.js"></script>
 <script>
-  $(document).ready(function() {
-    //infinitescroll
-    $('.share-items-content').infinitescroll({
-        navSelector  : '#page-nav',    // selector for the paged navigation
-        nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
-        itemSelector : '.item-inner',     // selector for all items you'll retrieve
-        loading: {
-            finishedMsg: '<em>No more pages to load.<em>',
-            img: '/images/loading.gif',
-            msgText: "<em>Loading the next set of posts...</em>"
-        },
-        speed: 'slow',
-        animate: true
+    $(document).ready(function () {
+        //infinitescroll
+        $('.share-items-content').infinitescroll({
+            navSelector: '#page-nav',    // selector for the paged navigation
+            nextSelector: '#page-nav a',  // selector for the NEXT link (to page 2)
+            itemSelector: '.item-inner',     // selector for all items you'll retrieve
+            loading: {
+                finishedMsg: '<em>No more pages to load.<em>',
+                img: '/images/loading.gif',
+                msgText: "<em>Loading the next set of posts...</em>"
+            },
+            speed: 'slow',
+            animate: true
+        });
     });
-  });
 </script>
 <script src="/javascripts/main.js"></script>
 <script>
-    jQuery(document).ready(function($){
+    jQuery(document).ready(function ($) {
         var $timeline_block = $('.cd-timeline-block');
 
         //hide timeline blocks which are outside the viewport
-        $timeline_block.each(function(){
-            if($(this).offset().top > $(window).scrollTop()+$(window).height()*0.75) {
+        $timeline_block.each(function () {
+            if ($(this).offset().top > $(window).scrollTop() + $(window).height() * 0.75) {
                 $(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
             }
         });
 
         //on scolling, show/animate timeline blocks when enter the viewport
-        $(window).on('scroll', function(){
-            $timeline_block.each(function(){
-                if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*0.75 && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) {
+        $(window).on('scroll', function () {
+            $timeline_block.each(function () {
+                if ($(this).offset().top <= $(window).scrollTop() + $(window).height() * 0.75 && $(this).find('.cd-timeline-img').hasClass('is-hidden')) {
                     $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
                 }
             });
         });
     });
-</script> <!-- Resource jQuery -->
+</script>
+<!-- Resource jQuery -->
 </body>
 </html>
