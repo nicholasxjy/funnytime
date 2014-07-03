@@ -24,9 +24,17 @@
                     <%- joke.video %>
                 <% } %>
                 <% if (joke.photos && joke.photos.length > 0) { %>
-                    <% joke.photos.forEach(function(photo) { %>
-                        <img src="<%= photo.url %>" class="img-responsive img-rounded nav-tooltip" title="<%= photo.originalname %>">
-                    <% }); %>
+                    <% if (joke.photos.length > 1) { %>
+                        <ul class="list-inline">
+                        <% joke.photos.forEach(function(photo) { %>
+
+                            <li><img src="<%= photo.url %>" class="img-responsive img-rounded nav-tooltip" title="<%= photo.originalname %>" width="100" height="100"></li>
+
+                        <% }); %>
+                        </ul>
+                    <% } else { %>
+                    <img src="<%= joke.photos[0].url %>" class="img-responsive img-rounded nav-tooltip" title="<%= joke.photos[0].originalname %>">
+                    <% } %>
                 <% } %>
             </div>
         </div>

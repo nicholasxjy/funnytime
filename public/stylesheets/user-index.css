@@ -253,8 +253,7 @@ Main components
     font-size: 1.25rem;
   }
   .cd-timeline-content p {
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 14px;
   }
   .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
     font-size: 14px;
@@ -275,6 +274,7 @@ Main components
   }
   .cd-timeline-content .cd-read-more {
     float: left;
+    margin-top: 10px;
   }
   .cd-timeline-content .cd-date {
     position: absolute;
@@ -297,6 +297,7 @@ Main components
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
     float: right;
+    margin-top: 10px;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
     left: auto;
