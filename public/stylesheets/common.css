@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
 }
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 html, body {
     height: 100%;
 }

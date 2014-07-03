@@ -2,6 +2,7 @@ var auth = require('../controllers/auth');
 var site = require('../controllers/site');
 var joke = require('../controllers/joke');
 var comment = require('../controllers/comment');
+var user = require('../controllers/user');
 
 module.exports = function(app) {
     /* GET home page. */
@@ -29,4 +30,6 @@ module.exports = function(app) {
 
     app.get('/settings/reset-pass', auth.showSettingResetPass);
     app.post('/settings/reset-pass', auth.postSettingResetPass);
+
+    app.get('/u/:name', user.index);
 }

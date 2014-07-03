@@ -1,41 +1,83 @@
-<% if (locals.c_user) { %>
-<div class="user-card left-block-wrap">
-    <div class="user-avatar">
-      <div class="avatar-wrap">
-        <img class="img-rounded img-responsive"
-        src="<%= locals.c_user.gravatar %>" alt="avatar"
-        width="80" height="80">
-      </div>
+<% if (locals.isuserpage && locals.user) { %>
+  <div class="user-card left-block-wrap">
+      <div class="user-avatar">
+        <div class="avatar-wrap">
+          <img class="img-rounded img-responsive"
+          src="<%= locals.user.gravatar %>" alt="avatar"
+          width="80" height="80">
+        </div>
 
-       <div class="user-info">
-           <div class="user-info-fullname">
-               <a href="/u/<%= locals.c_user.name %>/"><%= locals.c_user.name %></a>
-           </div>
-           <p class="user-join-time">创建于 <%= locals.c_user.format_create_time %></p>
-       </div>
-    </div>
-    <ul class="list-inline user-info-list">
-        <li>
-            <a href="#">
-                <span class="post-items top-label">发表</span>
-                <span class="post-item-count bottom-label">9</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="following-users top-label">关注中</span>
-                <span class="following-users-count bottom-label">32</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="followed-users top-label">已关注</span>
-                <span class="followed-users-count bottom-label">2</span>
-            </a>
-        </li>
-    </ul>
-    <p class="user-profile">
-        <%= locals.c_user.profile %>
-    </p>
-</div>
+         <div class="user-info">
+             <div class="user-info-fullname">
+                 <a href="/u/<%= locals.user.name %>/"><%= locals.user.name %></a>
+             </div>
+             <p class="user-join-time">创建于 <%= locals.user.format_create_time %></p>
+         </div>
+      </div>
+      <ul class="list-inline user-info-list">
+          <li>
+              <a href="#">
+                  <span class="post-items top-label">发表</span>
+                  <span class="post-item-count bottom-label">9</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <span class="following-users top-label">关注中</span>
+                  <span class="following-users-count bottom-label">32</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <span class="followed-users top-label">已关注</span>
+                  <span class="followed-users-count bottom-label">2</span>
+              </a>
+          </li>
+      </ul>
+      <p class="user-profile">
+          <%= locals.user.profile %>
+      </p>
+  </div>
+<% } else { %>
+  <% if (locals.c_user) { %>
+  <div class="user-card left-block-wrap">
+      <div class="user-avatar">
+        <div class="avatar-wrap">
+          <img class="img-rounded img-responsive"
+          src="<%= locals.c_user.gravatar %>" alt="avatar"
+          width="80" height="80">
+        </div>
+
+         <div class="user-info">
+             <div class="user-info-fullname">
+                 <a href="/u/<%= locals.c_user.name %>/"><%= locals.c_user.name %></a>
+             </div>
+             <p class="user-join-time">创建于 <%= locals.c_user.format_create_time %></p>
+         </div>
+      </div>
+      <ul class="list-inline user-info-list">
+          <li>
+              <a href="#">
+                  <span class="post-items top-label">发表</span>
+                  <span class="post-item-count bottom-label">9</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <span class="following-users top-label">关注中</span>
+                  <span class="following-users-count bottom-label">32</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <span class="followed-users top-label">已关注</span>
+                  <span class="followed-users-count bottom-label">2</span>
+              </a>
+          </li>
+      </ul>
+      <p class="user-profile">
+          <%= locals.c_user.profile %>
+      </p>
+  </div>
+  <% } %>
 <% } %>

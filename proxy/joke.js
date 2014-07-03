@@ -9,6 +9,18 @@ exports.getJokeById = function(jokeid, callback) {
     query.findOne(callback);
 };
 
+exports.getJokesByUser = function(userid, option, callback) {
+    Joke.find({authorid: userid}, {}, option, function(err, docs) {
+        if (err) return callback(err);
+        if (docs) {
+            for(var i = 0; i < docs.length; i++) {
+                docs[i].friendly_create_time = formatfun.formatDate(docs[i].createtime, true);
+            }
+            return callback(null, docs);
+        }
+    });
+};
+
 exports.getJokesByQuery = function(query, option, callback) {
     Joke.find(query, {}, option, function(err, docs) {
         //将author得到 绑定于joke

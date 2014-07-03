@@ -25,7 +25,7 @@ exports.create = function(req, res, next) {
                 var creator = {
                     name: doc.name,
                     userid: doc._id,
-                    gravatar: config.default_gravatar_url //todo modify the url  doc.gravatar
+                    gravatar: doc.gravatar //todo modify the url  doc.gravatar
                 };
                 return res.json({status: 'success', info: creator});
             });
