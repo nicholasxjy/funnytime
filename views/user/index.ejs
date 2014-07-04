@@ -45,20 +45,22 @@
                         </div>
                         <% } %>
                         <div class="cd-timeline-content">
-                            <% if (joke.content) { %>
-                            <p><%= joke.content %></p>
-                            <% } %>
-                            <% if (joke.photos && joke.photos.length > 0) { %>
-                            <img class="img-responsive img-rounded" src="<%= joke.photos[0].url %>"
-                                 alt="<%= joke.photos[0].originalname %>">
-                            <% } %>
-                            <% if (joke.link) { %>
-                            <a href="<%= joke.link %>"><%= joke.link %></a>
-                            <% } %>
-                            <% if (joke.video) { %>
-                            <% joke.video = joke.video.replace(/width="\d+"/, 'width="280"'); %>
-                            <%- joke.video %>
-                            <% } %>
+                            <div class="timeline-content-inner">
+                                <% if (joke.content) { %>
+                                <p><%= joke.content %></p>
+                                <% } %>
+                                <% if (joke.photos && joke.photos.length > 0) { %>
+                                <img class="img-responsive img-rounded" src="<%= joke.photos[0].url %>"
+                                     alt="<%= joke.photos[0].originalname %>">
+                                <% } %>
+                                <% if (joke.link) { %>
+                                <a href="<%= joke.link %>"><%= joke.link %></a>
+                                <% } %>
+                                <% if (joke.video) { %>
+                                <% joke.video = joke.video.replace(/width="\d+"/, 'width="280"'); %>
+                                <%- joke.video %>
+                                <% } %>
+                            </div>
                             <a href="/joke/<%= joke._id %>" class="cd-read-more">Read more</a>
                             <span class="cd-date"><%= joke.friendly_create_time %></span>
                         </div>

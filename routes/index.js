@@ -32,4 +32,7 @@ module.exports = function(app) {
     app.post('/settings/reset-pass', auth.postSettingResetPass);
 
     app.get('/u/:name', user.index);
+
+    app.post('/joke/like', joke.postLike);
+    app.post('/joke/dislike', joke.postDislike);
 }

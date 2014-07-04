@@ -2,6 +2,7 @@ var config = require('../config');
 var async = require('async');
 var jokeproxy = require('../proxy/joke');
 var authproxy = require('../proxy/auth');
+var likeproxy = require('../proxy/likerelation');
 var validator = require('validator');
 var util = require('util');
 var fs = require('fs');
@@ -133,4 +134,32 @@ exports.create = function(req, res, next) {
            });
         }
     });
-}
+};
+
+exports.postLike = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var jokeid = req.body.jokeid;
+    if (!jokeid) {
+        return res.send(403);
+    }
+    jokeproxy.getJokeById(jokeid, function(err, joke) {
+        if (err) return next(err);
+        if (!joke) {
+            return res.send(403);
+        }
+        joke.like_count++;
+        joke.save(function(err) {
+            if (err) return next(err);
+            likeproxy.likeNewAndSave(joke._id, req.session.user._id, 'like', function(err) {
+                if (err) return next(err);
+                return res.json({status: 'success', like_count: joke.like_count});
+            });
+        });
+    });
+};
+
+exports.postDislike = function(req, res, next) {
+
+};

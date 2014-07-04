@@ -7,6 +7,8 @@ var CommentSchema = new Schema({
     replyto: {type: ObjectId},
     authorid: {type: ObjectId},
     content: {type: String},
+    like_count: {type: Number, default: 0},
+    dislike_count: {type: Number, default: 0},
     createtime: {type: Date, default: Date.now}
 });
 

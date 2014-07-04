@@ -15,6 +15,7 @@ var JokeSchema = new Schema({
     select: {type: Number, default: 0},
     reply_count: {type: Number, default: 0},
     like_count: {type: Number, default: 0},
+    dislike_count: {type: Number, default: 0},
     createtime: {type: Date, default: Date.now}
 });
 

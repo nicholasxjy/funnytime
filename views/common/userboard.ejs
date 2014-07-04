@@ -1,6 +1,11 @@
 <% if (locals.isuserpage && locals.user) { %>
 <div class="user-card left-block-wrap">
     <div class="user-avatar">
+        <% if (locals.user._id.toString() !== locals.c_user._id.toString()) { %>
+            <div class="follow-button-wrap">
+                <button type="button" class="btn btn-info">Follow</button>
+            </div>
+        <% } %>
         <div class="avatar-wrap">
             <img class="img-rounded img-responsive"
                  src="<%= locals.user.gravatar %>" alt="avatar"
@@ -9,14 +14,14 @@
 
         <div class="user-info">
             <div class="user-info-fullname">
-                <a href="/u/<%= locals.user.name %>/"><%= locals.user.name %></a>
+                <a href="/u/<%= locals.user.name %>"><%= locals.user.name %></a>
             </div>
             <p class="user-join-time">创建于 <%= locals.user.format_create_time %></p>
         </div>
     </div>
     <ul class="list-inline user-info-list">
         <li>
-            <a href="#">
+            <a href="/u/<%= locals.user.name %>">
                 <span class="post-items top-label">发表</span>
                 <span class="post-item-count bottom-label">9</span>
             </a>
@@ -50,14 +55,14 @@
 
         <div class="user-info">
             <div class="user-info-fullname">
-                <a href="/u/<%= locals.c_user.name %>/"><%= locals.c_user.name %></a>
+                <a href="/u/<%= locals.c_user.name %>"><%= locals.c_user.name %></a>
             </div>
             <p class="user-join-time">创建于 <%= locals.c_user.format_create_time %></p>
         </div>
     </div>
     <ul class="list-inline user-info-list">
         <li>
-            <a href="#">
+            <a href="/u/<%= locals.c_user.name %>">
                 <span class="post-items top-label">发表</span>
                 <span class="post-item-count bottom-label">9</span>
             </a>
