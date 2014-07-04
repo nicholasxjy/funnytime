@@ -68,28 +68,69 @@ $(document).ready(function() {
           error: function() {
             alert('Something goes wrong here!');
           }
-        })
+        });
       });
       $('#comment-post-modal').modal();
     });
 
     // like delegate
-    $('.share-items-content').on('click', '.joke-like-count', function() {
-        var $parent = $(this).parents('.content-bottom');
+    $('.share-items-content').on('click', '.joke-like-btn', function() {
+        var self = $(this);
+        var $parent = self.parents('.content-bottom');
         var jokeid = $parent.data('jokeid');
+        var action = self.data('action');
         if (jokeid) {
             $.ajax({
                 url: '/joke/like',
                 type: 'POST',
                 dataType: 'json',
-                data: {jokeid: jokeid},
+                data: {jokeid: jokeid, action: action},
                 success: function(data) {
-
+                    if (data.status === 'success') {
+                        if (action === 'like') {
+                            self.addClass('islike');
+                            self.data('action', 'cancel-like')
+                        } else {
+                            self.removeClass('islike');
+                            self.data('action', 'like')
+                        }
+                        self.attr('data-original-title', data.like_count);
+                    }
                 },
                 error: function() {
                     alert('Oops, something goes wrong here!');
                 }
             });
         }
-    })
+    });
+    // like delegate
+    $('.share-items-content').on('click', '.joke-dislike-btn', function() {
+        var self = $(this);
+        var $parent = self.parents('.content-bottom');
+        var jokeid = $parent.data('jokeid');
+        var action = self.data('action');
+        if (jokeid) {
+            $.ajax({
+                url: '/joke/dislike',
+                type: 'POST',
+                dataType: 'json',
+                data: {jokeid: jokeid, action: action},
+                success: function(data) {
+                    if (data.status === 'success') {
+                        if (action === 'dislike') {
+                           self.addClass('isdislike');
+                           self.data('action', 'cancel-dislike');
+                        } else {
+                            self.removeClass('isdislike');
+                            self.data('action', 'dislike');
+                        }
+                        self.attr('data-original-title', data.dislike_count);
+                    }
+                },
+                error: function() {
+                    alert('Oops, something goes wrong here!');
+                }
+            });
+        }
+    });
 });

@@ -141,6 +141,7 @@ exports.postLike = function(req, res, next) {
         return res.redirect('/');
     }
     var jokeid = req.body.jokeid;
+    var action = req.body.action;
     if (!jokeid) {
         return res.send(403);
     }
@@ -149,17 +150,62 @@ exports.postLike = function(req, res, next) {
         if (!joke) {
             return res.send(403);
         }
-        joke.like_count++;
-        joke.save(function(err) {
-            if (err) return next(err);
-            likeproxy.likeNewAndSave(joke._id, req.session.user._id, 'like', function(err) {
+        if (action === 'like') {
+          joke.like_count++;
+          joke.save(function(err) {
+              if (err) return next(err);
+              likeproxy.likeNewAndSave(joke._id, req.session.user._id, 'like', function(err) {
+                  if (err) return next(err);
+                  return res.json({status: 'success', like_count: joke.like_count});
+              });
+          });
+        } else {
+            joke.like_count = joke.like_count -1 || 0;
+            joke.save(function(err) {
                 if (err) return next(err);
-                return res.json({status: 'success', like_count: joke.like_count});
+                var option = {jokeid: joke._id, userid: req.session.user._id, type: 'like'};
+                likeproxy.likeRemove(option, function(err) {
+                    if (err) return next(err);
+                    return res.json({status: 'success', like_count: joke.like_count});
+                });
             });
-        });
+        }
     });
 };
 
 exports.postDislike = function(req, res, next) {
-
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var jokeid = req.body.jokeid;
+    var action = req.body.action;
+    if (!jokeid) {
+        return res.send(403);
+    }
+    jokeproxy.getJokeById(jokeid, function(err, joke) {
+        if (err) return next(err);
+        if (!joke) {
+            return res.send(403);
+        }
+        if (action === 'dislike') {
+            joke.dislike_count++;
+            joke.save(function(err) {
+                if (err) return next(err);
+                likeproxy.likeNewAndSave(joke._id, req.session.user._id, 'dislike', function(err) {
+                    if (err) return next(err);
+                    return res.json({status: 'success', dislike_count: joke.dislike_count});
+                });
+            });
+        } else {
+            joke.dislike_count = joke.dislike_count -1 || 0;
+            joke.save(function(err) {
+                if (err) return next(err);
+                var option = {jokeid: joke._id, userid: req.session.user._id, type: 'dislike'};
+                likeproxy.likeRemove(option, function(err) {
+                    if (err) return next(err);
+                    return res.json({status: 'success', dislike_count: joke.dislike_count});
+                });
+            });
+        }
+    });
 };

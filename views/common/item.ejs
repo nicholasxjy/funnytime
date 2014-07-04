@@ -67,16 +67,30 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-tooltip joke-like-btn" title="<%= joke.like_count %>">
-                        <i class="fa fa-heart"></i>
-                        <b>点赞</b>
-                    </a>
+                    <% if (joke.isLike) { %>
+                        <a class="nav-tooltip joke-like-btn islike" title="<%= joke.like_count %>" data-action="cancel-like">
+                            <i class="fa fa-heart"></i>
+                            <b>点赞</b>
+                        </a>
+                    <% } else { %>
+                        <a class="nav-tooltip joke-like-btn" title="<%= joke.like_count %>" data-action="like">
+                            <i class="fa fa-heart"></i>
+                            <b>点赞</b>
+                        </a>
+                    <% } %>
                 </li>
                 <li>
-                    <a class="nav-tooltip joke-dislike-btn" title="<%= joke.dislike_count %>">
-                        <i class="fa fa-hand-o-down"></i>
-                        <b>差评</b>
-                    </a>
+                    <% if (joke.isDislike) { %>
+                        <a class="nav-tooltip joke-dislike-btn isdislike" title="<%= joke.dislike_count %>" data-action="cancel-dislike">
+                            <i class="fa fa-hand-o-down"></i>
+                            <b>差评</b>
+                        </a>
+                    <% } else { %>
+                        <a class="nav-tooltip joke-dislike-btn" title="<%= joke.dislike_count %>" data-action="dislike">
+                            <i class="fa fa-hand-o-down"></i>
+                            <b>差评</b>
+                        </a>
+                    <% } %>
                 </li>
                 <li>
                     <a href="#">
@@ -93,7 +107,7 @@
         <div class="comment-item">
             <div class="comment-item-inner-left">
                 <img class="img-rounded img-responsive nav-tooltip"
-                     src="<%= joke.author.gravatar %>" data-toggle="tooltip" title="<%= comment.author.name %>"
+                     src="<%= comment.author.gravatar %>" data-toggle="tooltip" title="<%= comment.author.name %>"
                      width="32" height="32">
             </div>
             <div class="comment-item-inner-right">

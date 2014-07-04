@@ -224,3 +224,10 @@
    max-width: 470px;
    overflow: hidden;
 }
+
+a.islike {
+    color: #d2322d;
+}
+a.isdislike {
+    color: #292f33;
+}

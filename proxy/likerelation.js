@@ -7,3 +7,11 @@ exports.likeNewAndSave = function(jokeid, userid, type, callback) {
     like.type = type;
     like.save(callback);
 };
+
+exports.likeRemove = function(option, callback) {
+    Like.remove(option, callback);
+};
+
+exports.getLikeRelationByQuery = function(query, callback) {
+    Like.find(query, callback);
+};

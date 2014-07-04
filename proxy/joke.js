@@ -28,7 +28,6 @@ exports.getJokesByQuery = function(query, option, callback) {
         if (!docs || docs.length === 0) {
             return callback(null, []);
         }
-
         var count = docs.length;
         async.parallel([
                 function(cb) {
