@@ -149,6 +149,8 @@
 .content-media-inner img {
     max-height: 253px;
     max-width: 506px;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
 }
 .author-information {
     margin-bottom: 10px;

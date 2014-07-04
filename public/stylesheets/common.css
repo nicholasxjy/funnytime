@@ -34,6 +34,13 @@ img {
     top: 60px;
     right: 40px;
 }
+.follow-btn {
+    width: 82px;
+    height: 34px;
+    outline: none;
+    font-weight: 700;
+}
+
 .left-block-wrap h3 {
     margin: 0;
     font-size: 20px;
@@ -46,9 +53,20 @@ img {
     float: left;
     margin: 30px 15px 0 15px;
 }
-#infscr-loading img {
-    width: 70px;
-    height: 70px;
+#infscr-loading {
+  text-align: center;
+  z-index: 1000;
+  position: fixed;
+  left: 45%;
+  bottom: 40px;
+  width: 200px;
+  padding: 10px;
+  background: #000;
+  opacity: 0.8;
+  color: #FFF;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
 }
 /* post modal */
 

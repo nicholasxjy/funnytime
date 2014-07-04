@@ -35,4 +35,6 @@ module.exports = function(app) {
 
     app.post('/joke/like', joke.postLike);
     app.post('/joke/dislike', joke.postDislike);
+
+    app.post('/u/follow', user.postFollow);
 }

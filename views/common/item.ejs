@@ -68,27 +68,27 @@
                 </li>
                 <li>
                     <% if (joke.isLike) { %>
-                        <a class="nav-tooltip joke-like-btn islike" title="<%= joke.like_count %>" data-action="cancel-like">
+                        <a class="nav-tooltip joke-like-btn islike" title="取消" data-action="cancel-like">
                             <i class="fa fa-heart"></i>
-                            <b>点赞</b>
+                            <b><%= joke.like_count %></b>
                         </a>
                     <% } else { %>
-                        <a class="nav-tooltip joke-like-btn" title="<%= joke.like_count %>" data-action="like">
+                        <a class="nav-tooltip joke-like-btn" title="点赞" data-action="like">
                             <i class="fa fa-heart"></i>
-                            <b>点赞</b>
+                            <b><%= joke.like_count %></b>
                         </a>
                     <% } %>
                 </li>
                 <li>
                     <% if (joke.isDislike) { %>
-                        <a class="nav-tooltip joke-dislike-btn isdislike" title="<%= joke.dislike_count %>" data-action="cancel-dislike">
+                        <a class="nav-tooltip joke-dislike-btn isdislike" title="取消" data-action="cancel-dislike">
                             <i class="fa fa-hand-o-down"></i>
-                            <b>差评</b>
+                            <b><%= joke.dislike_count %></b>
                         </a>
                     <% } else { %>
-                        <a class="nav-tooltip joke-dislike-btn" title="<%= joke.dislike_count %>" data-action="dislike">
+                        <a class="nav-tooltip joke-dislike-btn" title="差评" data-action="dislike">
                             <i class="fa fa-hand-o-down"></i>
-                            <b>差评</b>
+                            <b><%= joke.dislike_count %></b>
                         </a>
                     <% } %>
                 </li>

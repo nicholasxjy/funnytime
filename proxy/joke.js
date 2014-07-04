@@ -75,7 +75,7 @@ exports.getJokesByQuery = function(query, option, callback) {
             }
         );
     });
-}
+};
 
 exports.createNewJoke = function(authorid, content, link, video, photos, attachtype, select, question, answer, callback) {
     var joke = new Joke();

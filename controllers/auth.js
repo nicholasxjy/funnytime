@@ -291,39 +291,3 @@ exports.postSettingResetPass = function(req, res, next) {
         });
     });
 };
-
-
-exports.authUser = function(req, res, next) {
-    var sess = req.session;
-    if (sess && sess.user) {
-        authproxy.getUserById(req.session.user._id, function(err, user) {
-            if (err) return next(err);
-            if (user) {
-                user.format_create_time = formatfun.formatDate(user.createtime, true);
-                sess.user = user;
-                res.locals.c_user = user;
-                return next();
-            } else {
-                return next();
-            }
-        });
-    } else {
-        var authcookie = req.cookies[config.cookieName];
-        if (!authcookie) {
-            return next();
-        }
-        var cookieToken = cryptofun.decryt(authcookie, config.session_secret);
-        var userid = cookieToken.split('||')[0];
-        authproxy.getUserById(userid, function(err, user) {
-            if (err) return next(err);
-            if (user) {
-                user.format_create_time = formatfun.formatDate(user.createtime, true);
-                sess.user = user;
-                res.locals.c_user = user;
-                return next();
-            } else {
-                return next();
-            }
-        });
-    }
-};

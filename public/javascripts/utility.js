@@ -89,12 +89,15 @@ $(document).ready(function() {
                     if (data.status === 'success') {
                         if (action === 'like') {
                             self.addClass('islike');
-                            self.data('action', 'cancel-like')
+                            self.data('action', 'cancel-like');
+                            self.find('b').text(data.like_count);
+                            self.attr('data-original-title', '取消');
                         } else {
                             self.removeClass('islike');
-                            self.data('action', 'like')
+                            self.data('action', 'like');
+                            self.find('b').text(data.like_count);
+                            self.attr('data-original-title', '点赞');
                         }
-                        self.attr('data-original-title', data.like_count);
                     }
                 },
                 error: function() {
@@ -120,11 +123,14 @@ $(document).ready(function() {
                         if (action === 'dislike') {
                            self.addClass('isdislike');
                            self.data('action', 'cancel-dislike');
+                           self.find('b').text(data.dislike_count);
+                           self.attr('data-original-title', '取消');
                         } else {
                             self.removeClass('isdislike');
                             self.data('action', 'dislike');
+                            self.find('b').text(data.dislike_count);
+                            self.attr('data-original-title', '差评');
                         }
-                        self.attr('data-original-title', data.dislike_count);
                     }
                 },
                 error: function() {

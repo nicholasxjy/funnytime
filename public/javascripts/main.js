@@ -149,4 +149,35 @@ $(document).ready(function() {
   $('.setting-btn-submit').on('click', function() {
     $('.setting-form-wrap').find('form').submit();
   });
+
+  // follow post
+  $('.follow-btn').on('click', function() {
+    var self = $(this);
+    var userid = self.data('userid');
+    var action = self.data('action');
+    var count = $('.following-users-count').text();
+    count = parseInt(count);
+    $.ajax({
+      url: '/u/follow',
+      type: 'POST',
+      dataType: 'json',
+      data: {userid: userid, action: action},
+      success: function(data) {
+        if (data.status === 'success') {
+          if (action === 'follow') {
+            $('.following-users-count').text(count+1);
+            self.text('已关注').removeClass('btn-info').addClass('btn-danger');
+            self.data('action', 'unfollow');
+          } else {
+            $('.following-users-count').text(count-1 || 0);
+            self.text('加入关注').removeClass('btn-danger').addClass('btn-info');
+            self.data('action', 'follow');
+          }
+        }
+      },
+      error: function() {
+        alert('Oops, something gose wrong here!');
+      }
+    });
+  });
 });

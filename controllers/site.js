@@ -4,6 +4,9 @@ var likeproxy = require('../proxy/likerelation');
 var _ = require('underscore');
 
 exports.index = function(req, res, next) {
+    if (!req.session.user) {
+        return res.render('index');
+    }
     var page = parseInt(req.query.page, 10) || 1;
     var limit = config.page_with_item;
     var option = {skip: (page -1)*limit, limit: limit, sort: {createtime: 'desc'}};

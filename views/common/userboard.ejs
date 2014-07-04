@@ -3,7 +3,11 @@
     <div class="user-avatar">
         <% if (locals.user._id.toString() !== locals.c_user._id.toString()) { %>
             <div class="follow-button-wrap">
-                <button type="button" class="btn btn-info">Follow</button>
+                <% if (locals.user.hasFollowed) { %>
+                <button type="button" class="btn btn-danger follow-btn" data-action="unfollow" data-userid="<%= locals.user._id %>">已关注</button>
+                <% } else { %>
+                <button type="button" class="btn btn-info follow-btn" data-action="follow" data-userid="<%= locals.user._id %>">加入关注</button>
+                <% } %>
             </div>
         <% } %>
         <div class="avatar-wrap">
@@ -64,19 +68,19 @@
         <li>
             <a href="/u/<%= locals.c_user.name %>">
                 <span class="post-items top-label">发表</span>
-                <span class="post-item-count bottom-label">9</span>
+                <span class="post-item-count bottom-label"><%= locals.jokes_count || 0 %></span>
             </a>
         </li>
         <li>
             <a href="#">
                 <span class="following-users top-label">关注中</span>
-                <span class="following-users-count bottom-label">32</span>
+                <span class="following-users-count bottom-label"><%= locals.follow_count || 0 %></span>
             </a>
         </li>
         <li>
             <a href="#">
                 <span class="followed-users top-label">已关注</span>
-                <span class="followed-users-count bottom-label">2</span>
+                <span class="followed-users-count bottom-label"><%= locals.befollow_count || 0 %></span>
             </a>
         </li>
     </ul>
