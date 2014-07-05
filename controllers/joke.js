@@ -12,9 +12,10 @@ var _ = require('underscore');
 
 exports.index = function(req, res, next) {
     var jokeid = req.params.jokeid;
-    jokeproxy.getJokeById(jokeid, function(err, joke) {
+    var query = {_id: jokeid};
+    jokeproxy.getJokesByQuery(query, {}, function(err, joke) {
         if (err) return next(err);
-        return res.render('joke/index', {joke: joke});
+        return res.render('joke/index', {joke: joke[0]});
     });
 };
 

@@ -33,6 +33,7 @@ module.exports = function(app) {
 
     app.get('/u/:name', middleware.userFollowCount, middleware.userJokesCount, user.index);
 
+    app.get('/joke/:jokeid', joke.index);
     app.post('/joke/like', joke.postLike);
     app.post('/joke/dislike', joke.postDislike);
 

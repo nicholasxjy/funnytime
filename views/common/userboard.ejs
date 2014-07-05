@@ -72,13 +72,13 @@
             </a>
         </li>
         <li>
-            <a href="/following">
+            <a href="/<%= locals.c_user.name %>/following">
                 <span class="following-users top-label">关注中</span>
                 <span class="following-users-count bottom-label"><%= locals.follow_count || 0 %></span>
             </a>
         </li>
         <li>
-            <a href="/followers">
+            <a href="/<%= locals.c_user.name %>/followers">
                 <span class="followed-users top-label">关注者</span>
                 <span class="followed-users-count bottom-label"><%= locals.befollow_count || 0 %></span>
             </a>
