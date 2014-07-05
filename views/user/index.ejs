@@ -71,6 +71,9 @@
                     <% } %>
                 </section>
                 <!-- cd-timeline -->
+                <nav id="page-nav">
+                    <a href="/u/<%= locals.user.name %>/?page=2"></a>
+                </nav>
             </div>
         </div>
     </div>
@@ -83,10 +86,10 @@
 <script>
     $(document).ready(function () {
         //infinitescroll
-        $('.share-items-content').infinitescroll({
+        $('#cd-timeline').infinitescroll({
             navSelector: '#page-nav',    // selector for the paged navigation
             nextSelector: '#page-nav a',  // selector for the NEXT link (to page 2)
-            itemSelector: '.item-inner',     // selector for all items you'll retrieve
+            itemSelector: '.cd-timeline-block',     // selector for all items you'll retrieve
             loading: {
                 finishedMsg: '<em>No more pages to load.<em>',
                 img: '/images/loading.gif',

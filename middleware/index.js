@@ -3,6 +3,7 @@ var formatfun = require('../utility/formatfun');
 var config = require('../config');
 var followproxy = require('../proxy/follow');
 var jokeproxy = require('../proxy/joke');
+var cryptofun = require('../utility/cryptofun');
 
 exports.authUser = function(req, res, next) {
     var sess = req.session;
@@ -41,17 +42,17 @@ exports.authUser = function(req, res, next) {
 
 exports.followCount = function(req, res, next) {
     if (req.session.user) {
-        var query1 = {userid: req.session.user._id};
-        var query2 = {followid: req.session.user._id};
+        var query1 = {userid: req.session.user._id};//查出粉丝
+        var query2 = {followid: req.session.user._id};//关注的人
         followproxy.getFollowByQuery(query1, function(err, docs1) {
             if (err) return next(err);
             if (docs1) {
-                res.locals.follow_count = docs1.length;
+                res.locals.befollow_count = docs1.length;
             }
             followproxy.getFollowByQuery(query2, function(err, docs2) {
                 if (err) return next(err);
                 if (docs2) {
-                    res.locals.befollow_count = docs2.length;
+                    res.locals.follow_count = docs2.length;
                     return next();
                 } else {
                     return next();
@@ -77,4 +78,59 @@ exports.jokesCount = function(req, res, next) {
     } else {
         return next();
     }
-}
+};
+
+
+exports.userFollowCount = function(req, res, next) {
+    var username = req.params.name;
+    if (!username) {
+        return next();
+    }
+    authproxy.getUserByName(username, function(err, user) {
+        if (err) return next(err);
+        if (user) {
+            var query1 = {userid: user._id};//查出粉丝
+            var query2 = {followid: user._id};//关注的人
+            followproxy.getFollowByQuery(query1, function(err, docs1) {
+                if (err) return next(err);
+                if (docs1) {
+                    res.locals.user_befollow_count = docs1.length || 0;
+                }
+                followproxy.getFollowByQuery(query2, function(err, docs2) {
+                    if (err) return next(err);
+                    if (docs2) {
+                        res.locals.user_follow_count = docs2.length || 0;
+                        return next();
+                    } else {
+                        return next();
+                    }
+                });
+            });
+        } else {
+            return next();
+        }
+    });
+};
+
+exports.userJokesCount =  function(req, res, next) {
+    var username = req.params.name;
+    if (!username) {
+        return next();
+    }
+    authproxy.getUserByName(username, function(err,user) {
+        if (err) return next(err);
+        if (user) {
+            jokeproxy.getJokesByUser(user._id, {}, function(err, jokes) {
+                if (err) return next(err);
+                if (jokes) {
+                    res.locals.user_jokes_count = jokes.length || 0;
+                    return next();
+                } else {
+                    return next();
+                }
+            });
+        } else {
+            return next();
+        }
+    });
+};

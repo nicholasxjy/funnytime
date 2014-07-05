@@ -27,19 +27,19 @@
         <li>
             <a href="/u/<%= locals.user.name %>">
                 <span class="post-items top-label">发表</span>
-                <span class="post-item-count bottom-label">9</span>
+                <span class="post-item-count bottom-label"><%= locals.user_jokes_count %></span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/<%= locals.user.name %>/following">
                 <span class="following-users top-label">关注中</span>
-                <span class="following-users-count bottom-label">32</span>
+                <span class="following-users-count bottom-label"><%= locals.user_follow_count %></span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <span class="followed-users top-label">已关注</span>
-                <span class="followed-users-count bottom-label">2</span>
+            <a href="/<%= locals.user.name %>/followers">
+                <span class="followed-users top-label">关注者</span>
+                <span class="followed-users-count bottom-label"><%= locals.user_befollow_count %></span>
             </a>
         </li>
     </ul>
@@ -72,14 +72,14 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/following">
                 <span class="following-users top-label">关注中</span>
                 <span class="following-users-count bottom-label"><%= locals.follow_count || 0 %></span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <span class="followed-users top-label">已关注</span>
+            <a href="/followers">
+                <span class="followed-users top-label">关注者</span>
                 <span class="followed-users-count bottom-label"><%= locals.befollow_count || 0 %></span>
             </a>
         </li>

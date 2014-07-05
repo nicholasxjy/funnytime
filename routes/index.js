@@ -3,7 +3,7 @@ var site = require('../controllers/site');
 var joke = require('../controllers/joke');
 var comment = require('../controllers/comment');
 var user = require('../controllers/user');
-
+var middleware = require('../middleware');
 module.exports = function(app) {
     /* GET home page. */
     app.get('/', site.index);
@@ -31,7 +31,7 @@ module.exports = function(app) {
     app.get('/settings/reset-pass', auth.showSettingResetPass);
     app.post('/settings/reset-pass', auth.postSettingResetPass);
 
-    app.get('/u/:name', user.index);
+    app.get('/u/:name', middleware.userFollowCount, middleware.userJokesCount, user.index);
 
     app.post('/joke/like', joke.postLike);
     app.post('/joke/dislike', joke.postDislike);

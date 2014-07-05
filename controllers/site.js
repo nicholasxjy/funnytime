@@ -2,7 +2,6 @@ var config = require('../config');
 var jokeproxy = require('../proxy/joke');
 var likeproxy = require('../proxy/likerelation');
 var _ = require('underscore');
-
 exports.index = function(req, res, next) {
     if (!req.session.user) {
         return res.render('index');
