@@ -23,6 +23,9 @@ img {
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
+.hot-share {
+    margin-top: 30px;
+}
 .main {
     position: relative;
     top: 60px;
@@ -464,7 +467,7 @@ img {
     color: #0099B9;
 }
 .create-time {
-    margin-right: 17px;
+    margin-right: 35px;
     margin-top: -20px;
     font-size: 12px;
     color: #8899a6;
@@ -491,7 +494,7 @@ img {
 }
 .fun-list {
     float:right;
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
 /* comment list */

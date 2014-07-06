@@ -38,4 +38,6 @@ module.exports = function(app) {
     app.post('/joke/dislike', joke.postDislike);
 
     app.post('/u/follow', user.postFollow);
+    app.get('/:name/following', middleware.userFollowCount, middleware.userJokesCount, user.following);
+    app.get('/:name/followers', middleware.userFollowCount, middleware.userJokesCount, user.followers);
 }

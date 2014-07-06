@@ -1,0 +1,9 @@
+.follow-wrap {
+    width: 900px;
+    margin-top: 30px;
+    float: left;
+}
+.follow-inner {
+    float: left;
+    padding: 15px 20px;
+}

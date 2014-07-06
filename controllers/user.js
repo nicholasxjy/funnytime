@@ -1,3 +1,4 @@
+var async = require('async');
 var authproxy = require('../proxy/auth');
 var jokeproxy = require('../proxy/joke');
 var config = require('../config');
@@ -30,6 +31,42 @@ exports.index = function(req, res, next) {
             });
         });
     });
+};
+
+exports.following = function(req, res, next) {
+    var username = req.params.name;
+    authproxy.getUserByName(username, function(err, user) {
+        if (err) return next(err);
+        if (!user) {
+            return res.send(404);
+        }
+        user.format_create_time = formatfun.formatDate(user.createtime, true);
+        async.waterfall([function(cb) {
+            var query = {followid: user._id};
+            followproxy.getFollowByQuery(query, function(err, docs) {
+                if (err) return next(err);
+                cb(null, docs);
+            });
+        }, function(docs, cb) {
+            var count = docs.length;
+            async.times(count, function(n, cb) {
+                authproxy.getUserById(docs[n].userid, function(err, user) {
+                    if (err) return next(err);
+                    cb(null, user);
+                });
+            }, function(err, users) {
+                if (err) return next(err);
+                cb(null, users);
+            });
+        }], function(err, result) {
+            if (err) return next(err);
+            return res.render('user/following', {followings: result, user: user, isuserpage: true});
+        });
+    });
+};
+
+exports.followers = function(req, res, next) {
+
 };
 
 exports.postFollow = function(req, res, next) {
