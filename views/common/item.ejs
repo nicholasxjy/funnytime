@@ -11,10 +11,13 @@
             <a href="/u/<%= joke.author.name %>">
                 <strong class="fullname"><%=: joke.author.name | capitalize %></strong>
             </a>
+            <span class="at-name">
+                <b>@<%= joke.author.name %></b>
+            </span>
             <a class="nav-tooltip create-time" href="/joke/<%= joke._id %>"><%= joke.friendly_createtime %></a>
         </div>
         <% if (joke.content) { %>
-        <p><%= joke.content %></p>
+        <p class="joke-item-content"><%= joke.content %></p>
         <% } %>
         <div class="content-media-wrap">
             <div class="content-media-inner">

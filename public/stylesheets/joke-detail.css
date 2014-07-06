@@ -62,3 +62,8 @@
     font-weight: 700;
     color: #8899a6;
 }
+.right-follow-wrap {
+    position: absolute;
+    top: 0;
+    right: 70px;
+}

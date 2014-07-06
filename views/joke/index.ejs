@@ -32,6 +32,13 @@
                                 <strong class="fullname"><%=: joke.author.name | capitalize %></strong>
                             </a>
                         </div>
+                        <div class="right-follow-wrap">
+                            <% if (joke.author.hasFollowed) { %>
+                            <button type="button" class="btn btn-danger follow-btn" data-action="unfollow" data-userid="<%= joke.author._id %>">已关注</button>
+                            <% } else { %>
+                            <button type="button" class="btn btn-info follow-btn" data-action="follow" data-userid="<%= joke.author._id %>">加入关注</button>
+                            <% } %>
+                        </div>
                     </div>
                     <% if (joke.content) { %>
                         <p class="detail-content"><%= joke.content %></p>

@@ -448,7 +448,6 @@ img {
     margin-right: 15px;
 }
 .content-media-inner img {
-    max-height: 253px;
     max-width: 506px;
     cursor: -webkit-zoom-in;
     cursor: zoom-in;
@@ -458,15 +457,19 @@ img {
 }
 .fullname {
     color: #292f33;
+    font-size: 18px;
+    line-height: 1.25;
 }
 .fullname:hover {
     color: #0099B9;
 }
 .create-time {
-    margin-left: 20px;
+    margin-right: 17px;
+    margin-top: -20px;
     font-size: 12px;
     color: #8899a6;
     font-weight: 700;
+    float: right;
 }
 .content-bottom {
     margin-top: 8px;
@@ -534,4 +537,26 @@ a.islike {
 }
 a.isdislike {
     color: #292f33;
+}
+.joke-item-content {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 34px;
+    font-weight: 300;
+    color: #292f33;
+}
+.at-name {
+    display: block;
+    width: 200px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #8899a6;
+    font-weight: 300;
+    text-decoration: none;
+    vertical-align: top;
+}
+.at-name b {
+    font-weight: 500;
+    vertical-align: top;
 }

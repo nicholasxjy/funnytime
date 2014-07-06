@@ -1,21 +1,48 @@
-var config = require('../config');
-var async = require('async');
-var jokeproxy = require('../proxy/joke');
-var authproxy = require('../proxy/auth');
-var likeproxy = require('../proxy/likerelation');
 var validator = require('validator');
 var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var ndir = require('ndir');
 var _ = require('underscore');
+var async = require('async');
+var config = require('../config');
+var jokeproxy = require('../proxy/joke');
+var authproxy = require('../proxy/auth');
+var likeproxy = require('../proxy/likerelation');
+var followproxy = require('../proxy/follow');
+
 
 exports.index = function(req, res, next) {
     var jokeid = req.params.jokeid;
     var query = {_id: jokeid};
     jokeproxy.getJokesByQuery(query, {}, function(err, joke) {
         if (err) return next(err);
-        return res.render('joke/index', {joke: joke[0]});
+        async.parallel([function(cb) {
+            likeproxy.getLikeRelationByQuery({userid: req.session.user._id, jokeid: jokeid}, function(err, docs) {
+                if (err) return next(err);
+                if (!docs || docs.length === 0) {
+                    return cb(null, joke[0]);
+                }
+                for(var i = 0, len = docs.length;i < len; i++) {
+                    if (docs[i].type === 'like') joke[0].isLike = true;
+                    if (docs[i].type === 'dislike') joke[0].isDislike = true;
+                }
+                return cb(null, joke[0]);
+            });
+        }, function(cb) {
+            var query = {userid: joke[0].authorid, followid: req.session.user._id};
+            followproxy.getFollowByQuery(query, function(err, docs) {
+                if (err) return next(err);
+                joke[0].author.hasFollowed = false;
+                if (docs) {
+                    joke[0].author.hasFollowed = true;
+                }
+                return cb(null, joke[0]);
+            });
+        }], function(err, result) {
+            if (err) return next(err);
+            return res.render('joke/index', {joke: result[1]});
+        });
     });
 };
 
