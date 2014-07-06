@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //comment show delegate
-    $('.share-items-content').on('click','.comment-show', function() {
+    $('.delegate-symbol').on('click','.comment-show', function() {
       var itemid = $(this).data('itemid');
       var $comment = $('#joke' + itemid +'-comments');
       var display = $comment.css('display');
@@ -14,10 +14,10 @@ $(document).ready(function() {
     });
 
     //comment reply delegate
-    $('.share-items-content').on('click', '.comment-reply', function() {
+    $('.delegate-symbol').on('click', '.comment-reply', function() {
       //get parent container
       var $parent = $(this).parents('.content-bottom');
-      var index = $parent.parents('.item-inner').data('index');
+      var index = $parent.parents('.delegate-need-index').data('index');
       var toid = $parent.data('userid');
       var jokeid = $parent.data('jokeid');
       var username = $parent.data('username');
@@ -74,7 +74,7 @@ $(document).ready(function() {
     });
 
     // like delegate
-    $('.share-items-content').on('click', '.joke-like-btn', function() {
+    $('.delegate-symbol').on('click', '.joke-like-btn', function() {
         var self = $(this);
         var $parent = self.parents('.content-bottom');
         var jokeid = $parent.data('jokeid');
@@ -107,7 +107,7 @@ $(document).ready(function() {
         }
     });
     // like delegate
-    $('.share-items-content').on('click', '.joke-dislike-btn', function() {
+    $('.delegate-symbol').on('click', '.joke-dislike-btn', function() {
         var self = $(this);
         var $parent = self.parents('.content-bottom');
         var jokeid = $parent.data('jokeid');

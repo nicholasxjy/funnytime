@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/jquery.fancybox.css">
     <link rel="stylesheet" href="/stylesheets/dropzone.css">
     <link rel='stylesheet' href='/stylesheets/common.css'/>
-
-    <link rel="stylesheet" href="/stylesheets/user-index.css">
-    <!-- Resource style -->
-    <script src="/javascripts/lib/modernizr.js"></script>
-    <!-- Modernizr -->
+    <link rel="stylesheet" href="/stylesheets/joke-detail.css">
 
     <title>Lol me / <%=: locals.joke.author.name | capitalize %></title>
 </head>
@@ -22,108 +19,96 @@
     <div class="main">
         <div class="container">
             <% var joke = locals.joke %>
-            <div class="middle-content">
-                <div class="item-inner">
-                    <div class="item-inner-left">
-                        <img class="img-rounded img-responsive nav-tooltip"
-                             src="<%= joke.author.gravatar %>" data-toggle="tooltip" title="<%= joke.author.name %>" width="48"
-                             height="48">
-                    </div>
-                    <div class="item-inner-right">
-                        <div class="author-information">
+            <div class="detail-wrap delegate-symbol">
+                <div class="detail-inner delegate-need-index" data-index="1">
+                    <div class="detail-top-wrap">
+                        <div class="detail-avatar">
+                            <img class="img-rounded img-responsive nav-tooltip"
+                                 src="<%= joke.author.gravatar %>" data-toggle="tooltip" title="<%= joke.author.name %>" width="48"
+                                 height="48">
+                        </div>
+                        <div class="detail-author-information">
                             <a href="/u/<%= joke.author.name %>">
                                 <strong class="fullname"><%=: joke.author.name | capitalize %></strong>
                             </a>
-                            <a class="nav-tooltip create-time" href="/joke/<%= joke._id %>"><%= joke.friendly_createtime %></a>
-                        </div>
-                        <% if (joke.content) { %>
-                        <p><%= joke.content %></p>
-                        <% } %>
-                        <div class="content-media-wrap">
-                            <div class="content-media-inner">
-                                <% if (joke.link) { %>
-                                <a href="<%= joke.link %>"><%= joke.link %></a>
-                                <% } %>
-                                <% if (joke.video) { %>
-                                <%- joke.video %>
-                                <% } %>
-                                <% if (joke.photos && joke.photos.length > 0) { %>
-                                <% if (joke.photos.length > 1) { %>
-                                <ul class="list-inline">
-                                    <% joke.photos.forEach(function(photo) { %>
-
-                                    <li>
-                                        <a class="fancybox" href="<%= photo.url %>" data-fancybox-group="gallery-1" title="<%= photo.originalname %>">
-                                            <img src="<%= photo.url %>" class="img-responsive img-rounded nav-tooltip"
-                                                 title="<%= photo.originalname %>" width="100" height="100">
-                                        </a>
-                                    </li>
-
-                                    <% }); %>
-                                </ul>
-                                <% } else { %>
-                                <a class="fancybox" href="<%= joke.photos[0].url %>" data-fancybox-group="gallery-1" title="<%= joke.photos[0].originalname %>">
-                                    <img src="<%= joke.photos[0].url %>" class="img-responsive img-rounded nav-tooltip"
-                                         title="<%= joke.photos[0].originalname %>">
-                                </a>
-                                <% } %>
-                                <% } %>
-                            </div>
-                        </div>
-
-                        <div class="content-bottom" data-index="1" data-jokeid="<%= joke._id %>"
-                             data-userid="<%= joke.author._id %>" data-username="<%= joke.author.name %>"
-                             data-useravatar="<%= joke.author.gravatar %>" data-posttime="<%= joke.friendly_createtime %>"
-                             data-postcontent="<%= joke.content %>">
-                            <% if (joke.comments && joke.comments.length > 0) { %>
-                            <a class="comment-show" data-itemid="1">
-                                <i class="fa fa-comments"></i>
-                                <b>展开评论</b></a>
-                            <% } else { %>
-                            <span class="none-comment">添加评论?</span><i class="fa fa-hand-o-right add-comment-direct"></i>
-                            <% } %>
-                            <ul class="list-inline fun-list">
-                                <li>
-                                    <a class="comment-reply">
-                                        <i class="fa fa-reply"></i>
-                                        <b>回复</b>
-                                    </a>
-                                </li>
-                                <li>
-                                    <% if (joke.isLike) { %>
-                                        <a class="nav-tooltip joke-like-btn islike" title="取消" data-action="cancel-like">
-                                            <i class="fa fa-heart"></i>
-                                            <b><%= joke.like_count %></b>
-                                        </a>
-                                    <% } else { %>
-                                        <a class="nav-tooltip joke-like-btn" title="点赞" data-action="like">
-                                            <i class="fa fa-heart"></i>
-                                            <b><%= joke.like_count %></b>
-                                        </a>
-                                    <% } %>
-                                </li>
-                                <li>
-                                    <% if (joke.isDislike) { %>
-                                        <a class="nav-tooltip joke-dislike-btn isdislike" title="取消" data-action="cancel-dislike">
-                                            <i class="fa fa-hand-o-down"></i>
-                                            <b><%= joke.dislike_count %></b>
-                                        </a>
-                                    <% } else { %>
-                                        <a class="nav-tooltip joke-dislike-btn" title="差评" data-action="dislike">
-                                            <i class="fa fa-hand-o-down"></i>
-                                            <b><%= joke.dislike_count %></b>
-                                        </a>
-                                    <% } %>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star"></i>
-                                        <b>收藏</b>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
+                    <% if (joke.content) { %>
+                        <p class="detail-content"><%= joke.content %></p>
+                    <% } %>
+                    <div class="detail-fun-bar content-bottom" data-index="1" data-jokeid="<%= joke._id %>" data-userid="<%= joke.author._id %>" data-username="<%= joke.author.name %>" data-useravatar="<%= joke.author.gravatar %>" data-posttime="<%= joke.friendly_createtime %>" data-postcontent="<%= joke.content %>">
+                        <ul class="list-inline">
+                            <li>
+                                <a class="comment-reply">
+                                    <i class="fa fa-reply"></i>
+                                    <b>回复</b>
+                                </a>
+                            </li>
+                            <li>
+                                <% if (joke.isLike) { %>
+                                    <a class="nav-tooltip joke-like-btn islike" title="取消" data-action="cancel-like">
+                                        <i class="fa fa-heart"></i>
+                                        <b><%= joke.like_count %></b>
+                                    </a>
+                                <% } else { %>
+                                    <a class="nav-tooltip joke-like-btn" title="点赞" data-action="like">
+                                        <i class="fa fa-heart"></i>
+                                        <b><%= joke.like_count %></b>
+                                    </a>
+                                <% } %>
+                            </li>
+                            <li>
+                                <% if (joke.isDislike) { %>
+                                    <a class="nav-tooltip joke-dislike-btn isdislike" title="取消" data-action="cancel-dislike">
+                                        <i class="fa fa-hand-o-down"></i>
+                                        <b><%= joke.dislike_count %></b>
+                                    </a>
+                                <% } else { %>
+                                    <a class="nav-tooltip joke-dislike-btn" title="差评" data-action="dislike">
+                                        <i class="fa fa-hand-o-down"></i>
+                                        <b><%= joke.dislike_count %></b>
+                                    </a>
+                                <% } %>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star"></i>
+                                    <b>收藏</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="detail-media-wrap">
+                        <div class="detail-media-inner">
+                            <% if (joke.photos && joke.photos.length > 0) { %>
+                            <ul class="list-inline">
+                               <% joke.photos.forEach(function(photo) { %>
+                               <li>
+                                   <a class="fancybox" href="<%= photo.url %>" data-fancybox-group="gallery-1" title="<%= photo.originalname %>">
+                                       <img src="<%= photo.url %>" class="img-responsive nav-tooltip"
+                                            title="<%= photo.originalname %>" width="560">
+                                   </a>
+                               </li>
+                               <% }); %>
+                            </ul>
+                            <% } %>
+                            <% if (joke.link) { %>
+                                <p>
+                                    <a href="<%= joke.link %>"><%= joke.link %></a>
+                                </p>
+                            <% } %>
+                            <% if (joke.video) { %>
+                                <div class="media-video">
+                                    <%- joke.video %>
+                                </div>
+                            <% } %>
+                            <div class="detail-time-show">
+                                <span>发表于 - <%= joke.friendly_createtime %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-comments-wrap">
                     <div class="comment-list" id="joke1-comments">
                         <% if (joke.comments && joke.comments.length > 0) { %>
                         <% joke.comments.forEach(function(comment, index) { %>
@@ -139,15 +124,16 @@
                                         <strong class="fullname"><%=: comment.author.name | capitalize %></strong>
                                     </a>
                                     <small class="create-time">
-                                        <a class="nav-tooltip" href="#"><%= comment.friendly_createtime %></a>
+                                        <%= comment.friendly_createtime %>
                                     </small>
                                 </div>
-
-                                <p><%= comment.content %></p>
+                                <% var contents = comment.content.split(' '); %>
+                                <% var contents2 = contents.slice(1); %>
+                                <p><a href="/u/<%= comment.author.name %>"><%= contents[0] %></a> <%= contents2.join(' ') %></p>
 
                                 <div class="content-bottom" data-index="1"
                                      data-jokeid="<%= joke._id %>" data-userid="<%= comment.author._id %>"
-                                     data-username="<%= comment.author.name %>" data-useravatar="<%= joke.author.gravatar %>"
+                                     data-username="<%= comment.author.name %>" data-useravatar="<%= comment.author.gravatar %>"
                                      data-posttime="<%= comment.friendly_createtime %>" data-postcontent="<%= comment.content %>">
                                     <ul class="list-inline fun-list">
                                         <li>
@@ -180,9 +166,7 @@
                         </div>
                         <% }); %>
                         <% } %>
-                        <div class="comment-item">
-                            <a href="/joke/<%= joke._id %>">view more...</a>
-                        </div>
+                        <div class="comment-item"></div>
                     </div>
                 </div>
             </div>
@@ -193,7 +177,15 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/javascripts/lib/bootstrap.min.js"></script>
 <script src="/javascripts/lib/dropzone.js"></script>
+<script src="/javascripts/lib/jquery.fancybox.pack.js"></script>
 <script src="/javascripts/main.js"></script>
+<script src="/javascripts/utility.js"></script>
+<script>
+    $(document).ready(function () {
+        //fancybox
+        $('.fancybox').fancybox();
+    });
+</script>
 <!-- Resource jQuery -->
 </body>
 </html>

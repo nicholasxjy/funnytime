@@ -1,6 +1,6 @@
 <% if (locals.jokes && locals.jokes.length > 0) { %>
 <% locals.jokes.forEach(function(joke, index) { %>
-<div class="item-inner" data-index="<%= locals.cpage %>-<%= index + 1 %>">
+<div class="item-inner delegate-need-index" data-index="<%= locals.cpage %>-<%= index + 1 %>">
     <div class="item-inner-left">
         <img class="img-rounded img-responsive nav-tooltip"
              src="<%= joke.author.gravatar %>" data-toggle="tooltip" title="<%= joke.author.name %>" width="48"
@@ -96,6 +96,12 @@
                     <a href="#">
                         <i class="fa fa-star"></i>
                         <b>收藏</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="/joke/<%= joke._id %>">
+                        <i class="fa fa-info-circle"></i>
+                        <b>详情</b>
                     </a>
                 </li>
             </ul>

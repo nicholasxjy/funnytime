@@ -1,0 +1,64 @@
+.detail-wrap {
+    width: 640px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 6px;
+}
+.detail-inner {
+    padding: 30px 40px;
+}
+.detail-top-wrap {
+    position: relative;
+}
+.detail-author-information {
+    position: absolute;
+    top: 3px;
+    left: 63px;
+}
+.detail-author-information a {
+    font-size: 18px;
+    line-height: 1.25;
+    color: #000000;
+}
+.detail-content {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: 300;
+    color: #292f33;
+}
+.detail-fun-bar a {
+    font-size: 12px;
+    line-height: 18px;
+    color: #8899a6;
+    cursor: pointer;
+}
+.detail-fun-bar a.islike {
+    color: #d2322d;
+}
+.detail-fun-bar a.isdislike {
+    color: #292f33;
+}
+.detail-media-inner ul li {
+    margin-bottom: 10px;
+}
+.detail-media-inner img {
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+}
+.detail-time-show {
+    padding-left: 5px;
+    padding-top: 5px;
+    font-size: 12px;
+    line-height: 24px;
+    color: #8899a6;
+    font-weight: 700;
+}
+.detail-comments-wrap div.comment-list {
+    display: block;
+}
+.detail-comments-wrap .comment-list .create-time {
+    font-weight: 700;
+    color: #8899a6;
+}
