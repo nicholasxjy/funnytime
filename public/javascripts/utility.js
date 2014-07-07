@@ -139,4 +139,48 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('.notification-check-delegate').on('click', '.check-notification', function() {
+      var self = $(this);
+      var notificationid = self.data('notificationid');
+      $.ajax({
+        url: 'notification/check',
+        type: 'POST',
+        dataType: 'json',
+        data: {notificationid: notificationid},
+        success: function(data) {
+          if (data.status === 'success') {
+            self.parents('.notification-check-delegate').addClass('has-checked');
+            var count = $('.notifition-count').text();
+            count = parseInt(count);
+            count = count - 1;
+            if (count <= 0) {
+              $('.notifition-count').remove();
+            } else {
+              $('.notifition-count').text(count);
+            }
+            self.remove();
+          }
+        },
+        error: function() {
+          alert('Oops, something goes wrong here!');
+        }
+      });
+    });
+
+    $('.check-all-notification').on('click', function() {
+      $.ajax({
+        url: 'notificationcheck/all',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+          if (data.status === 'success') {
+            window.location.href = location.href;
+          }
+        },
+        error: function() {
+          alert('Oops, something goes wrong here!');
+        }
+      });
+    });
 });

@@ -40,4 +40,8 @@ module.exports = function(app) {
     app.post('/u/follow', user.postFollow);
     app.get('/:name/following', middleware.userFollowCount, middleware.userJokesCount, user.following);
     app.get('/:name/followers', middleware.userFollowCount, middleware.userJokesCount, user.followers);
+
+    app.get('/notifications', user.showNotifications);
+    app.post('/notification/check', user.checkNotification);
+    app.post('/notificationcheck/all', user.checkAllNotification);
 }

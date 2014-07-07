@@ -9,11 +9,13 @@
                         </a>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="/u/notifications" data-toggle="tooltip" data-placement="bottom"
+                        <a class="nav-tooltip" href="/notifications" data-toggle="tooltip" data-placement="bottom"
                            title="通知">
                             <i class="fa fa-bell"></i>
                         </a>
-                        <span class="badge notifition-count">4</span>
+                        <% if(locals.user_notifications_count && locals.user_notifications_count > 0) { %>
+                            <span class="badge notifition-count" style="background: #d2322d;color: #fff;"><%= locals.user_notifications_count %></span>
+                        <% } %>
                     </li>
                     <li class="nav-default">
                         <a class="nav-tooltip" href="/u/<%= locals.c_user.name %>" data-toggle="tooltip"

@@ -10,11 +10,12 @@ var jokeproxy = require('../proxy/joke');
 var authproxy = require('../proxy/auth');
 var likeproxy = require('../proxy/likerelation');
 var followproxy = require('../proxy/follow');
-
+var notificationproxy = require('../proxy/notification');
 
 exports.index = function(req, res, next) {
     var jokeid = req.params.jokeid;
     var query = {_id: jokeid};
+    var notificationid = req.query.notificationid;
     jokeproxy.getJokesByQuery(query, {}, function(err, joke) {
         if (err) return next(err);
         async.parallel([function(cb) {
@@ -41,7 +42,22 @@ exports.index = function(req, res, next) {
             });
         }], function(err, result) {
             if (err) return next(err);
-            return res.render('joke/index', {joke: result[1]});
+            if (notificationid) {
+                notificationproxy.getNotificationById(notificationid, function(err, notification) {
+                    if (err) return next(err);
+                    if (notification.hasread === false) {
+                        notification.hasread = true;
+                        notification.save(function(err) {
+                            if (err) return next(err);
+                            return res.render('joke/index', {joke: result[1]});
+                        });
+                    } else {
+                        return res.render('joke/index', {joke: result[1]});
+                    }
+                });
+            } else {
+                return res.render('joke/index', {joke: result[1]});
+            }
         });
     });
 };

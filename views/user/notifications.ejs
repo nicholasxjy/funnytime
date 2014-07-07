@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/dropzone.css">
+    <link rel='stylesheet' href='/stylesheets/common.css'/>
+    <link rel='stylesheet' href='/stylesheets/notification.css'/>
+    <title>Lol me / <%=: locals.c_user.name | capitalize %> - notifications</title>
+</head>
+<body class="index-body">
+<div class="wrap">
+    <% include ../common/header.ejs %>
+    <% include ../common/post-modal.ejs %>
+    <div class="main">
+        <div class="container">
+            <div class="left-wrap">
+                <% include ../common/userboard.ejs %>
+                <% include ../common/hotshare.ejs %>
+            </div>
+            <div class="middle-content notification-container">
+                <div class="middle-content-inner">
+                    <div class="notification-header">
+                        <div class="header-inner">
+                            <h2>通知</h2>
+                        </div>
+                    </div>
+                    <div class="notifications-wrap">
+                        <% if (notifications && notifications.length > 0) { %>
+                        <ul class="list-unstyled">
+                            <% notifications.forEach(function(noti, index) { %>
+                                <% if (noti.type === 'follow') { %>
+                                <% if (noti.hasread) { %>
+                                    <li class="has-checked notification-check-delegate">
+                                <% } else { %>
+                                    <li class="notification-check-delegate">
+                                <% } %>
+                                        <div class="notification-list-wrap">
+                                            <div class="notification-list-inner">
+                                                <div class="notification-inner-left">
+                                                    <img class="img-responsive img-rounded nav-tooltip" src="<%= noti.author.gravatar %>" alt="gravatar" title="<%= noti.author.name %>" width="48" height="48">
+                                                </div>
+                                                <div class="notification-inner-content">
+                                                    <div class="notification-inner-content-top">
+                                                        <a href="/u/<%= noti.author.name %>"><%=: noti.author.name | capitalize %></a>
+                                                        <span>@<%= noti.author.name %></span>
+                                                        <small><%= noti.friendly_create_time %></small>
+                                                    </div>
+                                                    <p class="notification-content"><a href="/u/<%= noti.author.name %>">@<%=: noti.author.name | capitalize %></a> 关注了你</p>
+                                                    <div class="notification-detail">
+                                                        <a href="/<%= locals.c_user.name %>/followers/?notificationid=<%= noti._id %>"><i class="fa fa-exclamation-circle"></i>查看详情</a>
+                                                        <% if (!noti.hasread) { %>
+                                                        <a class="check-notification" data-notificationid="<%= noti._id %>"><i class="fa fa-check-circle"></i>忽略此条</a>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <% } else { %>
+                                <% if (noti.hasread) { %>
+                                    <li class="has-checked notification-check-delegate">
+                                    <% } else { %>
+                                    <li class="notification-check-delegate">
+                                    <% } %>
+                                    <div class="notification-list-wrap">
+                                        <div class="notification-list-inner">
+                                            <div class="notification-inner-left">
+                                                <img class="img-responsive img-rounded nav-tooltip" src="<%= noti.comment.author.gravatar %>" alt="gravatar" title="<%= noti.comment.author.name %>" width="48" height="48">
+                                            </div>
+                                            <div class="notification-inner-content">
+                                                <div class="notification-inner-content-top">
+                                                    <a href="/u/<%= noti.comment.author.name %>"><%=: noti.comment.author.name | capitalize %></a>
+                                                    <span>@<%= noti.comment.author.name %></span>
+                                                    <small><%= noti.friendly_create_time %></small>
+                                                </div>
+                                                <% var contents = noti.comment.content.split(' '); %>
+                                                <% var contents2 = contents.slice(1); %>
+                                                <p class="notification-content"><a href="/u/<%= noti.comment.author.name %>"><%= contents[0] %></a> <%= contents2.join(' ') %></p>
+                                                <div class="notification-detail">
+                                                    <a href="/joke/<%= noti.jokeid %>/?notificationid=<%= noti._id %>"><i class="fa fa-exclamation-circle"></i>查看详情</a>
+                                                    <% if (!noti.hasread) { %>
+                                                    <a class="check-notification" data-notificationid="<%= noti._id %>"><i class="fa fa-check-circle"></i>忽略此条</a>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% } %>
+                            <% }); %>
+                        </ul>
+                        <% } %>
+                        <div class="check-all-notification-wrap">
+                            <% if (locals.user_notifications_count === 0) { %>
+                                <button class="btn btn-info check-all-notification" disabled="disabled">忽略所有</button>
+                            <% } else { %>
+                            <button class="btn btn-info check-all-notification">忽略所有</button>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/javascripts/lib/bootstrap.min.js"></script>
+<script src="/javascripts/lib/dropzone.js"></script>
+<script src="/javascripts/main.js"></script>
+<script src="/javascripts/utility.js"></script>
+<!-- Resource jQuery -->
+</body>
+</html>

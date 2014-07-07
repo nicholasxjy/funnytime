@@ -3,6 +3,7 @@ var formatfun = require('../utility/formatfun');
 var config = require('../config');
 var followproxy = require('../proxy/follow');
 var jokeproxy = require('../proxy/joke');
+var notificationproxy = require('../proxy/notification');
 var cryptofun = require('../utility/cryptofun');
 
 exports.authUser = function(req, res, next) {
@@ -132,5 +133,17 @@ exports.userJokesCount =  function(req, res, next) {
         } else {
             return next();
         }
+    });
+};
+
+exports.userNotificationsCount = function(req, res, next) {
+    if (!req.session.user) {
+        return next();
+    }
+    var query = {masterid: req.session.user._id, hasread: false};
+    notificationproxy.getNotificationsByQuery(query, {}, function(err, docs) {
+        if (err) return next(err);
+        res.locals.user_notifications_count = docs.length;
+        return next();
     });
 };

@@ -4,6 +4,8 @@ var jokeproxy = require('../proxy/joke');
 var config = require('../config');
 var formatfun = require('../utility/formatfun');
 var followproxy = require('../proxy/follow');
+var notificationproxy = require('../proxy/notification');
+var commentproxy = require('../proxy/comment');
 
 exports.index = function(req, res, next) {
     var username = req.params.name;
@@ -77,6 +79,7 @@ exports.following = function(req, res, next) {
 
 exports.followers = function(req, res, next) {
     var username = req.params.name;
+    var notificationid = req.query.notificationid;
     authproxy.getUserByName(username, function(err, user) {
         if (err) return next(err);
         if (!user) {
@@ -118,7 +121,22 @@ exports.followers = function(req, res, next) {
             });
         }], function(err, result) {
             if (err) return next(err);
-            return res.render('user/followers', {follows: result, user: user, isuserpage: true});
+            if (notificationid) {
+                notificationproxy.getNotificationById(notificationid, function(err, notification) {
+                    if (err) return next(err);
+                    if (notification.hasread === false) {
+                        notification.hasread = true;
+                        notification.save(function(err) {
+                            if (err) return next(err);
+                            return res.render('user/followers', {follows: result, user: user, isuserpage: true});
+                        });
+                    } else {
+                        return res.render('user/followers', {follows: result, user: user, isuserpage: true});
+                    }
+                });
+            } else {
+                return res.render('user/followers', {follows: result, user: user, isuserpage: true});
+            }
         });
     });
 };
@@ -138,7 +156,11 @@ exports.postFollow = function(req, res, next) {
             var query = {userid: userid};
             followproxy.getFollowByQuery(query, function(err, docs) {
                 if (err) return next(err);
-                return res.json({status: 'success', count: docs.length});
+                var data = {type: 'follow', masterid: userid, authorid: req.session.user._id, jokeid: null, commentid: null};
+                notificationproxy.notificationNewAndSave(data, function(err) {
+                    if (err) return next(err);
+                    return res.json({status: 'success', count: docs.length});
+                });
             });
         });
     } else {
@@ -151,4 +173,67 @@ exports.postFollow = function(req, res, next) {
             });
         });
     }
+};
+
+exports.showNotifications = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    notificationproxy.getNotificationsByMasterId(req.session.user._id, function(err, docs) {
+        if (err) return next(err);
+        var count = docs.length;
+        async.times(count, function(n, cb) {
+            docs[n].friendly_create_time = formatfun.formatDate(docs[n].createtime, true);
+            if (docs[n].type === 'follow') {
+                authproxy.getUserById(docs[n].authorid, function(err, author) {
+                    if (err) return next(err);
+                    docs[n].author = author;
+                    return cb(null, docs[n]);
+                });
+            } else if (docs[n].type === 'comment') {
+                commentproxy.getCommentsByQuery({_id: docs[n].commentid}, {}, function(err, comment) {
+                    if (err) return next(err);
+                    docs[n].comment = comment[0];
+                    return cb(null, docs[n]);
+                });
+            }
+        }, function(err, result) {
+            if (err) return next(err);
+            //console.log(result);
+            return res.render('user/notifications', {notifications: result});
+        });
+    });
+};
+
+exports.checkNotification = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var notificationid = req.body.notificationid;
+    notificationproxy.getNotificationById(notificationid, function(err, notification) {
+        if (err) return next(err);
+        notification.hasread = true;
+        notification.save(function(err) {
+            if (err) return next(err);
+            return res.json({status: 'success'});
+        });
+    });
+};
+
+exports.checkAllNotification = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var query = {masterid: req.session.user._id, hasread: false};
+    notificationproxy.getNotificationsByQuery(query, {}, function(err, docs) {
+        if (err) return next(err);
+        if (docs && docs.length > 0) {
+            for(var i = 0, len = docs.length; i < len; i++) {
+                docs[i].hasread = true;
+            }
+            return res.json({status: 'success'});
+        } else {
+            return res.json({status: 'success'});
+        }
+    });
 };
