@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/dropzone.css">
+    <link rel='stylesheet' href='/stylesheets/common.css'/>
+    <link rel="stylesheet" href="/stylesheets/follow.css">
+
+    <title>Lol me / <%=: locals.user.name | capitalize %> - following</title>
+</head>
+<body class="index-body">
+<div class="wrap">
+    <% include ../common/header.ejs %>
+    <% include ../common/post-modal.ejs %>
+    <div class="main">
+        <div class="container">
+            <div class="left-wrap">
+                <% include ../common/userboard.ejs %>
+                <% include ../common/hotshare.ejs %>
+            </div>
+            <div class="follow-wrap">
+                <div class="follow-inner">
+                    <% include ../common/follow-card.ejs %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/javascripts/lib/bootstrap.min.js"></script>
+<script src="/javascripts/lib/dropzone.js"></script>
+<script src="/javascripts/main.js"></script>
+<script src="/javascripts/utility.js"></script>
+<!-- Resource jQuery -->
+</body>
+</html>

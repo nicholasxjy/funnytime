@@ -1,14 +1,18 @@
-<% if (locals.followings && locals.followings.length > 0) { %>
-<% locals.followings.forEach(function(following) { %>
+<% if (locals.follows && locals.follows.length > 0) { %>
+<% locals.follows.forEach(function(following) { %>
 <div class="follow-card-wrap">
     <div class="follow-card-inner">
         <div class="follow-card-header"></div>
         <div class="follow-card-content">
-            <a href="/u/<%= following.name %>">
+            <a class="follow-avatar-link" href="/u/<%= following.name %>">
                 <img src="<%= following.gravatar %>" class="img-responsive img-rounded nav-tooltip" alt="gravatar" width="70" height="70" title="<%= following.name %>">
             </a>
             <div class="follow-action">
+                <% if (following.isAlsoFollowed) { %>
                 <button type="button" class="btn btn-danger follow-btn" data-action="unfollow" data-userid="<%= following._id %>">已关注</button>
+                <% } else { %>
+                <button type="button" class="btn btn-info follow-btn" data-action="follow" data-userid="<%= following._id %>">加入关注</button>
+                <% } %>
             </div>
             <div class="following-info">
                 <div class="following-fullname">

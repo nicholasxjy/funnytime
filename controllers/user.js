@@ -20,7 +20,7 @@ exports.index = function(req, res, next) {
         followproxy.getFollowByQuery(query, function(err, docs) {
             if (err) return next(err);
             user.hasFollowed = false;
-            if (docs) {
+            if (docs && docs.length !== 0) {
                 user.hasFollowed = true;
             }
             jokeproxy.getJokesByUser(user._id, option, function(err, jokes) {
@@ -50,9 +50,10 @@ exports.following = function(req, res, next) {
         }, function(docs, cb) {
             var count = docs.length;
             async.times(count, function(n, cb) {
-                authproxy.getUserById(docs[n].userid, function(err, user) {
+                authproxy.getUserById(docs[n].userid, function(err, follow) {
                     if (err) return next(err);
-                    cb(null, user);
+                    follow.isAlsoFollowed = true;
+                    cb(null, follow);
                 });
             }, function(err, users) {
                 if (err) return next(err);
@@ -60,13 +61,48 @@ exports.following = function(req, res, next) {
             });
         }], function(err, result) {
             if (err) return next(err);
-            return res.render('user/following', {followings: result, user: user, isuserpage: true});
+            return res.render('user/following', {follows: result, user: user, isuserpage: true});
         });
     });
 };
 
 exports.followers = function(req, res, next) {
-
+    var username = req.params.name;
+    authproxy.getUserByName(username, function(err, user) {
+        if (err) return next(err);
+        if (!user) {
+            return res.send(404);
+        }
+        user.format_create_time = formatfun.formatDate(user.createtime, true);
+        async.waterfall([function(cb) {
+            var query = {userid: user._id};
+            followproxy.getFollowByQuery(query, function(err, docs) {
+                if (err) return next(err);
+                cb(null, docs);
+            });
+        }, function(docs, cb) {
+            var count = docs.length;
+            async.times(count, function(n, cb) {
+                authproxy.getUserById(docs[n].userid, function(err, follow) {
+                    if (err) return next(err);
+                    var query2 = {userid: follow._id, followid: user._id};
+                    followproxy.getFollowByQuery(query2, function(err, doc) {
+                        if (err) return next(err);
+                        if (doc && doc.length !== 0) {
+                            follow.isAlsoFollowed = true;
+                        }
+                        cb(null, follow);
+                    });
+                });
+            }, function(err, users) {
+                if (err) return next(err);
+                cb(null, users);
+            });
+        }], function(err, result) {
+            if (err) return next(err);
+            return res.render('user/followers', {follows: result, user: user, isuserpage: true});
+        });
+    });
 };
 
 exports.postFollow = function(req, res, next) {
@@ -81,12 +117,20 @@ exports.postFollow = function(req, res, next) {
     if (action === 'follow') {
         followproxy.followNewAndSave(userid, req.session.user._id, function(err) {
             if (err) return next(err);
-            return res.json({status: 'success'});
+            var query = {userid: userid};
+            followproxy.getFollowByQuery(query, function(err, docs) {
+                if (err) return next(err);
+                return res.json({status: 'success', count: docs.length});
+            });
         });
     } else {
         followproxy.removeFollow(userid, req.session.user._id, function(err) {
             if (err) return next(err);
-            return res.json({status: 'success'});
+            var query = {userid: userid};
+            followproxy.getFollowByQuery(query, function(err, docs) {
+                if (err) return next(err);
+                return res.json({status: 'success', count: docs.length});
+            });
         });
     }
 };
