@@ -8,11 +8,12 @@
     padding: 15px 20px;
 }
 .follow-card-wrap {
-    width: 270px;
+    width: 260px;
     float: left;
     background-color: #fff;
     border-radius: 6px;
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 .follow-card-header {
     height: 95px;

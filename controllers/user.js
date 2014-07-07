@@ -42,6 +42,15 @@ exports.following = function(req, res, next) {
         }
         user.format_create_time = formatfun.formatDate(user.createtime, true);
         async.waterfall([function(cb) {
+            var query0 = {userid: user._id, followid: req.session.user._id};
+            followproxy.getFollowByQuery(query0, function(err, docs) {
+                if (err) return next(err);
+                if (docs && docs.length !== 0) {
+                    user.hasFollowed = true;
+                }
+                cb(null, user);
+            });
+        }, function(user1, cb) {
             var query = {followid: user._id};
             followproxy.getFollowByQuery(query, function(err, docs) {
                 if (err) return next(err);
@@ -75,6 +84,15 @@ exports.followers = function(req, res, next) {
         }
         user.format_create_time = formatfun.formatDate(user.createtime, true);
         async.waterfall([function(cb) {
+            var query0 = {userid: user._id, followid: req.session.user._id};
+            followproxy.getFollowByQuery(query0, function(err, docs) {
+                if (err) return next(err);
+                if (docs && docs.length !== 0) {
+                    user.hasFollowed = true;
+                }
+                cb(null, user);
+            });
+        }, function(user1, cb) {
             var query = {userid: user._id};
             followproxy.getFollowByQuery(query, function(err, docs) {
                 if (err) return next(err);
@@ -83,7 +101,7 @@ exports.followers = function(req, res, next) {
         }, function(docs, cb) {
             var count = docs.length;
             async.times(count, function(n, cb) {
-                authproxy.getUserById(docs[n].userid, function(err, follow) {
+                authproxy.getUserById(docs[n].followid, function(err, follow) {
                     if (err) return next(err);
                     var query2 = {userid: follow._id, followid: user._id};
                     followproxy.getFollowByQuery(query2, function(err, doc) {
