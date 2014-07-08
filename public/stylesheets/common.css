@@ -15,6 +15,9 @@ body {
 img {
     border: 0;
 }
+.search-wrap i {
+    cursor: pointer;
+}
 .index-body {
     height: 100%;
     background-image: url(../images/index-bg.gif);

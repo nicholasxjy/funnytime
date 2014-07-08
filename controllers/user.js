@@ -1,4 +1,5 @@
 var async = require('async');
+var validator = require('validator');
 var authproxy = require('../proxy/auth');
 var jokeproxy = require('../proxy/joke');
 var config = require('../config');
@@ -34,6 +35,26 @@ exports.index = function(req, res, next) {
         });
     });
 };
+
+exports.search = function(req, res, next) {
+    var query = req.body.query;
+    query = validator.trim(query);
+    query = validator.escape(query);
+    if (query) {
+        authproxy.getUsersByQuery({name: new RegExp('^'+query, "i")}, {}, function(err, users) {
+            if (err) return next(err);
+            console.log(users);
+            if (users && users.length > 0) {
+                return res.redirect('/u/'+users[0].name);
+            } else {
+                return res.render('notify/notify', {success: '没有查找到你要找的人'});
+            }
+        });
+    } else {
+        return res.redirect('/');
+    }
+}
+
 
 exports.following = function(req, res, next) {
     var username = req.params.name;

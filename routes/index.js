@@ -13,6 +13,7 @@ module.exports = function(app) {
     //app.get('/reset-pass', auth.showResetPass);
     //app.post('/reset-pass', auth.postResetPass);
 
+    app.post('/search', user.search);
 
     app.post('/signin', auth.postSignin);
     app.post('/signup', auth.postSignup);
@@ -44,4 +45,5 @@ module.exports = function(app) {
     app.get('/notifications', user.showNotifications);
     app.post('/notification/check', user.checkNotification);
     app.post('/notificationcheck/all', user.checkAllNotification);
+
 }

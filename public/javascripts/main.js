@@ -180,4 +180,13 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('#post-search-btn').on('click', function() {
+    var query = $('.search-input').val();
+    if (query.trim() === '') {
+      $('.search-input').attr('placeholder', "please input the friend's name");
+    } else {
+      $('#search-form').submit();
+    }
+  });
 });

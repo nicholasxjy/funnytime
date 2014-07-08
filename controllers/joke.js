@@ -31,15 +31,19 @@ exports.index = function(req, res, next) {
                 return cb(null, joke[0]);
             });
         }, function(cb) {
-            var query = {userid: joke[0].authorid, followid: req.session.user._id};
-            followproxy.getFollowByQuery(query, function(err, docs) {
-                if (err) return next(err);
-                joke[0].author.hasFollowed = false;
-                if (docs) {
-                    joke[0].author.hasFollowed = true;
-                }
+            if (joke[0].authorid.toString() === req.session.user._id.toString()) {
                 return cb(null, joke[0]);
-            });
+            } else {
+                var query = {userid: joke[0].authorid, followid: req.session.user._id};
+                followproxy.getFollowByQuery(query, function(err, docs) {
+                    if (err) return next(err);
+                    joke[0].author.hasFollowed = false;
+                    if (docs) {
+                        joke[0].author.hasFollowed = true;
+                    }
+                    return cb(null, joke[0]);
+                });
+            }
         }], function(err, result) {
             if (err) return next(err);
             if (notificationid) {
