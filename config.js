@@ -18,6 +18,7 @@ var config = {
     cookieAge: 1000*60*60*24*30,
     page_with_item: 9,
     user_page_limit: 9,
+    hot_limit: 7,
     default_gravatar_url: '/images/default.png',
     none_profile: '你还没有向大家介绍你自己呢！',
 

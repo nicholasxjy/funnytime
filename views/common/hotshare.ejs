@@ -4,15 +4,13 @@
     </div>
     <div class="hot-list-wrap">
         <ul class="list-unstyled hot-list">
-            <li>
-                <a href="#">MakeARapperSoft - nicholas</a>
-            </li>
-            <li><a href="#">GoogleIO2014 - frank</a></li>
-            <li><a href="#">GoogleIO2014 - james</a></li>
-            <li><a href="#">GoogleIO2014 - emily</a></li>
-            <li><a href="#">GoogleIO2014 - sophia</a></li>
-            <li><a href="#">GoogleIO2014 - obama</a></li>
-            <li><a href="#">GoogleIO2014 - jack</a></li>
+            <% if (locals.hots && locals.hots.length > 0) { %>
+                <% locals.hots.forEach(function(hot) { %>
+                <li>
+                    <a href="/joke/<%= hot._id %>">#<%= hot._id %># - <%= hot.like_count %>人赞过 </a>
+                </li>
+                <% }); %>
+            <% } %>
         </ul>
     </div>
 </div>

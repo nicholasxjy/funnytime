@@ -15,6 +15,191 @@ body {
 img {
     border: 0;
 }
+.btt {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    -webkit-transform:translateY(4em);
+    -ms-transform:translateY(4em);
+    transform:translateY(4em);
+}
+#btt {
+    float: right;
+    margin-right: 20px;
+    width: 48px;
+    height: 48px;
+    background: white;
+    padding: 7px 0px 0px 0px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 10px 70px 8px rgba(0, 0, 0, 0.20);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-transition: background 300ms;
+    -moz-transition: background 300ms;
+    -ms-transition: background 300ms;
+    -o-transition: background 300ms;
+    transition: background 300ms;
+}
+#btt:hover {
+    background: #9d9d9d;
+    background: rgba(255, 255, 255, 0.6);
+}
+#btt #rocket path {
+    padding-right:15px;
+}
+#btt #rocket path {
+    fill: #bbb;
+    -webkit-transition: all 300ms;
+    -moz-transition: all 300ms;
+    -ms-transition: all 300ms;
+    -o-transition: all 300ms;
+    transition: all 300ms;
+}
+#btt:hover #rocket path {
+    fill: rgba(255, 102, 0, 0.76);
+}
+@media screen and (min-width:50em) {
+    .btt {
+        display:block
+    }
+}
+@media screen and (min-width:65em) {
+    .btt {
+        left:.5em
+    }
+}
+.animated {
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+@-webkit-keyframes slideDown {
+    0% {
+        -webkit-transform: translateY(-4em)
+    }
+
+    100% {
+        -webkit-transform: translateY(0)
+    }
+}
+
+@-moz-keyframes slideDown {
+    0% {
+        -moz-transform: translateY(-4em)
+    }
+
+    100% {
+        -moz-transform: translateY(0)
+    }
+}
+
+@-o-keyframes slideDown {
+    0% {
+        -o-transform: translateY(-4em)
+    }
+
+    100% {
+        -o-transform: translateY(0)
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-4em)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+.animated.slideDown {
+    -webkit-animation-name: slideDown;
+    -moz-animation-name: slideDown;
+    -o-animation-name: slideDown;
+    animation-name: slideDown
+}
+
+@-webkit-keyframes slideUp {
+    0% {
+        -webkit-transform: translateY(0)
+    }
+
+    100% {
+        -webkit-transform: translateY(-4em)
+    }
+}
+
+@-moz-keyframes slideUp {
+    0% {
+        -moz-transform: translateY(0)
+    }
+
+    100% {
+        -moz-transform: translateY(-4em)
+    }
+}
+
+@-o-keyframes slideUp {
+    0% {
+        -o-transform: translateY(0)
+    }
+
+    100% {
+        -o-transform: translateY(-4em)
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0)
+    }
+
+    100% {
+        transform: translateY(-4em)
+    }
+}
+
+.animated.slideUp {
+    -webkit-animation-name: slideUp;
+    -moz-animation-name: slideUp;
+    -o-animation-name: slideUp;
+    animation-name: slideUp
+}
+.slide {
+    -webkit-transition: all .5s linear;
+    -moz-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear
+}
+
+.slide--reset {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0)
+}
+
+.slide--up {
+    -webkit-transform: translateY(-4em);
+    -ms-transform: translateY(-4em);
+    transform: translateY(-4em)
+}
+
+.slide--down {
+    -webkit-transform: translateY(4em);
+    -ms-transform: translateY(4em);
+    transform: translateY(4em)
+}
+
 .search-wrap i {
     cursor: pointer;
 }

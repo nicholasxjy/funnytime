@@ -35,6 +35,7 @@ app.use(middleware.authUser);
 app.use(middleware.followCount);
 app.use(middleware.jokesCount);
 app.use(middleware.userNotificationsCount);
+app.use(middleware.getHotShares);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view cache', true);

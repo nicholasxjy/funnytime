@@ -1,3 +1,4 @@
+var async = require('async');
 var authproxy = require('../proxy/auth');
 var formatfun = require('../utility/formatfun');
 var config = require('../config');
@@ -145,5 +146,29 @@ exports.userNotificationsCount = function(req, res, next) {
         if (err) return next(err);
         res.locals.user_notifications_count = docs.length;
         return next();
+    });
+};
+
+exports.getHotShares = function(req, res, next) {
+    var limit = config.hot_limit;
+    var option = {sort: {like_count: 'desc'}, limit: limit};
+    jokeproxy.getHotJokes({}, option, function(err, hots) {
+        if (err) return next(err);
+        if (hots.length > 0) {
+            var count = hots.length;
+            async.times(count, function(n, cb) {
+                authproxy.getUserById(hots[n].authorid, function(err, user) {
+                   if (err) return next(err);
+                   hots[n].author = user;
+                   cb(null, hots[n]);
+                });
+            }, function(err, results) {
+                if (err) return next(err);
+                res.locals.hots = results;
+                return next();
+            });
+        } else {
+            return next();
+        }
     });
 };

@@ -189,4 +189,14 @@ $(document).ready(function() {
       $('#search-form').submit();
     }
   });
+
+  //back to top
+  $('#btt').on('click', function() {
+    var pos = $(this).offset();
+    if(pos) {
+        $('html, body').animate({
+            scrollTop:0
+        }, 1000);
+    }
+  });
 });
