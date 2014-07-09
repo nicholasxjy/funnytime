@@ -155,27 +155,10 @@
                                         <li>
                                             <a class="comment-reply">
                                                 <i class="fa fa-reply"></i>
-                                                <b>回复</b>
+                                                <b>回复@<%= comment.author.name %></b>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-tooltip comment-like-btn" title="<%= comment.like_count %>">
-                                                <i class="fa fa-heart"></i>
-                                                <b>点赞</b>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-tooltip comment-dislike-count" title="<%= comment.dislike_count %>">
-                                                <i class="fa fa-hand-o-down"></i>
-                                                <b>差评</b>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-star"></i>
-                                                <b>收藏</b>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>

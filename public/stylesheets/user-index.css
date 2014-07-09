@@ -441,3 +441,26 @@ Main components
     transform: translateX(0);
   }
 }
+.timeline-content-author-wrap {
+  position: relative;
+  margin-bottom: 10px;
+}
+.timeline-content-author-left {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.timeline-content-author-right {
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+  left: 60px;
+  margin-top: -20px;
+  top: -20px;
+}
+.timeline-content-author-right a {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #292f33;
+}
