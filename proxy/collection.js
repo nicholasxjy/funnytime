@@ -10,3 +10,7 @@ exports.createNewAndSave = function(userid, jokeid, callback) {
 exports.getCollectionByQuery = function(query, option, callback) {
     Collection.find(query, {}, option, callback);
 };
+
+exports.removeCollectionByQuery = function(query, callback) {
+    Collection.remove(query, callback);
+};

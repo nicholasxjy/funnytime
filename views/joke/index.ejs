@@ -80,10 +80,17 @@
                                 <% } %>
                             </li>
                             <li>
-                                <a href="#">
+                                <% if (joke.isCollected) { %>
+                                <a class="collection-btn nav-tooltip" data-jokeid="<%= joke._id %>" title="取消" data-action="uncollect" style="color: #ffac33;">
                                     <i class="fa fa-star"></i>
                                     <b>收藏</b>
                                 </a>
+                                <% } else { %>
+                                <a class="collection-btn nav-tooltip" data-jokeid="<%= joke._id %>" title="收藏" data-action="collect">
+                                    <i class="fa fa-star"></i>
+                                    <b>收藏</b>
+                                </a>
+                                <% } %>
                             </li>
                         </ul>
                     </div>

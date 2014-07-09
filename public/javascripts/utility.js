@@ -192,7 +192,7 @@ $(document).ready(function() {
         url: '/collect',
         type: 'POST',
         dataType: 'json',
-        data: {jokeid: jokeid},
+        data: {jokeid: jokeid, action: action},
         success: function(data) {
           if (data.status === 'success') {
             if (action==='collect') {

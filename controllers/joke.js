@@ -11,6 +11,7 @@ var authproxy = require('../proxy/auth');
 var likeproxy = require('../proxy/likerelation');
 var followproxy = require('../proxy/follow');
 var notificationproxy = require('../proxy/notification');
+var collectproxy = require('../proxy/collection');
 
 exports.index = function(req, res, next) {
     var jokeid = req.params.jokeid;
@@ -44,6 +45,15 @@ exports.index = function(req, res, next) {
                     return cb(null, joke[0]);
                 });
             }
+        }, function(cb) {
+            joke[0].isCollected = false;
+            var query = {userid: req.session.user._id, jokeid: joke[0]._id};
+            collectproxy.getCollectionByQuery(query, {}, function(err, docs) {
+                if (docs && docs.length > 0) {
+                    joke[0].isCollected = true;
+                }
+                cb(null, joke[0]);
+            });
         }], function(err, result) {
             if (err) return next(err);
             if (notificationid) {
@@ -53,10 +63,10 @@ exports.index = function(req, res, next) {
                         notification.hasread = true;
                         notification.save(function(err) {
                             if (err) return next(err);
-                            return res.render('joke/index', {joke: result[1]});
+                            return res.render('joke/index', {joke: result[2]});
                         });
                     } else {
-                        return res.render('joke/index', {joke: result[1]});
+                        return res.render('joke/index', {joke: result[2]});
                     }
                 });
             } else {

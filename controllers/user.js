@@ -261,7 +261,28 @@ exports.checkAllNotification = function(req, res, next) {
 };
 
 exports.showCollections = function(req, res, next) {
-
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var query = {userid: req.session.user._id};
+    collectproxy.getCollectionByQuery(query, {}, function(err, docs) {
+        if (err) return next(err);
+        var count = docs.length;
+        async.times(count, function(n, cb) {
+            jokeproxy.getJokeById(docs[n].jokeid, function(err, joke) {
+                if (err) return next(err);
+                authproxy.getUserById(joke.authorid, function(err, user) {
+                    if (err) return next(err);
+                    joke.author = user;
+                    joke.friendly_create_time = formatfun.formatDate(joke.createtime, true);
+                    cb(null, joke)
+                });
+            });
+        }, function(err, results) {
+            if (err) return next(err);
+            return res.render('user/collections', {collections: results});
+        });
+    });
 };
 
 exports.postCollect = function(req, res, next) {
@@ -269,11 +290,20 @@ exports.postCollect = function(req, res, next) {
         return res.redirect('/');
     }
     var jokeid = req.body.jokeid;
+    var action = req.body.action;
     if (!jokeid) {
         return res.json({status: 'fail'});
     }
-    collectproxy.createNewAndSave(req.session.user._id, jokeid, function(err) {
-        if (err) return next(err);
-        return res.json({status: 'success'});
-    });
+    if (action === 'collect') {
+        collectproxy.createNewAndSave(req.session.user._id, jokeid, function(err) {
+            if (err) return next(err);
+            return res.json({status: 'success'});
+        });
+    } else {
+        var query = {userid: req.session.user._id, jokeid: jokeid};
+        collectproxy.removeCollectionByQuery(query, function(err) {
+            if (err) return next(err);
+            return res.json({status: 'success'});
+        });
+    }
 };
