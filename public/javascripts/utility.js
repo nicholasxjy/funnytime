@@ -183,4 +183,34 @@ $(document).ready(function() {
         }
       });
     });
+
+    $('.delegate-symbol').on('click', '.collection-btn', function() {
+      var self = $(this);
+      var jokeid = self.data('jokeid');
+      var action = self.data('action');
+      $.ajax({
+        url: '/collect',
+        type: 'POST',
+        dataType: 'json',
+        data: {jokeid: jokeid},
+        success: function(data) {
+          if (data.status === 'success') {
+            if (action==='collect') {
+              self.css('color', '#ffac33');
+              self.attr('data-original-title', '取消');
+              self.data('action', 'uncollect');
+            } else {
+              self.css('color', '#8899a6');
+              self.attr('data-original-title', '收藏');
+              self.data('action', 'collect');
+            }
+          } else {
+            alert('Oops, something goes wrong here!');
+          }
+        },
+        error: function() {
+          alert('Oops, something goes wrong here!');
+        }
+      });
+    });
 });

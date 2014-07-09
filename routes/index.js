@@ -46,4 +46,7 @@ module.exports = function(app) {
     app.post('/notification/check', user.checkNotification);
     app.post('/notificationcheck/all', user.checkAllNotification);
 
+    app.get('/collections', user.showCollections);
+    app.post('/collect', user.postCollect);
+
 }

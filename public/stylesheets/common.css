@@ -495,11 +495,12 @@ img {
     font-size: 14px;
     color: #8899a6;
 }
-.fun-list {
+.fun-list, .fun-reply-list {
     float:right;
+}
+.fun-list {
     margin-right: 30px;
 }
-
 /* comment list */
 .comment-list {
     display: none;
@@ -533,7 +534,7 @@ img {
 .comment-item-inner-right {
    position: relative;
    left: 50px;
-   top: -22px;
+   margin-top: -22px;
    max-width: 470px;
    overflow: hidden;
 }

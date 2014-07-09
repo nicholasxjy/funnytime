@@ -7,6 +7,7 @@ var formatfun = require('../utility/formatfun');
 var followproxy = require('../proxy/follow');
 var notificationproxy = require('../proxy/notification');
 var commentproxy = require('../proxy/comment');
+var collectproxy = require('../proxy/collection');
 
 exports.index = function(req, res, next) {
     var username = req.params.name;
@@ -256,5 +257,23 @@ exports.checkAllNotification = function(req, res, next) {
         } else {
             return res.json({status: 'success'});
         }
+    });
+};
+
+exports.showCollections = function(req, res, next) {
+
+};
+
+exports.postCollect = function(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    var jokeid = req.body.jokeid;
+    if (!jokeid) {
+        return res.json({status: 'fail'});
+    }
+    collectproxy.createNewAndSave(req.session.user._id, jokeid, function(err) {
+        if (err) return next(err);
+        return res.json({status: 'success'});
     });
 };
