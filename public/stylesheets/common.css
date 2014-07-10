@@ -207,11 +207,10 @@ img {
 }
 .index-body {
     height: 100%;
-    background: url(/images/low_bg.png);
-    background-color: #f5f5f5;
+    background-color: #65c6c3;
     background-position: left 40px;
     background-attachment: fixed;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
 }
 .hot-share {
     margin-top: 30px;
@@ -777,4 +776,9 @@ a.isdislike {
 .at-name b {
     font-weight: 500;
     vertical-align: top;
+}
+
+.tooltip {
+  font-size: 12px;
+  line-height: 1.286;
 }

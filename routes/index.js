@@ -10,8 +10,8 @@ module.exports = function(app) {
     app.get('/forget-pass', auth.showForgetPass);
     app.post('/forget-pass', auth.postForgetPass);
 
-    //app.get('/reset-pass', auth.showResetPass);
-    //app.post('/reset-pass', auth.postResetPass);
+    app.get('/reset-pass', auth.showResetPass);
+    app.post('/reset-pass', auth.postResetPass);
 
     app.post('/search', user.search);
 

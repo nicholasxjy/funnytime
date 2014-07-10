@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LOL Me / Forget Password</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/common.css">
+</head>
+<body class="index-body">
+
+    <div class="wrapper">
+        <div class="page-img">
+            <img src="/images/bg.jpg" alt="bg"/>
+        </div>
+        <div class="page-container">
+            <div class="left-words">
+                <h1>欢迎来到 LOL ME。</h1>
+
+                <p>联系你的好友 —和其他吸引你的的用户。获取你感兴趣的事情的实时更新。并透过全方位直播见证事件在你的眼前展开。</p>
+
+                <div class="author-info">
+                    <p>本网站由nicholas开发完成，主要目的是希望在大家忙碌辛苦的生活中，增添一点乐趣，每天都能开怀一笑！</p>
+
+                    <p id="contact-me">联系我?</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-envelope-o"></i> yitaqi2011@gmail.com</a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i> twitter</a></li>
+                        <li><a href="#"><i class="fa fa-weixin"></i> 微信</a></li>
+                        <li><a href="#"><i class="fa fa-weibo"></i> 微博</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sign-wrap" id="signin-wrap">
+                <form action="/reset-pass" method="post">
+                    <div class="form-group signin-title">
+                        <h1>找回密码</h1>
+                    </div>
+                    <% if (locals.error) { %>
+                        <div class="alert alert-warning">
+                            <strong><%= locals.error %></strong>
+                        </div>
+                    <% } %>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="pass" placeholder="输入新密码" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="repass" placeholder="确认新密码" required>
+                    </div>
+                    <input type="hidden" name="name" value="<%= locals.name %>">
+                    <input type="hidden" name="key" value="<%= locals.key %>">
+                    <button type="submit" class="btn btn-sm btn-info">确定</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/javascripts/lib/bootstrap.min.js"></script>
+</body>
+</html>
