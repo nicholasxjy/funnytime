@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
-    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/dropzone.css">
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css"/>
+    <link href="/stylesheets/lib/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/lib/dropzone.css">
     <link rel='stylesheet' href='/stylesheets/common.css'/>
-
     <link rel="stylesheet" href="/stylesheets/user-index.css">
-    <!-- Resource style -->
-    <script src="/javascripts/lib/modernizr.js"></script>
-    <!-- Modernizr -->
-
     <title>Lol me / <%=: locals.user.name | capitalize %></title>
 </head>
 <body class="index-body">
@@ -83,6 +78,9 @@
 <script src="/javascripts/lib/bootstrap.min.js"></script>
 <script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
 <script src="/javascripts/lib/dropzone.js"></script>
+<!-- Resource style -->
+<script src="/javascripts/lib/modernizr.js"></script>
+<!-- Modernizr -->
 <script>
     $(document).ready(function () {
         //infinitescroll

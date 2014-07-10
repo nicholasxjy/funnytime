@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>LOL Me / Forget Password</title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css"/>
+    <link href="/stylesheets/lib/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/index.css">
     <link rel="stylesheet" href="/stylesheets/common.css">
 </head>
@@ -24,10 +25,10 @@
 
                     <p id="contact-me">联系我?</p>
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="fa fa-envelope-o"></i> yitaqi2011@gmail.com</a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i> twitter</a></li>
-                        <li><a href="#"><i class="fa fa-weixin"></i> 微信</a></li>
-                        <li><a href="#"><i class="fa fa-weibo"></i> 微博</a></li>
+                        <li><a href="mailto:yitaqi2011@gmail.com?Subject=From Lolme user"><i class="fa fa-envelope-o"></i> yitaqi2011@gmail.com</a></li>
+                        <li><a href="https://twitter.com/Normal_Geek_Xue"><i class="fa fa-twitter"></i> twitter@Normal_Geek_Xue</a></li>
+                        <li><a data-toggle="modal" data-target="#myModal" style="cursor: pointer;"><i class="fa fa-weixin"></i> 微信</a></li>
+                        <li><a href="http://weibo.com/u/1664314377"><i class="fa fa-weibo"></i> 微博@Nicholas__Xue</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +50,25 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="width: 330px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">We Chat</h4>
+          </div>
+          <div class="modal-body">
+              <img src="/images/wechat-qrcode.png"
+              class="img-responsive img-rounded"
+              alt="we chat qrcode"
+              width="300" height="300">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
