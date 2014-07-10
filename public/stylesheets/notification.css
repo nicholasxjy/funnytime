@@ -75,6 +75,10 @@
     border-bottom: 1px solid #e1e8ed;
     background-color: #f5f8fa;
 }
+.notifications-wrap li:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
 .check-all-notification-wrap {
     padding: 10px 20px;
 }

@@ -101,19 +101,3 @@
     margin-top: -30px;
     margin-right: 15px;
 }
-
-/* hot share */
-
-.hot-list-wrap {
-    margin-top: 10px;
-}
-.hot-list li {
-    margin-bottom: 5px;
-}
-.hot-list a {
-    font-size: 12px;
-    line-height: 20px;
-    color: #0099B9;
-    font-weight: 300;
-    font-style: italic;
-}

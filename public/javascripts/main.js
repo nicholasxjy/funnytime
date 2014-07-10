@@ -165,11 +165,11 @@ $(document).ready(function() {
       success: function(data) {
         if (data.status === 'success') {
           if (action === 'follow') {
-            $('.followed-users-count').text(data.count);
+            //$('.followed-users-count').text(data.count);
             self.text('已关注').removeClass('btn-info').addClass('btn-danger');
             self.data('action', 'unfollow');
           } else {
-            $('.followed-users-count').text(data.count);
+            //$('.followed-users-count').text(data.count);
             self.text('加入关注').removeClass('btn-danger').addClass('btn-info');
             self.data('action', 'follow');
           }

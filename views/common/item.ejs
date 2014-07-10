@@ -85,12 +85,12 @@
                 <li>
                     <% if (joke.isDislike) { %>
                         <a class="nav-tooltip joke-dislike-btn isdislike" title="取消" data-action="cancel-dislike">
-                            <i class="fa fa-hand-o-down"></i>
+                            <i class="fa fa-thumbs-down"></i>
                             <b><%= joke.dislike_count %></b>
                         </a>
                     <% } else { %>
                         <a class="nav-tooltip joke-dislike-btn" title="差评" data-action="dislike">
-                            <i class="fa fa-hand-o-down"></i>
+                            <i class="fa fa-thumbs-down"></i>
                             <b><%= joke.dislike_count %></b>
                         </a>
                     <% } %>

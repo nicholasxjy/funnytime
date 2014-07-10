@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto|Open+Sans|Raleway);
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +11,8 @@ html, body {
     height: 100%;
 }
 body {
-  font: 14px Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
 }
 img {
     border: 0;
@@ -205,11 +207,11 @@ img {
 }
 .index-body {
     height: 100%;
-    background-image: url(../images/index-bg.gif);
-    background-color: #0099B9;
+    background: url(/images/low_bg.png);
+    background-color: #f5f5f5;
     background-position: left 40px;
     background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
 }
 .hot-share {
     margin-top: 30px;
@@ -258,6 +260,22 @@ img {
   -webkit-border-radius: 10px;
      -moz-border-radius: 10px;
           border-radius: 10px;
+}
+
+/* hot share */
+
+.hot-list-wrap {
+    margin-top: 10px;
+}
+.hot-list li {
+    margin-bottom: 5px;
+}
+.hot-list a {
+    font-size: 12px;
+    line-height: 20px;
+    color: #0099B9;
+    font-weight: 300;
+    font-style: italic;
 }
 /* post modal */
 
@@ -404,37 +422,38 @@ img {
 }
 /* header nav */
 .nav-wrap {
-    height: 60px;
+    height: 46px;
     width: 100%;
-    background-color: #fff;
+    background-color: #34495e;
     position: fixed;
     z-index: 1000;
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
 }
 .nav-inner {
-    height: 60px;
+    height: 46px;
     width: 100%;
-    background-color: #fff;
+    background-color: #34495e;
     border-bottom: 1px solid rgba(0,0,0,0.15);
 }
 .search-wrap {
-    height: 60px;
+    height: 46px;
     position: absolute;
     top: 0;
     right: 150px;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 8px;
 }
 .site-brand {
     width: 200px;
-    height: 60px;
+    height: 46px;
     position: absolute;
     top: 0;
     left: 50%;
     margin-left: -100px;
-    font-size: 26px;
-    line-height: 60px;
+    font-size: 24px;
+    line-height: 46px;
     text-align: center;
-    color: #66757f;
+    color: #fff;
     font-style: italic;
     font-weight: 700;
     text-shadow: 5px 5px 5px #8c9ca9;
@@ -450,7 +469,10 @@ img {
     border: none;
     background: #66757f;
     color: #ccd6dd;
-    padding: 5px 15px;
+    padding: 5px 30px 5px 15px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 14px;
 }
 .search-wrap i {
     position: relative;
@@ -459,45 +481,49 @@ img {
     color: #fff;
 }
 .nav-list-wrap {
-    height: 60px;
+    height: 46px;
     width: 400px;
 }
 .nav-list {
     margin: 0;
-    height: 60px;
-    width: 300px;
+    height: 46px;
+    width: 400px;
 }
 .nav-list li {
-    height: 60px;
-    width: 60px;
+    height: 46px;
+    width: 88px;
     float: left;
 }
 .nav-list li a {
     display: block;
-    height: 40px;
-    width: 40px;
-    margin-top: 10px;
-    border: 1px solid #66757f;
-    border-radius: 50%;
-    font-size: 16px;
-    line-height: 40px;
-    text-align: center;
-    color: #66757f;
+    height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    padding-left: 13px;
+    text-decoration: none;
+    transition: all .15s ease-in-out
+}
+.nav-list li a i {
+    padding-right: 5px;
+    font-size: 20px;
 }
 .notifition-count {
     position: relative;
     top: -45px;
-    left: 30px;
+    left: 22px;
 }
 .nav-list li a:hover {
-    color: #fff;
-    background-color: #66757f;
+    color: #0084b4;
+    border-bottom: 4px solid #0084b4;
+
 }
 .setting-wrap {
    position: absolute;
    top: 0px;
    right: 70px;
-   height: 60px;
+   height: 46px;
    width: 60px;
 }
 .nav-setting {
@@ -505,7 +531,7 @@ img {
     font-size: 26px;
     color: #66757f;
     line-height: 30px;
-    margin-top: 15px;
+    margin-top: 8px;
     width: 26px;
 }
 #setting-dropdown {
@@ -523,7 +549,7 @@ img {
 }
 .post-wrap {
     position: absolute;
-    top: 13px;
+    top: 5px;
     right: 30px;
 }
 #btn-post {
@@ -551,7 +577,7 @@ img {
 }
 .user-avatar {
     height: 110px;
-    background: #66757f;
+    background: #0084b4;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -733,7 +759,7 @@ a.isdislike {
 .joke-item-content {
     margin-top: 8px;
     margin-bottom: 15px;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 34px;
     font-weight: 300;
     color: #292f33;

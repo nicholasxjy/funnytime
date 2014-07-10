@@ -4,29 +4,26 @@
             <div class="nav-list-wrap">
                 <ul class="nav-list list-inline">
                     <li class="nav-active">
-                        <a class="nav-tooltip" href="/" data-toggle="tooltip" data-placement="bottom" title="首页">
-                            <i class="fa fa-home"></i>
+                        <a href="/">
+                            <i class="fa fa-home"></i>首页
                         </a>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="/notifications" data-toggle="tooltip" data-placement="bottom"
-                           title="通知">
-                            <i class="fa fa-bell"></i>
+                        <a href="/notifications">
+                            <i class="fa fa-bell"></i>通知
                         </a>
                         <% if(locals.user_notifications_count && locals.user_notifications_count > 0) { %>
                             <span class="badge notifition-count" style="background: #d2322d;color: #fff;"><%= locals.user_notifications_count %></span>
                         <% } %>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="/u/<%= locals.c_user.name %>" data-toggle="tooltip"
-                           data-placement="bottom" title="我">
-                            <i class="fa fa-user"></i>
+                        <a href="/u/<%= locals.c_user.name %>">
+                            <i class="fa fa-user"></i>我
                         </a>
                     </li>
                     <li class="nav-default">
-                        <a class="nav-tooltip" href="/collections" data-toggle="tooltip"
-                           data-placement="bottom" title="收藏">
-                            <i class="fa fa-star"></i>
+                        <a href="/collections">
+                            <i class="fa fa-star"></i>收藏
                         </a>
                     </li>
                 </ul>

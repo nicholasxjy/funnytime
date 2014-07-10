@@ -44,8 +44,9 @@
 <script src="/javascripts/lib/jquery-1.11.1.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/javascripts/lib/bootstrap.min.js"></script>
-<script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
 <script src="/javascripts/lib/dropzone.js"></script>
+<% if (locals.c_user) { %>
+<script src="/javascripts/lib/jquery.infinitescroll.min.js"></script>
 <script src="/javascripts/lib/jquery.fancybox.pack.js"></script>
 <script src="/javascripts/lib/headroom.min.js"></script>
 <script>
@@ -89,6 +90,7 @@
         bttroom.init();
     });
 </script>
+<% } %>
 <script src="/javascripts/main.js"></script>
 <script src="/javascripts/utility.js"></script>
 <script src="/javascripts/auth.js"></script>
