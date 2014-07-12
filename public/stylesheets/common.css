@@ -17,6 +17,11 @@ body {
 img {
     border: 0;
 }
+.btn-post-comment {
+    margin-right: 18px;
+    font-size: 16px;
+    padding: 5px 15px;
+}
 .btt {
     display: none;
     position: fixed;
